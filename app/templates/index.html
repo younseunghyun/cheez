@@ -1,50 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contents!</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <title>Cheez</title>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href={{ url_for('static', filename="css/main.css") }}>
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+
+
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60781881-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
 </head>
-<body>
-<div class="container main">
-    <div class="row title">
-        <div class="col-xs-offset-3 col-xs-6">
-            <p>.col-xs-6 .col-md-4</p>
-        </div>
-        <div class="col-xs-offset-3 col-xs-6 url" id="url_link">
-        <a href="www.naver.com">
-            <p id="url_text">보러가기</p>
-            </a>
-        </div>
+<body style="background-image: url('{{data[2]}}');">
+    <div class="mask">
     </div>
-    <div class="arrow">
-        <div class="col-xs-1">
-            <a href="http://www.naver.com">
-                <p id="arrow">
-                    <
-                </p>
-              </a>
-        </div>
-        
-        <div class="col-xs-1 col-xs-offset-9 ">
-            <a href="http://www.daum.net">
-            <p id="arrow">
-                >
-            </p>
-            </a>
-        </div>
-        
+    
+    <div class="text-center content-wrap">
+        {{ data[1]|safe}}
     </div>
-
-</div>
-<div class="page-bg"></div>
 </body>
 </html>
-
