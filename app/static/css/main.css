@@ -11,12 +11,12 @@
     }*/
 
  .url{
-    padding-top : 20%;
+    padding-top : 0%;
  }
 
  .title{
     text-align : center; 
-    padding-top:30%; 
+    padding-top:80%; 
     font-size: 20px;
  }
 
@@ -33,3 +33,22 @@
     z-index: -1;
     overflow-x: hidden;
   }
+  #url_link{
+    border-style: solid;
+    border-width : 2px;
+    border-color: white;
+    border-radius: 10%;
+  }
+  #url_text{
+     color: white;
+  }
+
+#arrow{
+    color:white;
+    font-size : 30px;
+}
+.arrow{
+ 
+ padding-top: 50%;
+
+}
