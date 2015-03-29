@@ -1,12 +1,12 @@
 {% for post in posts %}
-<div class="post" style="background-image: url({{ post[2] }}); background-size: cover;" data-post-id="{{ post[0] }}">
+<div class="post" style="background-image: url({{ post[2] }}); background-size: cover; background-position: center" data-post-id="{{ post[0] }}">
 
     <div class="mask">
 
         <div class="contents">
             {{ post[1]|safe }}
         </div>
-        
+
     </div>    
     
 </div>

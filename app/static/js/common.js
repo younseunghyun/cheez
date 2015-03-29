@@ -38,13 +38,13 @@ function loadPosts() {
 
 function onDragStart(event, $target) {
     $target.data('mouseDown', true);
-    $target.data('initX', event.pageX);
+    $target.data('initX', event.originalEvent.touches[0].screenX);
 }
 
 function onDragEnd(event, $target) {
     $target.data('mouseDown', false);
 
-    var dx = event.pageX - $target.data('initX');
+    var dx = parseInt($target.css('left')) - $target.data('initX');
     var moveDistance = Math.abs(dx);
     if (moveDistance < SWIPE_OFFSET) {
         $target.animate({left:0}, 'fast');
@@ -78,7 +78,7 @@ function onDragEnd(event, $target) {
 
 function onDrag(event, $target) {
     if ($target.data('mouseDown')) {
-        var dx = event.pageX - $target.data('initX');
+        var dx = event.originalEvent.touches[0].screenX - $target.data('initX');
         $target.css('left', dx);
         $('.post:nth-child(2)').css('opacity',Math.abs(dx) / $(window).width());
     }
