@@ -37,7 +37,9 @@ def like():
     params = {
         'user_id': session['user_id']
     }
-    params.update(request.form)
+    params['post_id'] = request.form['post_id']
+    params['is_liked'] = request.form['is_liked']
+    params['link_clicked'] = request.form['link_clicked']
 
     db.session.execute(query, params)
     db.session.commit()

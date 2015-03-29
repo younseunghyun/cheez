@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 
 function initialize() {
-    SWIPE_OFFSET = $(window).width() / 2;
+    SWIPE_OFFSET = $(window).width() / 3;
     loadPosts();   
 }
 
