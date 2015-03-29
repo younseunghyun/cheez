@@ -29,6 +29,19 @@ where wp.post_type='attachment' order by rand() limit 10;
 
     return response
 
+@main.route('/like', methods=["POST"])
+def like():
+    query = """
+    INSERT INTO user_post_view (user_id, post_id, liked, link_clicked) values (:user_id, :post_id, :is_liked, :link_clicked)
+    """
+    params = {
+        'user_id': session['user_id']
+    }
+    params.update(request.form)
+
+    db.session.execute(query, params)
+    db.session.commit()
+    return ''
 
 @main.route('/', methods=['GET'])
 def index():

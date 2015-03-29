@@ -4,14 +4,21 @@ $(document).ready(function() {
     initialize();
 
 
-    $(document).on('mousedown', '.post', function(e){
+    $(document).on('touchstart', '.post', function(e){
         onDragStart(e, $(this));
     });
-    $(document).on('mousemove', '.post', function(e){
+    $(document).on('touchmove', '.post', function(e){
         onDrag(e, $(this));
     });
-    $(document).on('mouseup', '.post', function(e){
+    $(document).on('touchend', '.post', function(e){
         onDragEnd(e, $(this));
+    });
+    $(document).on('touchcancel', '.post', function(e){
+        onDragEnd(e, $(this));
+    });
+    
+    $(document).on('click', 'a.btn', function(){
+        $(this).parents('.post').data('linkClicked', true);
     });
 
 });
@@ -41,6 +48,7 @@ function onDragEnd(event, $target) {
     var moveDistance = Math.abs(dx);
     if (moveDistance < SWIPE_OFFSET) {
         $target.animate({left:0}, 'fast');
+        $('.post:nth-child(2)').animate({opacity:0}, 'fast');
     } else {
         if (dx > 0) {
             $target.animate({left:'100%'}, 'fast', function() {
@@ -48,7 +56,7 @@ function onDragEnd(event, $target) {
             });
 
             // do like
-
+            like($target, true);
 
         } else {
             $target.animate({left:'-100%'}, 'fast', function() {
@@ -56,7 +64,9 @@ function onDragEnd(event, $target) {
             });
 
             // do hate
+            like($target, false);
         }
+        $('.post:nth-child(2)').animate({opacity:1}, 'fast');
 
 
         if ($('.post').length < 5) {
@@ -70,15 +80,25 @@ function onDrag(event, $target) {
     if ($target.data('mouseDown')) {
         var dx = event.pageX - $target.data('initX');
         $target.css('left', dx);
+        $('.post:nth-child(2)').css('opacity',Math.abs(dx) / $(window).width());
     }
 }
 
-function like(postId) {
+function like($target, isLiked) {
+    var data = {
+        'post_id': $target.data('postId'),
+        'is_liked': isLiked,
+        'link_clicked': $target.data('linkClicked')|false
+    };
 
+    for (var i in data) {
+        if (data[i] === true) {
+            data[i] = '1';
+        } else if (data[i] === false) {
+            data[i] = '0';
+        }
+    }
+
+    $.post('/like', data);
 }
-
-function hate(postId) {
-    
-}
-
 

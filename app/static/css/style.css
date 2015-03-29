@@ -79,6 +79,13 @@ a.btn {
 
 .post:first-child {
     display: block;
+    z-index: 10;
+    opacity: 1;
+}
+
+.post:nth-child(2) {
+    display: block;
+    opacity: 0;
 }
 
 
