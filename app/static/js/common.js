@@ -1,4 +1,5 @@
 var SWIPE_OFFSET;
+var BASE_URL = "http://yshhome.iptime.org";
 
 $(document).ready(function() {
     initialize();
@@ -50,11 +51,13 @@ $(document).ready(function() {
 function initialize() {
     SWIPE_OFFSET = $(window).width() / 3;
     loadPosts();   
+    Kakao.init('eb29042a172000d9a50826b3d1fe7dca');
 }
 
 function loadPosts() {
     $.get('/posts', function(response) {
         $('#contents').append(response);
+        setKakaoShareButton();
     });   
 }
 
@@ -76,6 +79,7 @@ function onDragEnd(event, $target) {
         if (dx > 0) {
             $target.animate({left:'100%'}, 'fast', function() {
                 $target.remove();
+                setKakaoShareButton();
             });
 
             // do like
@@ -84,6 +88,7 @@ function onDragEnd(event, $target) {
         } else if (dx < 0) {
             $target.animate({left:'-100%'}, 'fast', function() {
                 $target.remove();
+                setKakaoShareButton();
             });
 
             // do hate
@@ -215,4 +220,25 @@ function SendSNS(sns)
       break;
   }
 }
+
+function setKakaoShareButton() {
+    var title = $('.post:first-child').text().trim();
+    title = title.substring(0, title.length - 4);
+    Kakao.Link.createTalkLinkButton({
+          container: '#share-kakao',
+          label: 'Cheez',
+          image: {
+            src: '/static/res/img/kakaotalk.png',
+            width: '80',
+            height: '80'
+        },
+        webButton: {
+            text: title,
+            url: BASE_URL + '/' + $('.post:first-child').data('postId')
+            
+            
+        }
+});
+}
+
 
