@@ -120,3 +120,16 @@ a.btn {
 .btn-radius {
     border-radius: 10px;
 }
+
+#toast-container {
+    text-align: center !important;
+}
+
+#toast-container>div.toast {
+    text-align: center;
+    display: inline-block;
+    margin: 10px auto !important;
+    width: auto !important;
+    padding: 8px !important;
+    background-image: none !important;
+}

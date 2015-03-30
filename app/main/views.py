@@ -29,17 +29,37 @@ where wp.post_type='attachment' order by rand() limit 10;
 
     return response
 
+@main.route('/link-click', methods=["POST"])
+def link_click():
+    query = """INSERT INTO user_post_view (user_id, post_id, liked, link_clicked) values (:user_id, :post_id, '-1', '1')
+
+    ON DUPLICATE KEY UPDATE
+    link_clicked = VALUES(link_clicked)
+    """
+
+    params = {
+        'user_id': session['user_id']
+    }
+    params['post_id'] = request.form['post_id']
+    params['link_clicked'] = request.form['link_clicked']
+
+    db.session.execute(query, params)
+    db.session.commit()
+    return ''
+
 @main.route('/like', methods=["POST"])
 def like():
     query = """
-    INSERT INTO user_post_view (user_id, post_id, liked, link_clicked) values (:user_id, :post_id, :is_liked, :link_clicked)
+    INSERT INTO user_post_view (user_id, post_id, liked) values (:user_id, :post_id, :is_liked)
+
+    ON DUPLICATE KEY UPDATE
+    liked = VALUES(liked)
     """
     params = {
         'user_id': session['user_id']
     }
     params['post_id'] = request.form['post_id']
     params['is_liked'] = request.form['is_liked']
-    params['link_clicked'] = request.form['link_clicked']
 
     db.session.execute(query, params)
     db.session.commit()

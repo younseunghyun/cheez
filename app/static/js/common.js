@@ -18,8 +18,31 @@ $(document).ready(function() {
     });
     
     $(document).on('click', 'a.btn', function(){
+        $.post('/link-click', {
+            post_id: $(this).parents('.post').data('postId')
+
+        });
+
         $(this).parents('.post').data('linkClicked', true);
     });
+
+    toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-bottom-center",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "200",
+          "hideDuration": "200",
+          "timeOut": "1000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
 
 });
 
@@ -87,9 +110,14 @@ function onDrag(event, $target) {
 function like($target, isLiked) {
     var data = {
         'post_id': $target.data('postId'),
-        'is_liked': isLiked,
-        'link_clicked': $target.data('linkClicked')|false
+        'is_liked': isLiked
     };
+
+    if (isLiked) {
+        toastr.success('좋아요 :)');
+    } else {
+        toastr.error('싫어요 :(');
+    }
 
     for (var i in data) {
         if (data[i] === true) {
@@ -99,6 +127,9 @@ function like($target, isLiked) {
         }
     }
 
-    $.post('/like', data);
+    $.post('/like', data, function(){
+        
+
+  });
 }
 
