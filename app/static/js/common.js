@@ -228,7 +228,7 @@ function setKakaoShareButton() {
           container: '#share-kakao',
           label: 'Cheez',
           image: {
-            src: '/static/res/img/kakaotalk.png',
+            src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
             width: '80',
             height: '80'
         },
