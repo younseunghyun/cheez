@@ -95,8 +95,6 @@ on t.id = wp.post_parent
     else:
         post_html = ''
 
-    print post_html
-
     response = current_app.make_response(render_template('index.html', post_html = post_html))
 
     response.set_cookie('user_id',value=('%s'%session['user_id']))
