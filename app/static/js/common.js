@@ -113,7 +113,7 @@ function like($target, isLiked) {
         'is_liked': isLiked
     };
 
-    if (isLiked) {
+    if (!isLiked) {
         toastr.success('좋아요 :)');
     } else {
         toastr.error('싫어요 :(');
