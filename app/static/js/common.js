@@ -233,7 +233,7 @@ function setKakaoShareButton() {
             height: 100
         },
         webButton: {
-            text: 'Cheez에서 보기,
+            text: 'Cheez에서 보기',
             url: BASE_URL + '/' + $('.post:first-child').data('postId')
             
             
