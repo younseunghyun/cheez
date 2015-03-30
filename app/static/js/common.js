@@ -226,14 +226,14 @@ function setKakaoShareButton() {
     title = title.substring(0, title.length - 4);
     Kakao.Link.createTalkLinkButton({
           container: '#share-kakao',
-          label: 'Cheez',
+          label: title,
           image: {
             src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
             width: 100,
             height: 100
         },
         webButton: {
-            text: title,
+            text: 'Cheez에서 보기,
             url: BASE_URL + '/' + $('.post:first-child').data('postId')
             
             
