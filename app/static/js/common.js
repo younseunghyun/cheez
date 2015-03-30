@@ -27,22 +27,22 @@ $(document).ready(function() {
     });
 
     toastr.options = {
-          "closeButton": false,
-          "debug": false,
-          "newestOnTop": false,
-          "progressBar": false,
-          "positionClass": "toast-bottom-center",
-          "preventDuplicates": false,
-          "onclick": null,
-          "showDuration": "200",
-          "hideDuration": "200",
-          "timeOut": "1000",
-          "extendedTimeOut": "1000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-      }
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "200",
+      "hideDuration": "200",
+      "timeOut": "1000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+  }
 
 });
 
@@ -54,7 +54,7 @@ function initialize() {
 
 function loadPosts() {
     $.get('/posts', function(response) {
-        $('body').prepend(response);
+        $('#contents').append(response);
     });   
 }
 
@@ -67,7 +67,7 @@ function onDragStart(event, $target) {
 function onDragEnd(event, $target) {
     $target.data('mouseDown', false);
 
-    var dx = parseInt($target.css('left')) - $target.data('initX');
+    var dx = parseInt($target.css('left'));
     var moveDistance = Math.abs(dx);
     if (moveDistance < SWIPE_OFFSET) {
         $target.animate({left:0}, 'fast');
@@ -81,7 +81,7 @@ function onDragEnd(event, $target) {
             // do like
             like($target, true);
 
-        } else {
+        } else if (dx < 0) {
             $target.animate({left:'-100%'}, 'fast', function() {
                 $target.remove();
             });
@@ -113,7 +113,7 @@ function like($target, isLiked) {
         'is_liked': isLiked
     };
 
-    if (!isLiked) {
+    if (isLiked) {
         toastr.success('좋아요 :)');
     } else {
         toastr.error('싫어요 :(');
@@ -128,87 +128,91 @@ function like($target, isLiked) {
     }
 
     $.post('/like', data, function(){
-        
 
-  });
+    });
 }
 
 
-function SendSNS(sns, title, url, image)
+function SendSNS(sns)
 {
+    var url = location.href.split('/')[0] + '/' + $('.post:first-child').data('postId');
+    var title = $('.post:first-child').text().trim();
+    title = title.substring(0, title.length - 4);
+
     var o;
     var _url = encodeURIComponent(url);
     var _title = encodeURIComponent(title);
     var _br  = encodeURIComponent('\r\n');
- 
+
+
     switch(sns)
     {
         case 'facebook':
-            o = {
-                method:'popup',
-                height:600,
-                width:600,
-                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
-            };
-            break;
- 
+        o = {
+            method:'popup',
+            height:600,
+            width:600,
+            url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
+        };
+        break;
+
         case 'twitter':
-            o = {
-                method:'popup',
-                height:600,
-                width:600,
-                url:'http://twitter.com/intent/tweet?text=' + _title + '&url=' + _url
-            };
-            break;
+        o = {
+            method:'popup',
+            height:600,
+            width:600,
+            url:'http://twitter.com/intent/tweet?text=' + _title + '&url=' + _url
+        };
+        break;
         
         case 'google':
-            o = {
-                method:'popup',
-                height:600,
-                width:600,
-                url:'https://plus.google.com/share?url={' + _url + '}'
-            };
-            break;
-                    
+        o = {
+            method:'popup',
+            height:600,
+            width:600,
+            url:'https://plus.google.com/share?url={' + _url + '}'
+        };
+        break;
+
         case 'naverband':
-            o = {
-                method:'web2app',
-                param:'create/post?text=' + _title + _br + _url,
-                a_store:'itms-apps://itunes.apple.com/app/id542613198?mt=8',
-                g_store:'market://details?id=com.nhn.android.band',
-                a_proto:'bandapp://',
-                g_proto:'scheme=bandapp;package=com.nhn.android.band'
-            };
-            break;
- 
+        o = {
+            method:'web2app',
+            param:'create/post?text=' + _title + _br + _url,
+            a_store:'itms-apps://itunes.apple.com/app/id542613198?mt=8',
+            g_store:'market://details?id=com.nhn.android.band',
+            a_proto:'bandapp://',
+            g_proto:'scheme=bandapp;package=com.nhn.android.band'
+        };
+        break;
+
         default:
-            return false;
+        return false;
     }
- 
+
     switch(o.method)
     {
         case 'popup':
-            if( o.height > 0 && o.width > 0 ){
-                window.open(o.url,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height='+o.height+',width='+o.width);
-            }
-            else{
-                 window.open(o.url);
-            }
-         
-          break;            
-        
-        case 'web2app':
-          if(navigator.userAgent.match(/android/i)){
-              setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
-          }
-          else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
-              setTimeout(function(){ location.href = o.a_store; }, 200);          
-              setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
-          }
-          else{
-              alert('Only mobile');
-          }
-          break;
-    }
+        if( o.height > 0 && o.width > 0 ){
+            window.open(o.url,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height='+o.height+',width='+o.width);
+        }
+        else{
+           window.open(o.url);
+       }
+
+       break;            
+
+       case 'web2app':
+       if(navigator.userAgent.match(/android/i)){
+          setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
+      }
+      else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
+          setTimeout(function(){ location.href = o.a_store; }, 200);          
+          setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+      }
+      else{
+          alert('Only mobile');
+      }
+      break;
+  }
 }
 

@@ -25,6 +25,7 @@ where wp.post_type='attachment' order by rand() limit 10;
         res = db.session.execute(query)
 
 
+
     response = render_template('posts.html', posts = res)
 
     return response
@@ -65,9 +66,9 @@ def like():
     db.session.commit()
     return ''
 
-@main.route('/', methods=['GET'])
-def index():
-
+@main.route('/')
+@main.route('/<int:post_id>')
+def index(post_id = 0):
     cookies = request.cookies
     if 'user_id' in cookies:
         session['user_id'] = cookies['user_id']
@@ -81,11 +82,22 @@ def index():
 
         session['user_id'] = res.lastrowid
 
-
     
+    if post_id > 0:
+        query = """
+select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
+(select id , post_title as content from wp_posts p where p.post_status='publish') t
+on t.id = wp.post_parent
+    where t.id = :post_id limit 1;
+    """
+        res = db.session.execute(query, {'post_id':post_id})
+        post_html = render_template('posts.html', posts=res)
+    else:
+        post_html = ''
 
+    print post_html
 
-    response = current_app.make_response(render_template('index.html'))
+    response = current_app.make_response(render_template('index.html', post_html = post_html))
 
     response.set_cookie('user_id',value=('%s'%session['user_id']))
 

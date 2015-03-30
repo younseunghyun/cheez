@@ -64,6 +64,10 @@ a.btn {
     padding: 10px 20px;
 }
 
+#contents {
+    height: 100%;
+}
+
 .post,
 .mask {
     position: fixed;
@@ -128,8 +132,20 @@ a.btn {
 #toast-container>div.toast {
     text-align: center;
     display: inline-block;
-    margin: 10px auto !important;
+    margin: 40% auto !important;
     width: auto !important;
     padding: 8px !important;
     background-image: none !important;
+}
+
+#btnset-share {
+    position: fixed;
+    width: 100%;
+    bottom: 20px;
+    z-index: 1000;
+    text-align: center;
+}
+
+#btnset-share a {
+    margin: 5px;
 }

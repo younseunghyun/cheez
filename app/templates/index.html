@@ -28,11 +28,22 @@
 </script>
 </head>
 <body>
+<div id="contents">
+  {{ post_html|safe }}
 
+</div>
 
 
 <div id="btnset-share">
-  <a href="SendSNS('facebook', '자취생이면 계란찜은할 줄 알아야지쉬운 자취요리바로보기 - ', 'http://cheez.co/?p=954', '');" class="btn-share"></a>
+  <a href="SendSNS('facebook');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/facebook.png') }}" width="50" height="50" alt="">
+  </a>
+  <a href="SendSNS('twitter');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/twitter.png') }}" width="50" height="50" alt="">
+  </a>
+  <a href="SendSNS('kakaotalk');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/kakaotalk.png') }}" width="50" height="50" alt="">
+  </a>
 </div>
 </body>
 </html>
