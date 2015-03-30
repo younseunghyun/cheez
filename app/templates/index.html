@@ -35,15 +35,15 @@
 
 
 <div id="btnset-share">
-  <a href="SendSNS('facebook');" class="btn-share">
-    <img src="{{ url_for('static', filename='res/img/facebook.png') }}" width="50" height="50" alt="">
-  </a>
-  <a href="SendSNS('twitter');" class="btn-share">
-    <img src="{{ url_for('static', filename='res/img/twitter.png') }}" width="50" height="50" alt="">
-  </a>
-  <a href="SendSNS('kakaotalk');" class="btn-share">
-    <img src="{{ url_for('static', filename='res/img/kakaotalk.png') }}" width="50" height="50" alt="">
-  </a>
+  <div onClick="SendSNS('facebook');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/facebook.png') }}" width="30" height="30" alt="">
+  </div>
+  <div onClick="SendSNS('twitter');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/twitter.png') }}" width="30" height="30" alt="">
+  </div>
+  <div onClick="SendSNS('kakaotalk');" class="btn-share">
+    <img src="{{ url_for('static', filename='res/img/kakaotalk.png') }}" width="30" height="30" alt="">
+  </div>
 </div>
 </body>
 </html>

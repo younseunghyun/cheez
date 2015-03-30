@@ -132,7 +132,7 @@ a.btn {
 #toast-container>div.toast {
     text-align: center;
     display: inline-block;
-    margin: 40% auto !important;
+    margin: 20% auto !important;
     width: auto !important;
     padding: 8px !important;
     background-image: none !important;
@@ -146,6 +146,7 @@ a.btn {
     text-align: center;
 }
 
-#btnset-share a {
+#btnset-share div {
+    display: inline-block;
     margin: 5px;
 }
