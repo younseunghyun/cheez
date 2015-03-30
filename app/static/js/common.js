@@ -228,7 +228,9 @@ function setKakaoShareButton() {
           container: '#share-kakao',
           label: 'Cheez',
           image: {
-            src: $('.post:first-child').css('background-image').replace('url(','').replace(')','')
+            src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
+            width: 100,
+            height: 100
         },
         webButton: {
             text: title,
