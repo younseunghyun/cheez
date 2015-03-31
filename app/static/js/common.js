@@ -116,7 +116,7 @@ function like($target, isLiked) {
         'is_liked': isLiked
     };
 
-    if (!isLiked) {
+    if (isLiked) {
         toastr.success('좋아요 :)');
     } else {
         toastr.error('싫어요 :(');
@@ -220,6 +220,7 @@ function SendSNS(sns)
 }
 
 function setKakaoShareButton() {
+    $('#share-kakao').unbind('click');
     var title = $('.post:first-child').text().trim();
     title = title.substring(0, title.length - 4);
     Kakao.Link.createTalkLinkButton({
@@ -237,6 +238,7 @@ function setKakaoShareButton() {
             
         }
 });
+
 }
 
 
