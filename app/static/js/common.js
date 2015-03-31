@@ -5,17 +5,18 @@ $(document).ready(function() {
     initialize();
 
 
-    $(document).on('touchstart', '.post', function(e){
-        onDragStart(e, $(this));
+    $(document).on('touchstart', 'body', function(e){
+        
+        onDragStart(e, $('.post:first-child'));
     });
-    $(document).on('touchmove', '.post', function(e){
-        onDrag(e, $(this));
+    $(document).on('touchmove', 'body', function(e){
+        onDrag(e, $('.post:first-child'));
     });
-    $(document).on('touchend', '.post', function(e){
-        onDragEnd(e, $(this));
+    $(document).on('touchend', 'body', function(e){
+        onDragEnd(e, $('.post:first-child'));
     });
-    $(document).on('touchcancel', '.post', function(e){
-        onDragEnd(e, $(this));
+    $(document).on('touchcancel', 'body', function(e){
+        onDragEnd(e, $('.post:first-child'));
     });
     
     $(document).on('click', 'a.btn', function(){
