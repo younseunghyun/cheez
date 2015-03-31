@@ -6,22 +6,43 @@ from .. import db
 @main.route('/posts')
 def get_posts():
     query = """
-select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
-(select id , post_title as content from wp_posts p where p.post_status='publish') t
-on t.id = wp.post_parent  Left join
-user_post_view up on t.id = up.post_id and 
-up.user_id = :user_id where wp.post_type='attachment' and up.id is null order by rand() limit 10;
-    """
+select tmp.id as id , tmp.content ,wm.meta_value as image_url from 
+(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+  join wp_postmeta pm on p.id = pm.post_id 
+  left join user_post_view up on p.id =  up.post_id and up.user_id = :user_id
+  where pm.meta_key ='_thumbnail_id' 
+  and p.post_status='publish'
+  and up.id is null) tmp 
+  join wp_postmeta wm on tmp.value = wm.post_id 
+   where meta_key ='_wp_attached_file'  order by rand() limit 10;
+"""
+#"""
+#select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
+#(select id , post_title as content from wp_posts p where p.post_status='publish') t
+#on t.id = wp.post_parent  Left join
+#user_post_view up on t.id = up.post_id and 
+#up.user_id = :user_id where wp.post_type='attachment' and up.id is null order by rand() limit 10;
+#    """
 
     res = db.session.execute(query, {'user_id':session['user_id']})
 
     if res.rowcount == 0:
         query = """
-select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
-(select id , post_title as content from wp_posts p where p.post_status='publish') t
-on t.id = wp.post_parent 
-where wp.post_type='attachment' order by rand() limit 10;
-        """
+select tmp.id as id , tmp.content ,wm.meta_value as image_url from 
+(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+  join wp_postmeta pm on p.id = pm.post_id 
+  where pm.meta_key ='_thumbnail_id' 
+  and p.post_status='publish'
+  ) tmp 
+  join wp_postmeta wm on tmp.value = wm.post_id 
+   where meta_key ='_wp_attached_file'  order by rand() limit 10;
+"""
+#"""
+#select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
+#(select id , post_title as content from wp_posts p where p.post_status='publish') t
+#on t.id = wp.post_parent 
+#where wp.post_type='attachment' order by rand() limit 10;
+#        """
         res = db.session.execute(query)
 
 
