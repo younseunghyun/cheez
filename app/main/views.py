@@ -6,7 +6,7 @@ from .. import db
 @main.route('/posts')
 def get_posts():
     query = """
-select tmp.id as id , tmp.content ,wm.meta_value as image_url from 
+select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
 (select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
   join wp_postmeta pm on p.id = pm.post_id 
   left join user_post_view up on p.id =  up.post_id and up.user_id = :user_id
@@ -28,7 +28,7 @@ select tmp.id as id , tmp.content ,wm.meta_value as image_url from
 
     if res.rowcount == 0:
         query = """
-select tmp.id as id , tmp.content ,wm.meta_value as image_url from 
+select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
 (select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
   join wp_postmeta pm on p.id = pm.post_id 
   where pm.meta_key ='_thumbnail_id' 
