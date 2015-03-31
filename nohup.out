@@ -1060,3 +1060,131 @@
 [2015-03-30 20:28:06 +0000] [5243] [INFO] Listening at: http://127.0.0.1:8000 (5243)
 [2015-03-30 20:28:06 +0000] [5243] [INFO] Using worker: sync
 [2015-03-30 20:28:06 +0000] [5248] [INFO] Booting worker with pid: 5248
+[2015-03-31 01:30:45 +0000] [4557] [INFO] Starting gunicorn 19.3.0
+[2015-03-31 01:30:45 +0000] [4557] [INFO] Listening at: http://127.0.0.1:8000 (4557)
+[2015-03-31 01:30:45 +0000] [4557] [INFO] Using worker: sync
+[2015-03-31 01:30:45 +0000] [4562] [INFO] Booting worker with pid: 4562
+[2015-03-31 01:30:49 +0000] [4562] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 98, in index
+    print post_html
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 217-220: ordinal not in range(128)
+[2015-03-31 01:30:53 +0000] [4562] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 98, in index
+    print post_html
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 217-220: ordinal not in range(128)
+[2015-03-31 01:31:13 +0000] [4557] [INFO] Handling signal: term
+[2015-03-31 01:31:13 +0000] [4562] [INFO] Worker exiting (pid: 4562)
+[2015-03-31 01:31:13 +0000] [4557] [INFO] Shutting down: Master
+[2015-03-31 01:31:53 +0000] [4718] [INFO] Starting gunicorn 19.3.0
+[2015-03-31 01:31:53 +0000] [4718] [INFO] Listening at: http://127.0.0.1:8000 (4718)
+[2015-03-31 01:31:53 +0000] [4718] [INFO] Using worker: sync
+[2015-03-31 01:31:53 +0000] [4729] [INFO] Booting worker with pid: 4729
+[2015-03-31 01:32:09 +0000] [4729] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 98, in index
+    print post_html
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 247-250: ordinal not in range(128)
+[2015-03-31 01:32:17 +0000] [4729] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 98, in index
+    print post_html
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 217-220: ordinal not in range(128)
+[2015-03-31 01:32:44 +0000] [4729] [INFO] Worker exiting (pid: 4729)
+
+
+[2015-03-31 01:32:44 +0000] [4885] [INFO] Booting worker with pid: 4885
+[2015-03-31 01:33:37 +0000] [4885] [INFO] Worker exiting (pid: 4885)
+[2015-03-31 01:33:37 +0000] [4913] [INFO] Booting worker with pid: 4913
+[2015-03-31 01:33:41 +0000] [4718] [INFO] Handling signal: term
+[2015-03-31 01:33:41 +0000] [4913] [INFO] Worker exiting (pid: 4913)
+[2015-03-31 01:33:41 +0000] [4718] [INFO] Shutting down: Master
+[2015-03-31 01:35:10 +0000] [5118] [INFO] Starting gunicorn 19.3.0
+[2015-03-31 01:35:10 +0000] [5118] [INFO] Listening at: http://127.0.0.1:8000 (5118)
+[2015-03-31 01:35:10 +0000] [5118] [INFO] Using worker: sync
+[2015-03-31 01:35:10 +0000] [5123] [INFO] Booting worker with pid: 5123
+[2015-03-31 08:37:50 +0000] [8765] [INFO] Starting gunicorn 19.3.0
+[2015-03-31 08:37:50 +0000] [8765] [INFO] Listening at: http://127.0.0.1:8000 (8765)
+[2015-03-31 08:37:50 +0000] [8765] [INFO] Using worker: sync
+[2015-03-31 08:37:50 +0000] [8770] [INFO] Booting worker with pid: 8770
