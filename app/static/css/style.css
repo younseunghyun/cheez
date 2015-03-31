@@ -51,13 +51,17 @@ table {
 
 /******************************************************/
 
+* {
+    overflow: hidden !important;
+}
+
 html, body {
     height: 100%;
 }
 
 body {
     font-family: "Nanum Gothic";
-    overflow: hidden;
+    
 }
 
 a.btn {
@@ -109,7 +113,7 @@ a.btn {
     text-align: center;
     position: absolute;
     width: 100%;
-    top: calc(50% - 3em);
+    top: 40%;
     left: 0;
 }
 
