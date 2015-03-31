@@ -35,17 +35,22 @@ def link_click():
     query = """INSERT INTO user_post_view (user_id, post_id, liked, link_clicked) values (:user_id, :post_id, '-1', '1')
 
     ON DUPLICATE KEY UPDATE
-    link_clicked = VALUES(link_clicked)
+    link_clicked = VALUES(link_clicked);
+
+
+    INSERT INTO view_log (user_id, post_id, liked, link_clicked) values (:user_id, :post_id, '-1', '1');
+    
     """
 
     params = {
         'user_id': session['user_id']
     }
     params['post_id'] = request.form['post_id']
-    params['link_clicked'] = request.form['link_clicked']
 
     db.session.execute(query, params)
     db.session.commit()
+
+
     return ''
 
 @main.route('/like', methods=["POST"])
@@ -54,7 +59,12 @@ def like():
     INSERT INTO user_post_view (user_id, post_id, liked) values (:user_id, :post_id, :is_liked)
 
     ON DUPLICATE KEY UPDATE
-    liked = VALUES(liked)
+    liked = VALUES(liked);
+
+
+    INSERT INTO view_log (user_id, post_id, liked) values (:user_id, :post_id, :is_liked);
+
+
     """
     params = {
         'user_id': session['user_id']

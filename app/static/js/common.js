@@ -23,8 +23,6 @@ $(document).ready(function() {
             post_id: $(this).parents('.post').data('postId')
 
         });
-
-        $(this).parents('.post').data('linkClicked', true);
     });
 
     toastr.options = {
