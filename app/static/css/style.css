@@ -57,6 +57,7 @@ html, body {
 
 body {
     font-family: "Nanum Gothic";
+    -webkit-overflow-scrolling: touch;
 }
 
 a.btn {
