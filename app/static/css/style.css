@@ -79,6 +79,7 @@ a.btn {
 
 .post {
     display: none;
+    font-weight: bold;
 }
 
 .post:first-child {
@@ -95,7 +96,9 @@ a.btn {
 
 .mask {
     position: relative;
-    background-color: rgba(0,0,0,0.3);
+    background-image: url('/static/res/img/grid.png');
+    background-color: rgba(0,0,0,0.5);
+
 }
 
 .contents {
