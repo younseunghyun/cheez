@@ -220,11 +220,11 @@ function SendSNS(sns)
 }
 
 function setKakaoShareButton() {
-    $('#share-kakao').unbind('click');
+    $('#share-kakao').html('<img id="btn-share-kakao" src="/static/res/img/kakaotalk.png" width="30" height="30" alt="">');
     var title = $('.post:first-child').text().trim();
     title = title.substring(0, title.length - 4);
     Kakao.Link.createTalkLinkButton({
-          container: '#share-kakao',
+          container: '#btn-share-kakao',
           label: title,
           image: {
             src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
@@ -234,8 +234,6 @@ function setKakaoShareButton() {
         webButton: {
             text: 'Cheez에서 보기',
             url: BASE_URL + '/' + $('.post:first-child').data('postId')
-            
-            
         }
 });
 
