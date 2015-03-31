@@ -51,9 +51,6 @@ table {
 
 /******************************************************/
 
-* {
-    overflow: hidden !important;
-}
 
 html, body {
     height: 100%;
