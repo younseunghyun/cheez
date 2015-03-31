@@ -28,10 +28,10 @@ $(document).ready(function() {
     toastr.options = {
       "closeButton": false,
       "debug": false,
-      "newestOnTop": false,
+      "newestOnTop": true,
       "progressBar": false,
       "positionClass": "toast-bottom-center",
-      "preventDuplicates": true,
+      "preventDuplicates": false,
       "onclick": null,
       "showDuration": "200",
       "hideDuration": "200",
