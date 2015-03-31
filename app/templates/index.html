@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="{{ url_for('static', filename='js/nonbounce.js') }}"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
   
@@ -26,7 +27,7 @@
 
   </script>
 </head>
-<body>
+<body class="nonbounce">
   <div id="contents">
     {{ post_html|safe }}
 

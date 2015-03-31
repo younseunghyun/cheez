@@ -50,6 +50,7 @@ function initialize() {
     SWIPE_OFFSET = $(window).width() / 3;
     loadPosts();   
     Kakao.init('eb29042a172000d9a50826b3d1fe7dca');
+    $.nonbounce();
 }
 
 function loadPosts() {
