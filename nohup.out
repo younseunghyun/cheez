@@ -1256,3 +1256,158 @@ UnicodeEncodeError: 'ascii' codec can't encode characters in position 217-220: o
 [2015-03-31 19:03:44 +0000] [3562] [INFO] Listening at: http://127.0.0.1:8000 (3562)
 [2015-03-31 19:03:44 +0000] [3562] [INFO] Using worker: sync
 [2015-03-31 19:03:44 +0000] [3567] [INFO] Booting worker with pid: 3567
+[2015-03-31 20:23:23 +0000] [3567] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 27, in get_posts
+    res = db.session.execute(query, {'user_id':session['user_id']})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1021, in execute
+    bind, close_with_result=True).execute(clause, params or {})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 841, in execute
+    return meth(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 322, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 938, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1070, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1271, in _handle_dbapi_exception
+    exc_info
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 199, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1063, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 442, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (ProgrammingError) (1146, "Table 'wordpress.wp_posts' doesn't exist") '\nselect tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from \n(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p\n  join wp_postmeta pm on p.id = pm.post_id \n  left join user_post_view up on p.id =  up.post_id and up.user_id = %s\n  where pm.meta_key =\'_thumbnail_id\' \n  and p.post_status=\'publish\'\n  and up.id is null) tmp \n  join wp_postmeta wm on tmp.value = wm.post_id \n   where meta_key =\'_wp_attached_file\'  order by rand() limit 10;\n' (171,)
+[2015-03-31 20:23:30 +0000] [3567] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 27, in get_posts
+    res = db.session.execute(query, {'user_id':session['user_id']})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1021, in execute
+    bind, close_with_result=True).execute(clause, params or {})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 841, in execute
+    return meth(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 322, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 938, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1070, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1271, in _handle_dbapi_exception
+    exc_info
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 199, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1063, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 442, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (ProgrammingError) (1146, "Table 'wordpress.wp_posts' doesn't exist") '\nselect tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from \n(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p\n  join wp_postmeta pm on p.id = pm.post_id \n  left join user_post_view up on p.id =  up.post_id and up.user_id = %s\n  where pm.meta_key =\'_thumbnail_id\' \n  and p.post_status=\'publish\'\n  and up.id is null) tmp \n  join wp_postmeta wm on tmp.value = wm.post_id \n   where meta_key =\'_wp_attached_file\'  order by rand() limit 10;\n' (u'171',)
+[2015-03-31 20:23:46 +0000] [3567] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 124, in index
+    res = db.session.execute(query, {'post_id':post_id})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/orm/session.py", line 1021, in execute
+    bind, close_with_result=True).execute(clause, params or {})
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 841, in execute
+    return meth(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py", line 322, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 938, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1070, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1271, in _handle_dbapi_exception
+    exc_info
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/util/compat.py", line 199, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1063, in _execute_context
+    context)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 442, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (ProgrammingError) (1146, "Table 'wordpress.wp_posts' doesn't exist") "\nselect t.id as id, t.content, wp.guid  as image_url from wp_posts wp join\n(select id , post_title as content from wp_posts p where p.post_status='publish') t\non t.id = wp.post_parent\n    where t.id = %s limit 1;\n    " (453,)
+[2015-03-31 21:09:21 +0000] [18531] [INFO] Starting gunicorn 19.3.0
+[2015-03-31 21:09:21 +0000] [18531] [INFO] Listening at: http://127.0.0.1:8000 (18531)
+[2015-03-31 21:09:21 +0000] [18531] [INFO] Using worker: sync
+[2015-03-31 21:09:21 +0000] [18536] [INFO] Booting worker with pid: 18536
+[2015-04-01 09:36:31 +0000] [22359] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 09:36:31 +0000] [22359] [INFO] Listening at: http://127.0.0.1:8000 (22359)
+[2015-04-01 09:36:31 +0000] [22359] [INFO] Using worker: sync
+[2015-04-01 09:36:31 +0000] [22364] [INFO] Booting worker with pid: 22364
