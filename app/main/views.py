@@ -150,11 +150,14 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
 #    where t.id = :post_id limit 1;
 #    """
         res = db.session.execute(query, {'post_id':post_id})
-        post_html = render_template('posts.html', posts=res)
+        row = res.fetchone()
+        post_html = render_template('posts.html', posts=[row])
+        post_meta = render_template('post_meta.html', post=row)
     else:
+        post_meta = ''
         post_html = ''
 
-    response = current_app.make_response(render_template('index.html', post_html = post_html))
+    response = current_app.make_response(render_template('index.html', post_meta = post_meta, post_html = post_html))
 
     response.set_cookie('user_id',value=('%s'%session['user_id']))
 
