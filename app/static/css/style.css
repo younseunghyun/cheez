@@ -158,10 +158,10 @@ a.btn {
 
 #logo {
     position: fixed;
-    width: 180px;
-    height: 60px;
+    width: 120px;
+    height: 40px;
     z-index: 1200;
     top: 20px;
     left: 50%;
-    margin-left: -90px;
+    margin-left: -60px;
 }
