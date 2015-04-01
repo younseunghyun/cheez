@@ -2,7 +2,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from flask import render_template, session, current_app, request
-
+from bs4 import BeautifulSoup as BS
 from . import main
 from .. import db
 
@@ -152,7 +152,7 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
         res = db.session.execute(query, {'post_id':post_id})
         row = res.fetchone()
         post_html = render_template('posts.html', posts=[row])
-        post_meta = render_template('post_meta.html', post=row)
+        post_meta = render_template('post_meta.html', post=row, BS=BS)
     else:
         post_meta = ''
         post_html = ''
