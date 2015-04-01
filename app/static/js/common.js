@@ -143,12 +143,12 @@ function SendSNS(sns)
     var url = BASE_URL + '/' + $('.post:first-child').data('postId')
     var title = $('.post:first-child').text().trim();
     title = title.substring(0, title.length - 4);
-
     var o;
     var _url = encodeURIComponent(url);
     var _title = encodeURIComponent(title);
     var _br  = encodeURIComponent('\r\n');
 
+    console.log(_url);
 
     switch(sns)
     {
