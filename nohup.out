@@ -2113,3 +2113,11 @@ KeyError: 'user_id'
 [2015-04-01 18:02:34 +0000] [30963] [INFO] Listening at: http://127.0.0.1:8000 (30963)
 [2015-04-01 18:02:34 +0000] [30963] [INFO] Using worker: sync
 [2015-04-01 18:02:34 +0000] [30968] [INFO] Booting worker with pid: 30968
+[2015-04-01 22:17:44 +0000] [21918] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 22:17:44 +0000] [21918] [INFO] Listening at: http://127.0.0.1:8000 (21918)
+[2015-04-01 22:17:44 +0000] [21918] [INFO] Using worker: sync
+[2015-04-01 22:17:44 +0000] [21923] [INFO] Booting worker with pid: 21923
+[2015-04-01 23:09:15 +0000] [26305] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 23:09:15 +0000] [26305] [INFO] Listening at: http://127.0.0.1:8000 (26305)
+[2015-04-01 23:09:15 +0000] [26305] [INFO] Using worker: sync
+[2015-04-01 23:09:15 +0000] [26310] [INFO] Booting worker with pid: 26310
