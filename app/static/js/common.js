@@ -1,5 +1,5 @@
 var SWIPE_OFFSET;
-var BASE_URL = "http://yshhome.iptime.org";
+var BASE_URL = "http://cheez.co";
 
 $(document).ready(function() {
     initialize();
