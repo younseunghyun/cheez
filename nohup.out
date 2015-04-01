@@ -2093,3 +2093,23 @@ Traceback (most recent call last):
   File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
     __getitem__ = lambda x, i: x._get_current_object()[i]
 KeyError: 'user_id'
+[2015-04-01 17:22:29 +0000] [27342] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 17:22:29 +0000] [27342] [INFO] Listening at: http://127.0.0.1:8000 (27342)
+[2015-04-01 17:22:29 +0000] [27342] [INFO] Using worker: sync
+[2015-04-01 17:22:29 +0000] [27347] [INFO] Booting worker with pid: 27347
+[2015-04-01 17:50:49 +0000] [29631] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 17:50:49 +0000] [29631] [INFO] Listening at: http://127.0.0.1:8000 (29631)
+[2015-04-01 17:50:49 +0000] [29631] [INFO] Using worker: sync
+[2015-04-01 17:50:49 +0000] [29636] [INFO] Booting worker with pid: 29636
+[2015-04-01 17:56:53 +0000] [30274] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 17:56:53 +0000] [30274] [INFO] Listening at: http://127.0.0.1:8000 (30274)
+[2015-04-01 17:56:53 +0000] [30274] [INFO] Using worker: sync
+[2015-04-01 17:56:53 +0000] [30279] [INFO] Booting worker with pid: 30279
+[2015-04-01 17:59:45 +0000] [30671] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 17:59:45 +0000] [30671] [INFO] Listening at: http://127.0.0.1:8000 (30671)
+[2015-04-01 17:59:45 +0000] [30671] [INFO] Using worker: sync
+[2015-04-01 17:59:45 +0000] [30676] [INFO] Booting worker with pid: 30676
+[2015-04-01 18:02:34 +0000] [30963] [INFO] Starting gunicorn 19.3.0
+[2015-04-01 18:02:34 +0000] [30963] [INFO] Listening at: http://127.0.0.1:8000 (30963)
+[2015-04-01 18:02:34 +0000] [30963] [INFO] Using worker: sync
+[2015-04-01 18:02:34 +0000] [30968] [INFO] Booting worker with pid: 30968

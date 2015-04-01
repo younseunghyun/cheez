@@ -98,11 +98,22 @@ a.btn {
 
 .mask {
     position: relative;
-    background-image: url('/static/res/img/grid.png');
+/*    background-image: url('/static/res/img/grid.png');*/
     background-color: rgba(0,0,0,1);
-    opacity: .6;
+    opacity: .7;
 }
-
+.grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.grid {
+/*    position: relative;*/
+    background-image: url('/static/res/img/grid.png');
+    opacity: .2;
+}
 .contents {
     font-size: 1.5em;
     line-height: 1.5em;
