@@ -176,3 +176,22 @@ a.btn {
     left: 50%;
     margin-left: -45px;
 }
+
+.left {
+    font-size: 0.7em;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    opacity : 0.4;
+}
+
+.right {
+    font-size: 0.7em;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    opacity : 0.4;
+}
+
