@@ -8,6 +8,11 @@ from .. import db
 
 @main.route('/posts')
 def get_posts():
+    if 'post_ids' not in session:
+        session['post_ids'] = [0, 0]
+
+    post_ids = session['post_ids']
+
     query = """
 select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
 (select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
@@ -17,7 +22,9 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
   and p.post_status='publish'
   and up.id is null) tmp 
   join wp_postmeta wm on tmp.value = wm.post_id 
-   where meta_key ='_wp_attached_file'  order by rand() limit 10;
+   where meta_key ='_wp_attached_file'
+    and tmp.id not in """+str(tuple(post_ids))+"""
+     order by rand() limit 10;
 """
 #"""
 #select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
@@ -38,7 +45,9 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
   and p.post_status='publish'
   ) tmp 
   join wp_postmeta wm on tmp.value = wm.post_id 
-   where meta_key ='_wp_attached_file'  order by rand() limit 10;
+   where meta_key ='_wp_attached_file'
+    and tmp.id not in """+str(tuple(post_ids))+"""
+     order by rand() limit 10;
 """
 #"""
 #select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
@@ -47,6 +56,12 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
 #where wp.post_type='attachment' order by rand() limit 10;
 #        """
         res = db.session.execute(query)
+
+    def to_list(row):
+        session['post_ids'].append(row[0])
+        return row
+
+    res = map(to_list, res)
 
 
 
