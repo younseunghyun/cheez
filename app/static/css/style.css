@@ -99,9 +99,8 @@ a.btn {
 .mask {
     position: relative;
     background-image: url('/static/res/img/grid.png');
-    background-color: rgba(0,0,0,0.9);
-    opacity: .7;
-
+    background-color: rgba(0,0,0,1);
+    opacity: .6;
 }
 
 .contents {
