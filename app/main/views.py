@@ -1,3 +1,6 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from flask import render_template, session, current_app, request
 
 from . import main
@@ -116,11 +119,21 @@ def index(post_id = 0):
     
     if post_id > 0:
         query = """
-select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
-(select id , post_title as content from wp_posts p where p.post_status='publish') t
-on t.id = wp.post_parent
-    where t.id = :post_id limit 1;
-    """
+select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from
+(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+  join wp_postmeta pm on p.id = pm.post_id
+  where pm.meta_key ='_thumbnail_id'
+  and p.post_status='publish'
+  ) tmp
+  join wp_postmeta wm on tmp.value = wm.post_id
+   where meta_key ='_wp_attached_file'  and tmp.id = :post_id limit 1;
+"""
+#"""
+#select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
+#(select id , post_title as content from wp_posts p where p.post_status='publish') t
+#on t.id = wp.post_parent
+#    where t.id = :post_id limit 1;
+#    """
         res = db.session.execute(query, {'post_id':post_id})
         post_html = render_template('posts.html', posts=res)
     else:
