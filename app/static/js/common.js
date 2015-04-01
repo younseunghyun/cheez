@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 
     $(document).on('touchstart', 'body', function(e){
-        
+
         onDragStart(e, $('.post:first-child'));
     });
     $(document).on('touchmove', 'body', function(e){
@@ -140,7 +140,7 @@ function like($target, isLiked) {
 
 function SendSNS(sns)
 {
-    var url = location.href.split('/')[0] + '/' + $('.post:first-child').data('postId');
+    var url = BASE_URL + '/' + $('.post:first-child').data('postId')
     var title = $('.post:first-child').text().trim();
     title = title.substring(0, title.length - 4);
 
