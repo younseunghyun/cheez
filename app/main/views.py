@@ -172,3 +172,21 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
 
 
     return response
+
+@main.route('/touch_log', methods=["POST"])
+def touch_log():
+    query = """
+    
+    INSERT INTO touch_log (user_id, post_id, x,y) values (:user_id, :post_id, :x,:y);
+
+    """
+    params = {
+        'user_id': session['user_id']
+    }
+    params['post_id'] = request.form['post_id']
+    params['x'] = request.form['x']
+    params['y'] = request.form['y']
+
+    db.session.execute(query, params)
+    db.session.commit()
+    return ''

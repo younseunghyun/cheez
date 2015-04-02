@@ -242,3 +242,28 @@ function setKakaoShareButton() {
 }
 
 
+$(function() {
+    
+    function updateLog(x, y) {
+        var data = {
+        'post_id': $('.post:first').data('postId'),
+        'x': x,
+        'y': y
+    };
+
+    
+    $.post('/touch_log', data, function(){
+
+    });
+
+    }
+
+    document.addEventListener('touchstart', function(e) {
+        updateLog(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    }, false);
+
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        updateLog(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+    }, false);
+});
