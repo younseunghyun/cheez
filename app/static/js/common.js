@@ -141,7 +141,7 @@ function like($target, isLiked) {
 function SendSNS(sns)
 {
     var url = BASE_URL + '/' + $('.post:first-child').data('postId')
-    var title = $('.post:first-child').text().trim();
+    var title = $('.contents:first').text().trim();
     title = title.substring(0, title.length - 4);
     var o;
     var _url = encodeURIComponent(url);
@@ -223,7 +223,7 @@ function SendSNS(sns)
 
 function setKakaoShareButton() {
     $('#share-kakao').html('<img id="btn-share-kakao" src="/static/res/img/kakaotalk.png" width="30" height="30" alt="">');
-    var title = $('.post:first-child').text().trim();
+    var title = $('.contents:first').text().trim();
     title = title.substring(0, title.length - 4);
     Kakao.Link.createTalkLinkButton({
           container: '#btn-share-kakao',

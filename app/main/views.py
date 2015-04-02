@@ -2,7 +2,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from flask import render_template, session, current_app, request
-
+from BeautifulSoup import BeautifulSoup as bs
 from . import main
 from .. import db
 
@@ -134,7 +134,7 @@ def index(post_id = 0):
     
     if post_id > 0:
         query = """
-select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from
+select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as image_url from
 (select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
   join wp_postmeta pm on p.id = pm.post_id
   where pm.meta_key ='_thumbnail_id'
@@ -151,8 +151,9 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
 #    """
         res = db.session.execute(query, {'post_id':post_id})
         row = res.fetchone()
+        title = bs(row['content']).text
         post_html = render_template('posts.html', posts=[row])
-        post_meta = render_template('post_meta.html', post=row)
+        post_meta = render_template('post_meta.html', post=row, title=title)
     else:
         post_meta = ''
         post_html = ''
