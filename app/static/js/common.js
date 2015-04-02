@@ -25,6 +25,18 @@ $(document).ready(function() {
 
         });
     });
+    $(document).on('click','#btn-share-kakao',function(){
+        var data = {
+        'post_id': $('.post:first-child').data('postId'),
+        'sns': 'kakao',
+    };
+
+    
+    $.post('/sns_log', data, function(){
+
+    });
+
+    });
 
     toastr.options = {
       "closeButton": false,
@@ -149,6 +161,18 @@ function SendSNS(sns)
     var _br  = encodeURIComponent('\r\n');
 
     console.log(_url);
+        var data = {
+        'post_id': $('.post:first-child').data('postId'),
+        'sns': sns,
+    };
+
+    
+    $.post('/sns_log', data, function(){
+
+    });
+
+    
+
 
     switch(sns)
     {

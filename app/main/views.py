@@ -190,3 +190,21 @@ def touch_log():
     db.session.execute(query, params)
     db.session.commit()
     return ''
+
+@main.route('/sns_log', methods=["POST"])
+def sns_log():
+    query = """
+    
+    INSERT INTO sns_log (user_id, post_id, sns) values (:user_id, :post_id, :sns);
+
+    """
+    params = {
+        'user_id': session['user_id']
+    }
+    params['post_id'] = request.form['post_id']
+    params['sns'] = request.form['sns']
+    
+
+    db.session.execute(query, params)
+    db.session.commit()
+    return ''

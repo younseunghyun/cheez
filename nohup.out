@@ -2216,3 +2216,140 @@ KeyError: 'user_id'
 [2015-04-02 21:53:05 +0000] [18835] [INFO] Listening at: http://127.0.0.1:8000 (18835)
 [2015-04-02 21:53:05 +0000] [18835] [INFO] Using worker: sync
 [2015-04-02 21:53:05 +0000] [18840] [INFO] Booting worker with pid: 18840
+[2015-04-02 23:33:12 +0000] [18840] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 88, in link_click
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+533
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+533
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+533
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+638
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+639
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+640
+533
+533
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+641
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+642
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+643
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+644
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+645
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+646
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+647
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+648
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+649
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+650
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+651
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+652
+533
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+653
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+654
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+655
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+656
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+658
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+237
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+659
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+660
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+661
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+662
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+663
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+661
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+664
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+665
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+666
+529
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+667
+668
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+669
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+670
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+672
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+672
+('image/2015/03/ywo56[2015-04-03 00:05:49 +0000] [18835] [INFO] Handling signal: hup
+[2015-04-03 00:05:49 +0000] [18835] [INFO] Hang up: Master
+[2015-04-03 00:05:50 +0000] [29035] [INFO] Booting worker with pid: 29035
+[2015-04-03 01:15:39 +0000] [29035] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 160, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
