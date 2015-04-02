@@ -157,7 +157,11 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
         row = res.fetchone()
 
         post_html = render_template('posts.html', posts=[row])
-        post_meta = render_template('post_meta.html', post=row, BS=BS)
+        title = BS(row['content'])
+        [s.extract() for s in title('a')]
+        image = row['image_url'].replace('.gif','.jpg')
+        post_meta = render_template('post_meta.html', image=image, title=title.get_text())
+        print(image,title)
     else:
         post_meta = ''
         post_html = ''
