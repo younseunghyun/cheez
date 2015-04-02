@@ -2,14 +2,18 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from flask import render_template, session, current_app, request
-from BeautifulSoup import BeautifulSoup as bs
+from bs4 import BeautifulSoup as BS
+
 from . import main
 from .. import db
 
 @main.route('/posts')
 def get_posts():
+
     if 'post_ids' not in session:
         session['post_ids'] = [0, 0]
+
+    print session['user_id']
 
     post_ids = session['post_ids']
 
@@ -57,13 +61,12 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
 #        """
         res = db.session.execute(query)
 
+
     def to_list(row):
         session['post_ids'].append(row[0])
         return row
 
     res = map(to_list, res)
-
-
 
     response = render_template('posts.html', posts = res)
 
@@ -118,6 +121,7 @@ def like():
 @main.route('/')
 @main.route('/<int:post_id>')
 def index(post_id = 0):
+    session['post_ids'] = [0, 0]
     cookies = request.cookies
     if 'user_id' in cookies:
         session['user_id'] = cookies['user_id']
@@ -151,9 +155,9 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
 #    """
         res = db.session.execute(query, {'post_id':post_id})
         row = res.fetchone()
-        title = bs(row['content']).text
+
         post_html = render_template('posts.html', posts=[row])
-        post_meta = render_template('post_meta.html', post=row, title=title)
+        post_meta = render_template('post_meta.html', post=row, BS=BS)
     else:
         post_meta = ''
         post_html = ''
