@@ -175,6 +175,19 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
     response.set_cookie('user_id',value=('%s'%session['user_id']),expires=expires)
 
 
+    query = """
+    INSERT INTO referrer_log (user_id, referrer, request_url)
+    VALUES (:user_id, :referrer, :request_url)"""
+    referrer = request.referrer
+
+    db.session.execute(query, {
+        'user_id':session['user_id'],
+        'referrer':request.referrer,
+        'request_url':request.url
+        })
+        
+    db.session.commit()
+
     return response
 
 @main.route('/touch_log', methods=["POST"])
