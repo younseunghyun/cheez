@@ -3,6 +3,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 from flask import render_template, session, current_app, request
 from bs4 import BeautifulSoup as BS
+import datetime
 
 from . import main
 from .. import db
@@ -168,7 +169,10 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
 
     response = current_app.make_response(render_template('index.html', post_meta = post_meta, post_html = post_html))
 
-    response.set_cookie('user_id',value=('%s'%session['user_id']))
+    now = datetime.datetime.now()
+    expires = now + datetime.timedelta(days=30)
+
+    response.set_cookie('user_id',value=('%s'%session['user_id']),expires=expires)
 
 
     return response
