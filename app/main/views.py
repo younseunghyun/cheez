@@ -119,10 +119,11 @@ def like():
 @main.route('/')
 @main.route('/<int:post_id>')
 def index(post_id = 0):
-
-    if 'original' in request.cookies and 'clicked' in request.cookies:
-        if post_id == int(request.cookies['original']) and post_id != int(request.cookies['clicked']):
-            return redirect(url_for('main.index', post_id=int(request.cookies['clicked'])))
+    try:
+        if 'original' in request.cookies and 'clicked' in request.cookies:
+            if post_id == int(request.cookies['original']) and post_id != int(request.cookies['clicked']):
+                return redirect(url_for('main.index', post_id=int(request.cookies['clicked'])))
+    except: pass
     session['post_ids'] = [0, 0]
     cookies = request.cookies
     if 'user_id' in cookies:
