@@ -20,21 +20,26 @@ $(document).ready(function() {
     });
     
     $(document).on('click', 'a.btn', function(){
-        $.post('/link-click', {
-            post_id: $(this).parents('.post').data('postId')
+        var postId = $(this).parents('.post').data('postId');
+        
+        document.cookie = 'clicked='+postId;
+        document.cookie = 'original='+location.href.split('/').splice(-1)[0];
 
+
+        $.post('/link-click', {
+            post_id: postId
         });
     });
     $(document).on('click','#btn-share-kakao',function(){
         var data = {
-        'post_id': $('.post:first-child').data('postId'),
-        'sns': 'kakao',
-    };
+            'post_id': $('.post:first-child').data('postId'),
+            'sns': 'kakao',
+        };
 
-    
-    $.post('/sns_log', data, function(){
 
-    });
+        $.post('/sns_log', data, function(){
+
+        });
 
     });
 
@@ -64,6 +69,8 @@ function initialize() {
     loadPosts();   
     Kakao.init('eb29042a172000d9a50826b3d1fe7dca');
     $.nonbounce();
+    document.cookie = 'clicked=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'original=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function loadPosts() {
@@ -161,7 +168,7 @@ function SendSNS(sns)
     var _br  = encodeURIComponent('\r\n');
 
     console.log(_url);
-        var data = {
+    var data = {
         'post_id': $('.post:first-child').data('postId'),
         'sns': sns,
     };
@@ -225,24 +232,24 @@ function SendSNS(sns)
             window.open(o.url,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height='+o.height+',width='+o.width);
         }
         else{
-           window.open(o.url);
-       }
+         window.open(o.url);
+     }
 
-       break;            
+     break;            
 
-       case 'web2app':
-       if(navigator.userAgent.match(/android/i)){
-          setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
-      }
-      else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
-          setTimeout(function(){ location.href = o.a_store; }, 200);          
-          setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
-      }
-      else{
-          alert('Only mobile');
-      }
-      break;
+     case 'web2app':
+     if(navigator.userAgent.match(/android/i)){
+      setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
   }
+  else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)){
+      setTimeout(function(){ location.href = o.a_store; }, 200);          
+      setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+  }
+  else{
+      alert('Only mobile');
+  }
+  break;
+}
 }
 
 function setKakaoShareButton() {
@@ -250,35 +257,35 @@ function setKakaoShareButton() {
     var title = $('.contents:first').text().trim();
     title = title.substring(0, title.length - 4);
     Kakao.Link.createTalkLinkButton({
-          container: '#btn-share-kakao',
-          label: title,
-          image: {
-            src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
-            width: 100,
-            height: 100
-        },
-        webButton: {
-            text: 'Cheez에서 보기',
-            url: BASE_URL + '/' + $('.post:first-child').data('postId')
-        }
+      container: '#btn-share-kakao',
+      label: title,
+      image: {
+        src: $('.post:first-child').css('background-image').replace('url(','').replace(')',''),
+        width: 100,
+        height: 100
+    },
+    webButton: {
+        text: 'Cheez에서 보기',
+        url: BASE_URL + '/' + $('.post:first-child').data('postId')
+    }
 });
 
 }
 
 
 $(function() {
-    
+
     function updateLog(x, y) {
         var data = {
-        'post_id': $('.post:first').data('postId'),
-        'x': x,
-        'y': y
-    };
+            'post_id': $('.post:first').data('postId'),
+            'x': x,
+            'y': y
+        };
 
-    
-    $.post('/touch_log', data, function(){
 
-    });
+        $.post('/touch_log', data, function(){
+
+        });
 
     }
 

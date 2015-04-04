@@ -1,7 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from flask import render_template, session, current_app, request
+from flask import render_template, session, current_app, request, redirect, url_for
 from bs4 import BeautifulSoup as BS
 import datetime
 
@@ -10,11 +10,8 @@ from .. import db
 
 @main.route('/posts')
 def get_posts():
-
     if 'post_ids' not in session:
         session['post_ids'] = [0, 0]
-
-    print session['user_id']
 
     post_ids = session['post_ids']
 
@@ -122,6 +119,10 @@ def like():
 @main.route('/')
 @main.route('/<int:post_id>')
 def index(post_id = 0):
+
+    if 'original' in request.cookies and 'clicked' in request.cookies:
+        if post_id == int(request.cookies['original']) and post_id != int(request.cookies['clicked']):
+            return redirect(url_for('main.index', post_id=int(request.cookies['clicked'])))
     session['post_ids'] = [0, 0]
     cookies = request.cookies
     if 'user_id' in cookies:
@@ -162,7 +163,7 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
         [s.extract() for s in title('a')]
         image = row['image_url'].replace('.gif','.jpg')
         post_meta = render_template('post_meta.html', image=image, title=title.get_text())
-        print(image,title)
+        
     else:
         post_meta = ''
         post_html = ''
