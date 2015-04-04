@@ -22,8 +22,6 @@ $(document).ready(function() {
     $(document).on('click', 'a.btn', function(){
         var postId = $(this).parents('.post').data('postId');
         
-        document.cookie = 'clicked='+postId;
-        document.cookie = 'original='+location.href.split('/').splice(-1)[0];
 
 
         $.post('/link-click', {
@@ -69,8 +67,6 @@ function initialize() {
     loadPosts();   
     Kakao.init('eb29042a172000d9a50826b3d1fe7dca');
     $.nonbounce();
-    document.cookie = 'clicked=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.cookie = 'original=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function loadPosts() {
