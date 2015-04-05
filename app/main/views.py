@@ -93,6 +93,17 @@ def link_click():
 
     return ''
 
+@main.route('/pass/<int:post_id>', methods=["POST"])
+def pass_post(post_id):
+    query = """INSERT IGNORE INTO 
+    user_post_view (user_id, post_id, liked) values (:user_id, :post_id, '-1')
+
+    """
+
+    db.session.execute(query, {'user_id':session['user_id'], 'post_id':post_id})
+    db.session.commit()
+    return ''
+
 @main.route('/like', methods=["POST"])
 def like():
     query = """

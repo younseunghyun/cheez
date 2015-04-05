@@ -5,13 +5,18 @@
     </div>
     <div class="grid">
     </div>
-    <div class="right"><p>싫어요<</p></div>
-    <div class="left"><p>>좋아요</p></div>
+
     <div class="contents">
         {{ post[1]|safe }}
     </div>
 
-    
+    <div class="btnset">
+        <div>
+        <div class="pull-left"><span class="fa fa-chevron-left"></span></div>
+        <div class="pull-right fa fa-chevron-right"></div>
+        </div>
+        <div class="text-center"><a href="#" class="btn-hate" data-post-id="{{ post[0] }}"><span class="fa fa-times-circle"></span></a><a href="#" class="btn-like" data-post-id="{{ post[0] }}"><span class="fa fa-heart"></span></a></div>
+    </div>
     
 </div>
 

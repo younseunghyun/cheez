@@ -179,31 +179,29 @@ a.btn {
     opacity: 1;
 }
 
-.left {
-    font-size: 1em;
-    color: white;
+
+.btnset {
     position: absolute;
-    top: 80%;
-    left : 5%;
-    opacity : 0.4;
-}
-
-.right {
-    font-size: 1em;
+    bottom: 20%;
+    width: 100%;
+    left: 0;
     color: white;
-    position: absolute;
-    top: 80%;
-    right : 5%;
-    opacity : 0.4;
+    z-index: 100;
+
 }
 
-.right p {
-    font-weight: normal;
+.btnset a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 15px;
+    color: white;
+    font-size: 2em;
 }
 
-.left p {
-    font-weight: normal;
+.btnset>div {
+    padding: 0 20px;
 }
+
 
 .contents font {
     font-weight:normal;
@@ -211,4 +209,8 @@ a.btn {
 
 .contents a font {
     font-weight:bold;
+}
+
+.text-center {
+    text-align: center;
 }

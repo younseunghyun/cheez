@@ -41,6 +41,16 @@ $(document).ready(function() {
 
     });
 
+    $(document).on('click', '.btn-like', function() {
+        like($(this).data('postId'), true);
+        return false;
+    });
+
+    $(document).on('click', '.btn-hate', function() {
+        like($(this).data('postId'), false);
+        return false;
+    });
+
     toastr.options = {
       "closeButton": false,
       "debug": false,
@@ -97,8 +107,9 @@ function onDragEnd(event, $target) {
                 setKakaoShareButton();
             });
 
+            pass($target.data('postId'));
             // do like
-            like($target, true);
+            //like($target, true);
 
         } else if (dx < 0) {
             $target.animate({left:'-100%'}, 'fast', function() {
@@ -106,8 +117,9 @@ function onDragEnd(event, $target) {
                 setKakaoShareButton();
             });
 
+            pass($target.data('postId'));
             // do hate
-            like($target, false);
+            //like($target, false);
         }
         $('.post:nth-child(2)').animate({opacity:1}, 'fast');
 
@@ -127,9 +139,14 @@ function onDrag(event, $target) {
     }
 }
 
-function like($target, isLiked) {
+function pass(postId) {
+    $.post('/pass/' + postId);
+
+}
+
+function like(postId, isLiked) {
     var data = {
-        'post_id': $target.data('postId'),
+        'post_id': postId,
         'is_liked': isLiked
     };
 
