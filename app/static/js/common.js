@@ -10,13 +10,13 @@ $(document).ready(function() {
 
         onDragStart(e, $('.post:first-child'));
     });
-    $(document).on('touchmove', 'body', function(e){
+    $(document).on('touchmove', '#contents', function(e){
         onDrag(e, $('.post:first-child'));
     });
-    $(document).on('touchend', 'body', function(e){
+    $(document).on('touchend', '#contents', function(e){
         onDragEnd(e, $('.post:first-child'));
     });
-    $(document).on('touchcancel', 'body', function(e){
+    $(document).on('touchcancel', '#contents', function(e){
         onDragEnd(e, $('.post:first-child'));
     });
 
