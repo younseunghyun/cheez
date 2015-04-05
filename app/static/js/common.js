@@ -6,7 +6,7 @@ $(document).ready(function() {
     initialize();
 
 
-    $(document).on('touchstart', 'body', function(e){
+    $(document).on('touchstart', '#contents', function(e){
 
         onDragStart(e, $('.post:first-child'));
     });
@@ -20,22 +20,6 @@ $(document).ready(function() {
         onDragEnd(e, $('.post:first-child'));
     });
 
-    $(document).on('touchstart', '#modal-wrap', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('touchmove', '#modal-wrap', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('touchend', '#modal-wrap', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    });
-    $(document).on('touchcancel', '#modal-wrap', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    });
 
     $(document).on('click', '.btn-send-mail', showEmailModal);
     $(document).on('click', '.btn-close-modal', hideEmailModal);
