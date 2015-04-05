@@ -87,6 +87,7 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
             bs = BS(row['content'])
             link = bs.select('a')[0]
             row['url'] = link.attrs['href']
+            row['image_url'] = 'http://cheez.co/' + row['image_url']
             link.extract()
 
 
