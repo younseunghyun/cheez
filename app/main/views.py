@@ -1,7 +1,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from flask import render_template, session, current_app, request, redirect, url_for
+from flask import render_template, session, current_app, request, redirect, url_for, jsonify
 from bs4 import BeautifulSoup as BS
 import datetime
 
@@ -9,7 +9,22 @@ from . import main
 from .. import db
 
 @main.route('/posts')
-def get_posts():
+@main.route('/posts/<int:to_json>')
+def get_posts(to_json=0):
+    if 'user_id' not in session:
+        cookies = request.cookies
+        if 'user_id' in cookies:
+            session['user_id'] = cookies['user_id']
+        else:
+            query = """
+            INSERT INTO cheez_user VALUES ()
+            """
+
+            res = db.session.execute(query)
+            db.session.commit()
+
+            session['user_id'] = res.lastrowid
+
     if 'post_ids' not in session:
         session['post_ids'] = [0, 0]
 
@@ -66,9 +81,38 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
 
     res = map(to_list, res)
 
-    response = render_template('posts.html', posts = res)
+    if to_json:
+        def to_json_serializable(row):
+            row = dict(zip(row.keys(), row))
+            bs = BS(row['content'])
+            link = bs.select('a')[0]
+            row['url'] = link.attrs['href']
+            link.extract()
 
-    return response
+
+            subtitle = bs.select('font')
+            
+            if subtitle:
+                row['subtitle'] = subtitle[0].get_text()
+                subtitle[0].extract()
+            row['title'] = bs.get_text()
+            return row
+        res = map(to_json_serializable, res)
+        response = jsonify(
+            status = 200,
+            data = res
+            )
+
+        now = datetime.datetime.now()
+        expires = now + datetime.timedelta(days=30)
+        response.set_cookie('user_id',value=('%s'%session['user_id']),expires=expires)
+        return response
+    else:
+        response = render_template('posts.html', posts = res)
+
+        return response
+        
+
 
 @main.route('/link-click', methods=["POST"])
 def link_click():
