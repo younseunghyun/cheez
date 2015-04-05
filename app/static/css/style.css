@@ -230,6 +230,8 @@ a.btn-send-mail {
 }
 
 
+
+
 #modal-wrap {
     position: absolute; 
     top: 0;
@@ -289,6 +291,7 @@ a.btn-send-mail {
     text-indent: 10px;
     background: none;
     border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 #modal-send-mail>form textarea {

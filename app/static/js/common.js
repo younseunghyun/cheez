@@ -21,12 +21,12 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('click', '.btn-send-mail', showEmailModal);
-    $(document).on('click', '.btn-close-modal', hideEmailModal);
-    $(document).on('click', '#modal-mask', hideEmailModal);
+    $(document).on('touchstart', '.btn-send-mail', showEmailModal);
+    $(document).on('touchstart', '.btn-close-modal', hideEmailModal);
+    $(document).on('touchstart', '#modal-mask', hideEmailModal);
     $emailForm.submit(sendEmail);
     
-    $(document).on('click', 'a.btn', function(){
+    $(document).on('touchstart', 'a.btn', function(){
         var postId = $(this).parents('.post').data('postId');
         
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
             post_id: postId
         });
     });
-    $(document).on('click','#btn-share-kakao',function(){
+    $(document).on('touchstart','#btn-share-kakao',function(){
         var data = {
             'post_id': $('.post:first-child').data('postId'),
             'sns': 'kakao',
@@ -48,12 +48,12 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '.btn-like', function() {
+    $(document).on('touchstart', '.btn-like', function() {
         like($(this).data('postId'), true);
         return false;
     });
 
-    $(document).on('click', '.btn-hate', function() {
+    $(document).on('touchstart', '.btn-hate', function() {
         like($(this).data('postId'), false);
         return false;
     });
