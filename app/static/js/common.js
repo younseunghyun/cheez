@@ -1,6 +1,7 @@
 var SWIPE_OFFSET;
 var BASE_URL = "http://cheez.co";
 
+
 $(document).ready(function() {
     initialize();
 
@@ -18,6 +19,11 @@ $(document).ready(function() {
     $(document).on('touchcancel', 'body', function(e){
         onDragEnd(e, $('.post:first-child'));
     });
+
+    $(document).on('click', '.btn-send-mail', showEmailModal);
+    $(document).on('click', '.btn-close-modal', hideEmailModal);
+    $(document).on('click', '#modal-mask', hideEmailModal);
+    $emailForm.submit(sendEmail);
     
     $(document).on('click', 'a.btn', function(){
         var postId = $(this).parents('.post').data('postId');
@@ -77,6 +83,7 @@ function initialize() {
     loadPosts();   
     Kakao.init('eb29042a172000d9a50826b3d1fe7dca');
     $.nonbounce();
+    window.$emailForm = $('form#form-email');
 }
 
 function loadPosts() {
@@ -311,3 +318,23 @@ $(function() {
         updateLog(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     }, false);
 });
+
+function showEmailModal() {
+    $('#modal-wrap').fadeIn('fast');
+    return false;
+}
+
+function hideEmailModal() {
+    $('#modal-wrap').fadeOut('fast');
+    $emailForm.find('input,textarea').val('');
+    return false;
+}
+
+function sendEmail() {
+    var data = $emailForm.serializeArray();
+    $.post('/sendmail', data, function(){
+        hideEmailModal();
+        toastr.success('소중한 의견 감사합니다 :)');
+    });
+    return false;
+}

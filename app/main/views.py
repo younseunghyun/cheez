@@ -234,3 +234,22 @@ def sns_log():
     db.session.execute(query, params)
     db.session.commit()
     return ''
+
+@main.route('/sendmail', methods=["POST"])
+def sendmail():
+
+    query = """
+    INSERT INTO report (username, email, title, body, user_id)
+    values (:username, :email, :title, :body, :user_id)
+    """
+
+    db.session.execute(query, {
+        'username':request.form['name'],
+        'email':request.form['email'],
+        'title':request.form['title'],
+        'body':request.form['body'],
+        'user_id':session['user_id']
+
+        })
+    db.session.commit()
+    return ''

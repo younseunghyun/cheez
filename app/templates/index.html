@@ -49,6 +49,28 @@
     </div>
   </div>
 
-  <img id="logo" src="{{ url_for('static', filename='res/img/logo1.png') }}" alt="logo">
+  <div class="logo-wrap">
+    <img id="logo" src="{{ url_for('static', filename='res/img/logo1.png') }}" alt="logo"> <a href="#" class="btn-send-mail"><span class="fa fa-envelope"></span></a>
+  </div>
+
+  <div id="modal-wrap" class="hide">
+    <div id="modal-mask">
+
+    </div>
+
+    <div id="modal-send-mail">
+      <h3><span class="fa fa-envelope-o"></span> 혹시 치즈가 상했나요? <div class="pull-right"><a href="#" class="btn-close-modal"><span class="fa fa-close"></span></a></div></h3>
+      <p>각종 버그, 개선사항, 보고 싶은 콘텐츠, 사용할 때 불편한점들, 더있으면 좋을 기능들 등등 뭐든지 알려주세요</p>
+      <form id="form-email" action="">
+        <input type="text" name="title" placeholder="제목" required><br>
+        <input type="text" name="name" placeholder="이름" required><br>
+        <input type="email" name="email" placeholder="이메일" required><br>
+        <textarea name="body" id="" cols="30" rows="10" required placeholder="내용"></textarea>
+        <button type="submit">보내기</button>
+
+
+      </form>
+    </div>
+  </div>
 </body>
 </html>
