@@ -76,6 +76,22 @@ $(document).ready(function() {
       "hideMethod": "fadeOut"
   }
 
+
+  $(document).on('touchstart', '#modal-wrap', function(e) {
+    $(this).data('prevY',e.originalEvent.touches[0].screenY);
+  });
+
+  $(document).on('touchmove', '#modal-wrap', function(e) {
+    var currentY = e.originalEvent.touches[0].screenY;
+    var scrollTop = $(this).scrollTop();
+    var prevY = $(this).data('prevY');
+    $(this).scrollTop(scrollTop - (currentY - prevY));
+    $(this).data('prevY', currentY);
+  });
+
+  $(document).on('touchmove', '#modal-wrap', function(e) {
+
+  });
 });
 
 
