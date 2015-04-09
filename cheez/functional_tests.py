@@ -22,7 +22,6 @@ class NewUserTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         self.assertIn('Django', self.browser.title)
-        self.fail('Finish the test')
 
         # 가입하기
 
