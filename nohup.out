@@ -2353,3 +2353,475 @@ Traceback (most recent call last):
   File "/home/cheeze/cheez/linking/app/main/views.py", line 160, in index
     title = BS(row['content'])
 TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-04-03 10:49:11 +0000] [18206] [INFO] Starting gunicorn 19.3.0
+[2015-04-03 10:49:11 +0000] [18206] [INFO] Listening at: http://127.0.0.1:8000 (18206)
+[2015-04-03 10:49:11 +0000] [18206] [INFO] Using worker: sync
+[2015-04-03 10:49:11 +0000] [18211] [INFO] Booting worker with pid: 18211
+[2015-04-03 11:19:13 +0000] [21104] [INFO] Starting gunicorn 19.3.0
+[2015-04-03 11:19:13 +0000] [21104] [INFO] Listening at: http://127.0.0.1:8000 (21104)
+[2015-04-03 11:19:13 +0000] [21104] [INFO] Using worker: sync
+[2015-04-03 11:19:13 +0000] [21109] [INFO] Booting worker with pid: 21109
+[2015-04-03 11:19:31 +0000] [21165] [INFO] Starting gunicorn 19.3.0
+[2015-04-03 11:19:31 +0000] [21165] [INFO] Listening at: http://127.0.0.1:8000 (21165)
+[2015-04-03 11:19:31 +0000] [21165] [INFO] Using worker: sync
+[2015-04-03 11:19:31 +0000] [21170] [INFO] Booting worker with pid: 21170
+[2015-04-03 11:23:26 +0000] [21170] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 161, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-04-03 11:31:24 +0000] [21170] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 161, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-04-03 11:31:26 +0000] [21170] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 161, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-04-03 18:03:22 +0000] [21170] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 161, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+739
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+('image/2015/03/maru1.jpg', 태어나서 처음 눈을 본 판다)
+739
+745
+745
+745
+533
+533
+533
+533
+533
+533
+533
+746
+('image/2015/03/maru1.jpg', 태어나서 처음 눈을 본 판다)
+533
+('image/2015/03/maru1.jpg', 태어나서 처음 눈을 본 판다)
+533
+('image/2015/03/maru1.jpg', 태어나서 처음 눈을 본 판다)
+747
+748
+748
+748
+748
+748
+748
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+749
+751
+751
+751
+751
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+752
+753
+754
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+759
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+760
+761
+760
+760
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+762
+763
+765
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+751
+('image/2015/03/201503111502039780367_20150311150201_99_20150311150304.jpg', 수지는 문자를 어떻게 보낼까?)
+747
+('image/2015/03/201503111502039780367_20150311150201_99_20150311150304.jpg', 수지는 문자를 어떻게 보낼까?)
+766
+748
+748
+('image/2015/04/\xec\x88\x98\xec\xa7\x80\xed\x99\x94\xeb\xb3\xb4.jpg', 지나치게 이쁨.....<br><font size="3">갓수지.....</font></br>)
+748
+('image/2015/03/201503111502039780367_20150311150201_99_20150311150304.jpg', 수지는 문자를 어떻게 보낼까?)
+748
+('image/2015/04/\xec\x88\x98\xec\xa7\x80\xed\x99\x94\xeb\xb3\xb4.jpg', 지나치게 이쁨.....<br><font size="3">갓수지.....</font></br>)
+767
+767
+767
+760
+769
+769
+769
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+547
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+774
+('image/2015/03/\xed\x81\xac\xea\xb8\xb0\xeb\xb3\x80\xed\x99\x98_panini01.jpg', 토마토모짜렐라 파니니 만들기<font size="3">쉬운 자취요리</font>)
+769
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+547
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+('image/2015/03/vbXaD2.jpg', 귀여운 보노보노네일아트<font size="3">우왕 귀여워..</font>)
+('image/2015/03/vbXaD2.jpg', 귀여운 보노보노네일아트<font size="3">우왕 귀여워..</font>)
+769
+('image/2015/03/201503111502039780367_20150311150201_99_20150311150304.jpg', 수지는 문자를 어떻게 보낼까?)
+777
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+777
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+777
+('image/2015/03/vbXaD2.jpg', 귀여운 보노보노네일아트<font size="3">우왕 귀여워..</font>)
+778
+745
+745
+745
+('image/2015/03/\xed\x81\xac\xea\xb8\xb0\xeb\xb3\x80\xed\x99\x98_panini01.jpg', 토마토모짜렐라 파니니 만들기<font size="3">쉬운 자취요리</font>)
+253
+('image/2015/03/vbXaD2.jpg', 귀여운 보노보노네일아트<font size="3">우왕 귀여워..</font>)
+769
+769
+769
+769
+769
+769
+769
+769
+769
+769
+('image/2015/03/vbXaD2.jpg', 귀여운 보노보노네일아트<font size="3">우왕 귀여워..</font>)
+253
+779
+748
+748
+('image/2015/03/c20bb7b02046bb89e4d89d9887bba9ba.jpg', 다른 포즈좀 연습해 얘들아<font size="3">그래도 잘생겼으니 봐줄게</font>)
+781
+782
+782
+('image/2015/03/mLqDDR.jpg', 미스에이, 신곡공개<font size="3">다른 남자 말고 너</font>)
+547
+('image/2015/03/ywo56Y.jpg', 60초 전국여행<font size="3">한국 어디까지 가봤니</font>)
+783
+748
+748
+('image/2015/03/597469_20140822171244_752_0001.jpg', �[2015-04-04 11:51:31 +0000] [26455] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 11:51:31 +0000] [26455] [INFO] Listening at: http://127.0.0.1:8000 (26455)
+[2015-04-04 11:51:31 +0000] [26455] [INFO] Using worker: sync
+[2015-04-04 11:51:31 +0000] [26460] [INFO] Booting worker with pid: 26460
+[2015-04-04 11:51:55 +0000] [26522] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 11:51:55 +0000] [26522] [INFO] Listening at: http://127.0.0.1:8000 (26522)
+[2015-04-04 11:51:55 +0000] [26522] [INFO] Using worker: sync
+[2015-04-04 11:51:55 +0000] [26527] [INFO] Booting worker with pid: 26527
+[2015-04-04 11:53:27 +0000] [26527] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 124, in index
+    if post_id == int(request.cookies['original']) and post_id != int(request.cookies['clicked']):
+ValueError: invalid literal for int() with base 10: ''
+[2015-04-04 11:53:29 +0000] [26527] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 124, in index
+    if post_id == int(request.cookies['original']) and post_id != int(request.cookies['clicked']):
+ValueError: invalid literal for int() with base 10: ''
+[2015-04-04 11:54:09 +0000] [26882] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 11:54:09 +0000] [26882] [INFO] Listening at: http://127.0.0.1:8000 (26882)
+[2015-04-04 11:54:09 +0000] [26882] [INFO] Using worker: sync
+[2015-04-04 11:54:09 +0000] [26887] [INFO] Booting worker with pid: 26887
+[2015-04-04 11:57:51 +0000] [27288] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 11:57:51 +0000] [27288] [INFO] Listening at: http://127.0.0.1:8000 (27288)
+[2015-04-04 11:57:51 +0000] [27288] [INFO] Using worker: sync
+[2015-04-04 11:57:51 +0000] [27293] [INFO] Booting worker with pid: 27293
+[2015-04-04 12:05:07 +0000] [28213] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 12:05:07 +0000] [28213] [INFO] Listening at: http://127.0.0.1:8000 (28213)
+[2015-04-04 12:05:07 +0000] [28213] [INFO] Using worker: sync
+[2015-04-04 12:05:07 +0000] [28218] [INFO] Booting worker with pid: 28218
+[2015-04-04 12:42:14 +0000] [32119] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 12:42:14 +0000] [32119] [INFO] Listening at: http://127.0.0.1:8000 (32119)
+[2015-04-04 12:42:14 +0000] [32119] [INFO] Using worker: sync
+[2015-04-04 12:42:14 +0000] [32124] [INFO] Booting worker with pid: 32124
+[2015-04-04 12:44:08 +0000] [32346] [INFO] Starting gunicorn 19.3.0
+[2015-04-04 12:44:08 +0000] [32346] [INFO] Listening at: http://127.0.0.1:8000 (32346)
+[2015-04-04 12:44:08 +0000] [32346] [INFO] Using worker: sync
+[2015-04-04 12:44:08 +0000] [32351] [INFO] Booting worker with pid: 32351
+[2015-04-05 16:18:53 +0000] [21523] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 16:18:53 +0000] [21523] [INFO] Listening at: http://127.0.0.1:8000 (21523)
+[2015-04-05 16:18:53 +0000] [21523] [INFO] Using worker: sync
+[2015-04-05 16:18:53 +0000] [21528] [INFO] Booting worker with pid: 21528
+[2015-04-05 16:19:06 +0000] [21583] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 16:19:06 +0000] [21583] [INFO] Listening at: http://127.0.0.1:8000 (21583)
+[2015-04-05 16:19:06 +0000] [21583] [INFO] Using worker: sync
+[2015-04-05 16:19:06 +0000] [21588] [INFO] Booting worker with pid: 21588
+[2015-04-05 16:21:50 +0000] [21943] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 16:21:50 +0000] [21943] [INFO] Listening at: http://127.0.0.1:8000 (21943)
+[2015-04-05 16:21:50 +0000] [21943] [INFO] Using worker: sync
+[2015-04-05 16:21:50 +0000] [21948] [INFO] Booting worker with pid: 21948
+[2015-04-05 17:50:06 +0000] [30576] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 17:50:06 +0000] [30576] [INFO] Listening at: http://127.0.0.1:8000 (30576)
+[2015-04-05 17:50:06 +0000] [30576] [INFO] Using worker: sync
+[2015-04-05 17:50:06 +0000] [30581] [INFO] Booting worker with pid: 30581
+[2015-04-05 17:50:20 +0000] [30754] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 17:50:20 +0000] [30754] [INFO] Listening at: http://127.0.0.1:8000 (30754)
+[2015-04-05 17:50:20 +0000] [30754] [INFO] Using worker: sync
+[2015-04-05 17:50:20 +0000] [30759] [INFO] Booting worker with pid: 30759
+[2015-04-05 17:53:12 +0000] [30989] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 17:53:12 +0000] [30989] [INFO] Listening at: http://127.0.0.1:8000 (30989)
+[2015-04-05 17:53:12 +0000] [30989] [INFO] Using worker: sync
+[2015-04-05 17:53:12 +0000] [30994] [INFO] Booting worker with pid: 30994
+[2015-04-05 17:56:12 +0000] [31354] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 17:56:12 +0000] [31354] [INFO] Listening at: http://127.0.0.1:8000 (31354)
+[2015-04-05 17:56:12 +0000] [31354] [INFO] Using worker: sync
+[2015-04-05 17:56:12 +0000] [31359] [INFO] Booting worker with pid: 31359
+[2015-04-05 19:29:49 +0000] [10625] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 19:29:49 +0000] [10625] [INFO] Listening at: http://127.0.0.1:8000 (10625)
+[2015-04-05 19:29:49 +0000] [10625] [INFO] Using worker: sync
+[2015-04-05 19:29:49 +0000] [10630] [INFO] Booting worker with pid: 10630
+[2015-04-05 19:30:44 +0000] [10854] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 19:30:44 +0000] [10854] [INFO] Listening at: http://127.0.0.1:8000 (10854)
+[2015-04-05 19:30:44 +0000] [10854] [INFO] Using worker: sync
+[2015-04-05 19:30:44 +0000] [10859] [INFO] Booting worker with pid: 10859
+[2015-04-05 20:12:51 +0000] [16200] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 20:12:51 +0000] [16200] [INFO] Listening at: http://127.0.0.1:8000 (16200)
+[2015-04-05 20:12:51 +0000] [16200] [INFO] Using worker: sync
+[2015-04-05 20:12:51 +0000] [16205] [INFO] Booting worker with pid: 16205
+[2015-04-05 20:31:01 +0000] [18652] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 20:31:01 +0000] [18652] [INFO] Listening at: http://127.0.0.1:8000 (18652)
+[2015-04-05 20:31:01 +0000] [18652] [INFO] Using worker: sync
+[2015-04-05 20:31:01 +0000] [18657] [INFO] Booting worker with pid: 18657
+[2015-04-05 20:32:04 +0000] [18760] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 20:32:04 +0000] [18760] [INFO] Listening at: http://127.0.0.1:8000 (18760)
+[2015-04-05 20:32:04 +0000] [18760] [INFO] Using worker: sync
+[2015-04-05 20:32:04 +0000] [18765] [INFO] Booting worker with pid: 18765
+[2015-04-05 20:44:39 +0000] [20483] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 20:44:39 +0000] [20483] [INFO] Listening at: http://127.0.0.1:8000 (20483)
+[2015-04-05 20:44:39 +0000] [20483] [INFO] Using worker: sync
+[2015-04-05 20:44:39 +0000] [20489] [INFO] Booting worker with pid: 20489
+[2015-04-05 21:49:19 +0000] [27267] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 21:49:19 +0000] [27267] [INFO] Listening at: http://127.0.0.1:8000 (27267)
+[2015-04-05 21:49:19 +0000] [27267] [INFO] Using worker: sync
+[2015-04-05 21:49:19 +0000] [27272] [INFO] Booting worker with pid: 27272
+[2015-04-05 21:49:33 +0000] [27326] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 21:49:33 +0000] [27326] [INFO] Listening at: http://127.0.0.1:8000 (27326)
+[2015-04-05 21:49:33 +0000] [27326] [INFO] Using worker: sync
+[2015-04-05 21:49:33 +0000] [27331] [INFO] Booting worker with pid: 27331
+[2015-04-05 22:13:56 +0000] [29638] [INFO] Starting gunicorn 19.3.0
+[2015-04-05 22:13:56 +0000] [29638] [INFO] Listening at: http://127.0.0.1:8000 (29638)
+[2015-04-05 22:13:56 +0000] [29638] [INFO] Using worker: sync
+[2015-04-05 22:13:56 +0000] [29643] [INFO] Booting worker with pid: 29643
+[2015-04-05 23:22:41 +0000] [29643] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 215, in index
+    title = BS(row['content'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-04-11 08:11:05 +0000] [29643] [INFO] Worker exiting (pid: 29643)
+[2015-04-11 08:11:05 +0000] [29638] [INFO] Handling signal: term
+[2015-04-11 08:11:05 +0000] [29638] [INFO] Shutting down: Master
+[2015-04-11 10:38:05 +0000] [3667] [INFO] Starting gunicorn 19.3.0
+[2015-04-11 10:38:05 +0000] [3667] [INFO] Listening at: http://127.0.0.1:8000 (3667)
+[2015-04-11 10:38:05 +0000] [3667] [INFO] Using worker: sync
+[2015-04-11 10:38:05 +0000] [3672] [INFO] Booting worker with pid: 3672
+[2015-04-11 13:48:37 +0000] [3667] [INFO] Handling signal: hup
+[2015-04-11 13:48:37 +0000] [3667] [INFO] Hang up: Master
+[2015-04-11 13:48:37 +0000] [6227] [INFO] Booting worker with pid: 6227
+/home/cheeze/cheez/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py:442: Warning: Incorrect string value: '\x90 >> /...' for column 'referrer' at row 1
+  cursor.execute(statement, parameters)
