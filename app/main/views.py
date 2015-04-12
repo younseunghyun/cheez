@@ -244,6 +244,25 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
 
     return response
 
+@main.route('/app_touch_log', methods=['POST'])
+def app_touch_log():
+    query = '''
+    INSERT INTO app_touch_log (user_id, post_id, device_width, device_height, x, y, action)
+    values (:user_id, :post_id, :device_width, :device_height, :x, :y, :action)
+    '''
+    db.session.execute(query, {
+            'user_id': session['user_id'],
+            'post_id': request.form['post_id'],
+            'device_width': request.form['device_width'],
+            'device_height': request.form['device_height'],
+            'x': request.form['x'],
+            'y': request.form['y'],
+            'action': request.form['action']
+        })
+    db.session.commit()
+
+    return ''
+
 @main.route('/touch_log', methods=["POST"])
 def touch_log():
     query = """
