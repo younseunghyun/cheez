@@ -110,3 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# TypeError: unsupported operand type(s) for +=: 'NoneType' and 'str'
+# http://www.reddit.com/r/django/comments/2w41t0/tdd_with_python_chapter_7_errors_when_adding/
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
