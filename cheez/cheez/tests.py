@@ -4,6 +4,5 @@ from users.user import (
 
 )
 
-
 class CreateModelsTestCase(APILiveServerTestCase):
 
