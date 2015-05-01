@@ -26,8 +26,6 @@ class BaseTestCase(APILiveServerTestCase):
         self.assertEqual(prev_user_count+1, User.objects.count())
 
 
-
-
     def create_posts(self):
         pass
 
