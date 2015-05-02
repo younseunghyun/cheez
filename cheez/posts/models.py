@@ -14,8 +14,22 @@ class Post(models.Model):
 
     like_users = models.ManyToManyField('users.User', through='LikePostRel', related_name='like_posts')
     read_users = models.ManyToManyField('users.User', through='ReadPostRel', related_name='read_posts')
+    tags = models.ManyToManyField('Tag', related_name='posts')
 
-    def liked_by(self, user_or_user_id):
+    def add_tags(self, tag_names):
+
+        for tag_name in set(tag_names):
+            tag, created = Tag.objects.get_or_create(
+                name=tag_name
+            )
+            self.tags.add(tag)
+
+            if not created:
+                tag.post_count += 1
+
+            tag.save()
+
+    def liked_by(self, user_or_user_id, like_type=LikePostRel.LIKE_TYPE_LIKE):
         """
 
         :param user_or_user_id: 해당 post를 좋아한 User 객체 또는 좋아한 User의 id
@@ -33,7 +47,7 @@ class Post(models.Model):
             post_id=self.id,
             user_id=user_id,
         )
-        like_post.like_type = LikePostRel.LIKE_TYPE_LIKE
+        like_post.like_type = like_type
         like_post.save()
 
         self.like_count += 1
@@ -65,6 +79,11 @@ class Post(models.Model):
         return self.title
 
 
+class Tag(BaseModel):
+    name = models.CharField(max_length=128, unique=True)
+    post_count = models.IntegerField(default=1)
+
+
 class LikePostRel(BaseModel):
     LIKE_TYPE_HATE, LIKE_TYPE_PASS, LIKE_TYPE_LIKE = -1, 0, 1
     LIKE_TYPE_CHOICES = (
@@ -85,3 +104,4 @@ class LikePostRel(BaseModel):
 class ReadPostRel(BaseModel):
     user = models.ForeignKey('users.User', related_name='read_post_rels')
     post = models.ForeignKey('Post', related_name='read_post_rels')
+

@@ -9,6 +9,7 @@ from posts.models import (
     LikePostRel,
     Post,
     ReadPostRel,
+    Tag,
 )
 
 class BaseTestCase(APILiveServerTestCase):
@@ -70,7 +71,6 @@ class BaseTestCase(APILiveServerTestCase):
         self.assertEqual(prev_user_count+3, User.objects.count())
         self.assertEqual(prev_sns_count+1, SNSAccount.objects.count())
 
-
     def create_posts(self):
         prev_post_count = Post.objects.count()
 
@@ -82,6 +82,12 @@ class BaseTestCase(APILiveServerTestCase):
             user_id=user.id,
         )
         post.save()
+
+        post.add_tags(['tag1', 'tag2', 'tag3', 'tag2'])
+        self.assertEqual(post.tags.count(), 3)
+        self.assertEqual(Tag.objects.count(), 3)
+
+
 
         self.assertEqual(prev_post_count+1, Post.objects.count())
 
