@@ -2,7 +2,6 @@ from django.db import models
 from users.models import User
 from cheez.models import BaseModel
 
-# Create your models here.
 
 class Post(models.Model):
     like_count = models.IntegerField(default=0)
@@ -11,7 +10,10 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=512, null=True)
     title = models.CharField(max_length=256)
 
-    user = models.ForeignKey('users.User')
+    user = models.ForeignKey('users.User', related_name='writed_posts')
+
+    like_users = models.ManyToManyField('users.User', through='LikePostRel', related_name='like_posts')
+    read_users = models.ManyToManyField('users.User', through='ReadPostRel', related_name='read_posts')
 
     def liked_by(self, user_or_user_id):
         """
@@ -27,11 +29,11 @@ class Post(models.Model):
         else:
             raise TypeError('The first parameter must have type \'User\' or \'int\'')
 
-        like_post, created = LikePost.objects.get_or_create(
+        like_post, created = LikePostRel.objects.get_or_create(
             post_id=self.id,
             user_id=user_id,
         )
-        like_post.like_type = LikePost.LIKE_TYPE_LIKE
+        like_post.like_type = LikePostRel.LIKE_TYPE_LIKE
         like_post.save()
 
         self.like_count += 1
@@ -50,7 +52,7 @@ class Post(models.Model):
         else:
             raise TypeError('The first parameter must have type \'User\' or \'int\'')
 
-        read_post, created = ReadPost.objects.get_or_create(
+        read_post = ReadPostRel(
             post_id=self.id,
             user_id=user_id,
         )
@@ -63,8 +65,7 @@ class Post(models.Model):
         return self.title
 
 
-
-class LikePost(BaseModel):
+class LikePostRel(BaseModel):
     LIKE_TYPE_HATE, LIKE_TYPE_PASS, LIKE_TYPE_LIKE = -1, 0, 1
     LIKE_TYPE_CHOICES = (
         (LIKE_TYPE_HATE, 'HATE'),
@@ -74,13 +75,13 @@ class LikePost(BaseModel):
 
     like_type = models.IntegerField(choices=LIKE_TYPE_CHOICES, default=LIKE_TYPE_PASS)
 
-    user = models.ForeignKey('users.User', related_name='like_posts')
-    post = models.ForeignKey('Post', related_name='like_posts')
+    user = models.ForeignKey('users.User', related_name='like_post_rels')
+    post = models.ForeignKey('Post', related_name='like_post_rels')
 
     class Meta:
         unique_together = ('user', 'post',)
 
 
-class ReadPost(BaseModel):
-    user = models.ForeignKey('users.User', related_name='read_posts')
-    post = models.ForeignKey('Post', related_name='read_posts')
+class ReadPostRel(BaseModel):
+    user = models.ForeignKey('users.User', related_name='read_post_rels')
+    post = models.ForeignKey('Post', related_name='read_post_rels')

@@ -6,9 +6,9 @@ from users.models import (
 )
 
 from posts.models import (
-    LikePost,
+    LikePostRel,
     Post,
-    ReadPost,
+    ReadPostRel,
 )
 
 class BaseTestCase(APILiveServerTestCase):
@@ -17,8 +17,8 @@ class BaseTestCase(APILiveServerTestCase):
         self.create_posts()
 
     def tearDown(self):
-        ReadPost.objects.all().delete()
-        LikePost.objects.all().delete()
+        ReadPostRel.objects.all().delete()
+        LikePostRel.objects.all().delete()
         Post.objects.all().delete()
         Device.objects.all().delete()
         SNSAccount.objects.all().delete()
@@ -85,21 +85,21 @@ class BaseTestCase(APILiveServerTestCase):
 
         self.assertEqual(prev_post_count+1, Post.objects.count())
 
-
         # like post test
         prev_like_count = post.like_count
 
         post.liked_by(user.id)
 
         self.assertEqual(prev_like_count+1, post.like_count)
-        self.assertEqual(post.like_posts.filter(like_type=LikePost.LIKE_TYPE_LIKE).count(), post.like_count)
+
+        self.assertEqual(post.like_post_rels.filter(like_type=LikePostRel.LIKE_TYPE_LIKE).count(), post.like_count)
 
         prev_read_count = post.read_count
 
         post.read_by(user.id)
 
         self.assertEqual(prev_read_count+1, post.read_count)
-        self.assertEqual(post.read_posts.count(), post.read_count)
+        self.assertEqual(post.read_post_rels.count(), post.read_count)
 
 
 
