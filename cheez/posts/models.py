@@ -3,6 +3,22 @@ from users.models import User
 from cheez.models import BaseModel
 
 
+class LikePostRel(BaseModel):
+    LIKE_TYPE_HATE, LIKE_TYPE_PASS, LIKE_TYPE_LIKE = -1, 0, 1
+    LIKE_TYPE_CHOICES = (
+        (LIKE_TYPE_HATE, 'HATE'),
+        (LIKE_TYPE_PASS, 'PASS'),
+        (LIKE_TYPE_LIKE, 'LIKE'),
+    )
+
+    like_type = models.IntegerField(choices=LIKE_TYPE_CHOICES, default=LIKE_TYPE_PASS)
+
+    user = models.ForeignKey('users.User', related_name='like_post_rels')
+    post = models.ForeignKey('Post', related_name='like_post_rels')
+
+    class Meta:
+        unique_together = ('user', 'post',)
+
 class Post(models.Model):
     like_count = models.IntegerField(default=0)
     read_count = models.IntegerField(default=0)
@@ -82,23 +98,6 @@ class Post(models.Model):
 class Tag(BaseModel):
     name = models.CharField(max_length=128, unique=True)
     post_count = models.IntegerField(default=1)
-
-
-class LikePostRel(BaseModel):
-    LIKE_TYPE_HATE, LIKE_TYPE_PASS, LIKE_TYPE_LIKE = -1, 0, 1
-    LIKE_TYPE_CHOICES = (
-        (LIKE_TYPE_HATE, 'HATE'),
-        (LIKE_TYPE_PASS, 'PASS'),
-        (LIKE_TYPE_LIKE, 'LIKE'),
-    )
-
-    like_type = models.IntegerField(choices=LIKE_TYPE_CHOICES, default=LIKE_TYPE_PASS)
-
-    user = models.ForeignKey('users.User', related_name='like_post_rels')
-    post = models.ForeignKey('Post', related_name='like_post_rels')
-
-    class Meta:
-        unique_together = ('user', 'post',)
 
 
 class ReadPostRel(BaseModel):
