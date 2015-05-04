@@ -14,7 +14,7 @@ class PostTestCase(APILiveServerTestCase):
     def test_create_user_and_post(self):
         prev_user_count = User.objects.count()
 
-        self.client.post(
+        response = self.client.post(
             '/user/',
             {
                 'name': 'user name',
@@ -22,10 +22,11 @@ class PostTestCase(APILiveServerTestCase):
                 'password': 'pw',
             }
         )
+        self.assertEqual(response.status_code, 200, "create user failed")
         self.assertEqual(prev_user_count+1, User.objects.count())
 
         # create user with device
-        self.client.post(
+        response = self.client.post(
             '/user/',
             {
                 'device': {
@@ -34,10 +35,11 @@ class PostTestCase(APILiveServerTestCase):
                 }
             }
         )
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(prev_user_count+2, User.objects.count())
 
         # create user with sns account
-        self.client.post(
+        response = self.client.post(
             '/user/',
             {
                 'sns_account': {
@@ -48,6 +50,7 @@ class PostTestCase(APILiveServerTestCase):
                 }
             }
         )
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(prev_user_count+3, User.objects.count())
 
         # authenticate
@@ -59,6 +62,7 @@ class PostTestCase(APILiveServerTestCase):
                 'password': 'pw',
             }
         )
+        self.assertEqual(response.status_code, 200)
         token = response.data['token']
 
         response = self.client.post(
@@ -76,6 +80,7 @@ class PostTestCase(APILiveServerTestCase):
                 'url':'http://bttrfly.co',
             }
         )
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data, {'title': 'Butterfly', 'image': 'http://bttrfly.co/static/res/img/banner.png', 'description': 'Butterfly is a photo sharing app. Take a picture, and send it to someone.'})
 
         prev_post_count = Post.objects.count()
@@ -89,6 +94,7 @@ class PostTestCase(APILiveServerTestCase):
                 'tags': ['사진', '안드로이드'],
             }
         )
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(prev_post_count+1, Post.objects.count())
         self.assertEqual(prev_tag_count+2, Tag.objects.count())
 
