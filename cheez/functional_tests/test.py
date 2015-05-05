@@ -80,7 +80,7 @@ class PostTestCase(APILiveServerTestCase):
                 'url':'http://bttrfly.co',
             }
         )
-        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.status_code, 401, str(response.data))
 
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token)
         response = self.client.post(
@@ -89,8 +89,11 @@ class PostTestCase(APILiveServerTestCase):
                 'url':'http://bttrfly.co',
             }
         )
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data, {'title': 'Butterfly', 'image': 'http://bttrfly.co/static/res/img/banner.png', 'description': 'Butterfly is a photo sharing app. Take a picture, and send it to someone.'})
+        self.assertEqual(response.status_code, 200, str(response.data))
+        self.assertEqual(response.data,
+                         {'title': 'Butterfly',
+                          'image': 'http://bttrfly.co/static/res/img/banner.png',
+                          'description': 'Butterfly is a photo sharing app. Take a picture, and send it to someone.'})
 
         prev_post_count = Post.objects.count()
         prev_tag_count = Tag.objects.count()
