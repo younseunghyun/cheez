@@ -65,7 +65,7 @@ select content_id , context , img_url from content ct
     if res.rowcount == 0:
         
         query = """
-        select content_id , context , img_url from content ct
+        select content_id , content , img_url from content ct
    where content_id not in """+str(tuple(post_ids))+"""
      order by rand() limit 10;
 
