@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -31,19 +32,27 @@ def get_posts(to_json=0):
     post_ids = session['post_ids']
 
     query = """
-select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
-(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
-  join wp_postmeta pm on p.id = pm.post_id 
-  left join user_post_view up on p.id =  up.post_id and up.user_id = :user_id
-  where pm.meta_key ='_thumbnail_id' 
-  and p.post_status='publish'
-  and up.id is null) tmp 
-  join wp_postmeta wm on tmp.value = wm.post_id 
-   where meta_key ='_wp_attached_file'
-    and tmp.id not in """+str(tuple(post_ids))+"""
+select content_id , context , img_url from content ct
+  left join user_post_view up on ct.content_id =  up.post_id and up.user_id = :user_id
+  and up.id is null
+   where content_id not in """+str(tuple(post_ids))+"""
      order by rand() limit 10;
 """
+
 #"""
+#select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
+#(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+#  join wp_postmeta pm on p.id = pm.post_id 
+#  left join user_post_view up on p.id =  up.post_id and up.user_id = :user_id
+#  where pm.meta_key ='_thumbnail_id' 
+#  and p.post_status='publish'
+#  and up.id is null) tmp 
+#  join wp_postmeta wm on tmp.value = wm.post_id 
+#   where meta_key ='_wp_attached_file'
+#    and tmp.id not in """+str(tuple(post_ids))+"""
+#     order by rand() limit 10;
+#"""
+
 #select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
 #(select id , post_title as content from wp_posts p where p.post_status='publish') t
 #on t.id = wp.post_parent  Left join
@@ -54,18 +63,26 @@ select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url f
     res = db.session.execute(query, {'user_id':session['user_id']})
 
     if res.rowcount == 0:
+        
         query = """
-select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
-(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
-  join wp_postmeta pm on p.id = pm.post_id 
-  where pm.meta_key ='_thumbnail_id' 
-  and p.post_status='publish'
-  ) tmp 
-  join wp_postmeta wm on tmp.value = wm.post_id 
-   where meta_key ='_wp_attached_file'
-    and tmp.id not in """+str(tuple(post_ids))+"""
+        select content_id , context , img_url from content ct
+   where content_id not in """+str(tuple(post_ids))+"""
      order by rand() limit 10;
-"""
+
+        """
+#        """
+#select tmp.id as id , tmp.content ,concat("image/",wm.meta_value) as image_url from 
+#(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+#  join wp_postmeta pm on p.id = pm.post_id 
+#  where pm.meta_key ='_thumbnail_id' 
+#  and p.post_status='publish'
+#  ) tmp 
+#  join wp_postmeta wm on tmp.value = wm.post_id 
+#   where meta_key ='_wp_attached_file'
+#    and tmp.id not in """+str(tuple(post_ids))+"""
+#     order by rand() limit 10;
+#"""
+
 #"""
 #select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
 #(select id , post_title as content from wp_posts p where p.post_status='publish') t
@@ -193,15 +210,22 @@ def index(post_id = 0):
     
     if post_id > 0:
         query = """
-select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as image_url from
-(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
-  join wp_postmeta pm on p.id = pm.post_id
-  where pm.meta_key ='_thumbnail_id'
-  and p.post_status='publish'
-  ) tmp
-  join wp_postmeta wm on tmp.value = wm.post_id
-   where meta_key ='_wp_attached_file'  and tmp.id = :post_id limit 1;
-"""
+        select content_id , context , img_url as image_url from content ct
+   where ct.content_id = :post_id
+     limit 1;
+
+        """
+#        """
+#select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as image_url from
+#(select p.id as id , p.post_title as content, pm.meta_value as value from wp_posts p
+#  join wp_postmeta pm on p.id = pm.post_id
+#  where pm.meta_key ='_thumbnail_id'
+#  and p.post_status='publish'
+#  ) tmp
+#  join wp_postmeta wm on tmp.value = wm.post_id
+#   where meta_key ='_wp_attached_file'  and tmp.id = :post_id limit 1;
+#"""
+
 #"""
 #select t.id as id, t.content, wp.guid  as image_url from wp_posts wp join
 #(select id , post_title as content from wp_posts p where p.post_status='publish') t
@@ -212,7 +236,7 @@ select tmp.id as id , tmp.content as content ,concat("image/",wm.meta_value) as 
         row = res.fetchone()
 
         post_html = render_template('posts.html', posts=[row])
-        title = BS(row['content'])
+        title = BS(row['context'])
         [s.extract() for s in title('a')]
         image = row['image_url'].replace('.gif','.jpg')
         post_meta = render_template('post_meta.html', image=image, title=title.get_text())
@@ -317,3 +341,73 @@ def sendmail():
         })
     db.session.commit()
     return ''
+
+
+import pymysql
+
+@main.route('/upload')
+def upload():
+
+    return render_template('upload.html')
+
+@main.route('/upload_content',methods=['POST'])
+def upload_content():
+    title = request.form['title']
+    subtitle = request.form['subtitle']
+    url= request.form['url']
+    img_url = request.form['img_url']
+    tag = request.form['tag']
+    class_name = request.form['class']
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+    return redirect('/upload')
+
+
+def upload_to_db(title='',subtitle='',img_url='',tag='',url='',class_name=''):
+    con = pymysql.connect(host='localhost',user='root',passwd='cheez',db='wordpress',charset='utf8')
+    cur = con.cursor()
+    insert_query = 'insert into content (class,content_id, title, sub_title, img_url, tag, context,url, author) values(%s,%s,%s,%s,%s,%s,%s,%s,"admin_web");'
+    cur.execute('select max(content_id) from content;')
+    con.commit()
+    content_id= cur.fetchall()[0][0]+1
+    img_path = img_crawl(content_id,img_url)
+    context=''
+    if title.strip() is not '':
+        basic1 = '{0}<br>'.format(title)
+        context += basic1
+    if subtitle.strip() is not '':
+        basic2 = '<font size="3">{0}</font>'.format(subtitle)
+        context += basic2
+    title = str(unicode(title))
+    subtitle = str(subtitle)
+    tag=str(unicode(tag))
+    class_name=str(unicode(class_name))
+    basic3 = '<br><br><a class="btn btn-medium btn-white btn-radius" href="{0}" target="_blank" style="padding-left:10px; padding-right:10px;"><font size="3">보러가기</font></a>'.format(url)
+    context +=basic3
+    context = con.escape(context)
+
+    print(insert_query %(class_name,content_id,title,subtitle,img_path,tag,context,url))
+    cur.execute(insert_query %(con.escape(class_name),content_id,con.escape(title),con.escape(subtitle),con.escape(img_path),con.escape(tag),context,con.escape(url)))
+    con.commit()
+
+
+import os
+def img_crawl(content_id,img_url):
+    content_dummy_path='/home/cheeze/contents_uploads'
+    if '.gif' in img_url:
+        os.system('wget %s -P '%(img_url)+content_dummy_path+'/img_temp/')
+        fi = os.listdir(content_dummy_path+'/img_temp')[0]
+        os.system('mv '+content_dummy_path+'/img_temp/{0} /home/cheeze/cheez/image/content/{1}.gif'.format(fi,content_id))
+        os.system('rm '+content_dummy_path+'/img_temp/* ')
+        modified_img_url = '/image/content/{0}.gif'.format(content_id)
+    else:
+        os.system('wget %s -P '%(img_url)+content_dummy_path+'/img_temp/')
+        fi = os.listdir(content_dummy_path+'/img_temp')[0]
+        os.system('convert '+content_dummy_path+'/img_temp/{0} -define jpeg:extent=50kb ./img_temp/{1}.jpg'.format(fi,content_id))
+        if os.path.isfile(content_dummy_path+'/img_temp/{0}.jpg'.format(content_id)):
+            os.system('mv '+content_dummy_path+'/img_temp/{0} /home/cheeze/cheez/image/content/'.format(content_id))
+        else:
+            os.system('mv '+content_dummy_path+'/img_temp/{0}.jpg /home/cheeze/cheez/image/content/{1}.jpg'.format(fi,content_id))
+        os.system('rm '+content_dummy_path+'/img_temp/* ')
+        modified_img_url = '/image/content/{0}.jpg'.format(content_id) 
+    return modified_img_url
+    
