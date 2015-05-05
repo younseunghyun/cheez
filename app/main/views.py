@@ -32,7 +32,7 @@ def get_posts(to_json=0):
     post_ids = session['post_ids']
 
     query = """
-select content_id , context , img_url from content ct
+select content_id , content , img_url from content ct
   left join user_post_view up on ct.content_id =  up.post_id and up.user_id = :user_id
   and up.id is null
    where content_id not in """+str(tuple(post_ids))+"""
