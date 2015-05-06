@@ -32,7 +32,7 @@ def get_posts(to_json=0):
     post_ids = session['post_ids']
 
     query = """
-select content_id as id, context as content , img_url as image_url from content ct
+select content_id as id, context as content , img_url as image_url, (liked is not null and liked = '1') as liked from content ct
   left join user_post_view up on ct.content_id =  up.post_id and up.user_id = :user_id
   and up.id is null
    where content_id not in """+str(tuple(post_ids))+"""
@@ -65,7 +65,7 @@ select content_id as id, context as content , img_url as image_url from content 
     if res.rowcount == 0:
         
         query = """
-        select content_id as id, context as content , img_url as image_url from content ct
+        select content_id as id, context as content , img_url as image_url, (liked is not null and liked = '1') as liked  from content ct
    where content_id not in """+str(tuple(post_ids))+"""
      order by rand() limit 10;
 
