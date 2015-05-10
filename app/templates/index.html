@@ -32,30 +32,36 @@
   </script>
 </head>
 <body class="nonbounce">
+
   <div id="contents">
     {{ post_html|safe }}
 
   </div>
 
+  <div id="header">
+    <a href="https://play.google.com/store/apps/details?id=co.cheez.cheez" id="link-playstore">
+      <img src="{{ url_for('static', filename='res/img/playstore.png') }}" alt="">
+    </a>
+    <div id="btnset-share" class="pull-right">
+      <div onClick="SendSNS('facebook');" class="btn-share">
+        <img src="{{ url_for('static', filename='res/img/facebook.png') }}" width="30" height="30" alt="">
+      </div>
+      <div onClick="SendSNS('twitter');" class="btn-share">
+        <img src="{{ url_for('static', filename='res/img/twitter.png') }}" width="30" height="30" alt="">
+      </div>
+      <div id="share-kakao" onClick="javascript:;" class="btn-share">
+        <img id="btn-share-kakao" src="/static/res/img/kakaotalk.png" width="30" height="30" alt="">
+      </div>
+    </div>
 
-  <div id="btnset-share">
-    <div onClick="SendSNS('facebook');" class="btn-share">
-      <img src="{{ url_for('static', filename='res/img/facebook.png') }}" width="30" height="30" alt="">
+    <div class="logo-wrap pull-left">
+      <img id="logo" src="{{ url_for('static', filename='res/img/logo1.png') }}" alt="logo"> <a href="#" class="btn-send-mail"><span class="fa fa-envelope"></span></a>
     </div>
-    <div onClick="SendSNS('twitter');" class="btn-share">
-      <img src="{{ url_for('static', filename='res/img/twitter.png') }}" width="30" height="30" alt="">
-    </div>
-    <div id="share-kakao" onClick="javascript:;" class="btn-share">
-      <img id="btn-share-kakao" src="/static/res/img/kakaotalk.png" width="30" height="30" alt="">
-    </div>
-  </div>
 
-  <div class="logo-wrap">
-    <img id="logo" src="{{ url_for('static', filename='res/img/logo1.png') }}" alt="logo"> <a href="#" class="btn-send-mail"><span class="fa fa-envelope"></span></a>
   </div>
 
   <div id="modal-wrap" class="hide">
-  
+
 
     <div id="modal-send-mail">
       <h3><span class="fa fa-envelope-o"></span> 혹시 치즈가 상했나요? <div class="pull-right"><a href="#" class="btn-close-modal"><span class="fa fa-close"></span></a></div></h3>
@@ -71,5 +77,7 @@
       </form>
     </div>
   </div>
+
+
 </body>
 </html>

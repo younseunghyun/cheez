@@ -158,9 +158,8 @@ a.btn {
 }
 
 #btnset-share {
-    position: fixed;
-    top: 12px;
-    right: 6px;
+    margin-top: 12px;
+    margin-right: 6px;
     z-index: 1000;
     text-align: left;
     opacity: 0.7;
@@ -172,10 +171,9 @@ a.btn {
 }
 
 .logo-wrap {
-    position: fixed;
-    z-index: 999;
-    top: 13px;
-    left: 6px;
+    
+    margin-top: 13px;
+    margin-left: 6px;
     line-height: 33px;
 }
 
@@ -300,6 +298,30 @@ a.btn-send-mail {
 
 .hide {
     display: none;
+}
+
+#header {
+    position: fixed;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+#link-playstore {
+
+}
+
+#link-playstore img {
+    width: 100%;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
 }
 
 
