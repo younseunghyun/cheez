@@ -32,7 +32,7 @@ def get_posts(to_json=0):
     post_ids = session['post_ids']
 
     query = """
-select content_id as id, context as content , img_url as image_url, (liked is not null and liked = '1') as liked from content ct
+select content_id as id, context as content , img_url as image_url, (liked is not null and liked = '1') as liked  from content ct
   left join user_post_view up on ct.content_id =  up.post_id and up.user_id = :user_id
   and up.id is null
    where content_id not in """+str(tuple(post_ids))+"""
@@ -406,7 +406,7 @@ def img_crawl(content_id,img_url):
         if os.path.isfile(content_dummy_path+'/img_temp/{0}.jpg'.format(content_id)):
             os.system('mv '+content_dummy_path+'/img_temp/{0} /home/cheeze/cheez/image/content/'.format(content_id))
         else:
-            os.system('mv '+content_dummy_path+'/img_temp/{0}.jpg /home/cheeze/cheez/image/content/{1}.jpg'.format(fi,content_id))
+            os.system('mv '+content_dummy_path+'/img_temp/{0} /home/cheeze/cheez/image/content/{1}.jpg'.format(fi,content_id))
         os.system('rm '+content_dummy_path+'/img_temp/* ')
         modified_img_url = '/image/content/{0}.jpg'.format(content_id) 
     return modified_img_url

@@ -6491,3 +6491,698 @@ KeyError: 'image_url'
 [2015-05-06 20:59:28 +0000] [25557] [INFO] Listening at: http://127.0.0.1:8000 (25557)
 [2015-05-06 20:59:28 +0000] [25557] [INFO] Using worker: sync
 [2015-05-06 20:59:28 +0000] [25562] [INFO] Booting worker with pid: 25562
+[2015-05-06 21:04:31 +0000] [25758] [INFO] Starting gunicorn 19.3.0
+[2015-05-06 21:04:31 +0000] [25758] [INFO] Listening at: http://127.0.0.1:8000 (25758)
+[2015-05-06 21:04:31 +0000] [25758] [INFO] Using worker: sync
+[2015-05-06 21:04:31 +0000] [25763] [INFO] Booting worker with pid: 25763
+--2015-05-07 17:12:41--  http://post.phinf.naver.net/20150319_139/fineadd1782_1426693364330BUCvq_JPEG/mug_obj_142669336258542496.jpg?type=w800
+Resolving post.phinf.naver.net (post.phinf.naver.net)... 101.79.242.48, 101.79.247.30, 101.79.242.45
+접속 post.phinf.naver.net (post.phinf.naver.net)|101.79.242.48|:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 119193 (116K) [image/jpeg]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/mug_obj_142669336258542496.jpg?type=w800’
+
+     0K .......... .......... .......... .......... .......... 42% 3.50M 0s
+    50K .......... .......... .......... .......... .......... 85% 3.42M 0s
+   100K .......... ......                                     100% 9.06M=0.03s
+
+2015-05-07 17:12:41 (3.79 MB/s) - ‘/home/cheeze/contents_uploads/img_temp/mug_obj_142669336258542496.jpg?type=w800’ saved [119193/119193]
+
+convert.im6: unable to open image `./img_temp/1742.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+mv: `/home/cheeze/contents_uploads/img_temp/mug_obj_142669336258542496.jpg?type=w800.jpg'를 설명할 수 없음: 그런 파일이나 디렉터리가 없습니다
+sh: 1: -P: not found
+--2015-05-07 17:26:05--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... [2015-05-07 17:26:05 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:26:05 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:27:29 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:27:29--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:27:29 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:27:39 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:27:39--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:27:39 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:27:42 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:27:42--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:27:42 ERROR 404: Not Found.
+
+[2015-05-07 17:27:45 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 239, in index
+    title = BS(row['context'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+sh: 1: -P: not found
+[2015-05-07 17:29:46 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:29:46--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:29:46 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:32:21 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:32:21--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:32:21 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:41:39 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:41:39--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:41:39 ERROR 404: Not Found.
+
+sh: 1: -P: not found
+[2015-05-07 17:45:35 +0000] [25763] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 361, in upload_content
+    upload_to_db(title,subtitle,img_url,tag,url,class_name)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 372, in upload_to_db
+    img_path = img_crawl(content_id,img_url)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 404, in img_crawl
+    fi = os.listdir(content_dummy_path+'/img_temp')[0]
+IndexError: list index out of range
+--2015-05-07 17:45:35--  http://thumb2.photo.ndrive.naver.com/12226828917?type=m3_2
+Resolving thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)... 125.209.218.14
+접속 thumb2.photo.ndrive.naver.com (thumb2.photo.ndrive.naver.com)|125.209.218.14|:80... 접속됨.
+HTTP request sent, awaiting response... 404 Not Found
+2015-05-07 17:45:35 ERROR 404: Not Found.
+
+--2015-05-07 17:45:40--  http://54.153.12.8/wp-content/uploads/2015/05/12226828917.jpg
+접속 54.153.12.8:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 123053 (120K) [image/jpeg]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/12226828917.jpg’
+
+     0K .......... .......... .......... .......... .......... 41%  163K 0s
+    50K .......... .......... .......... .......... .......... 83%  317K 0s
+   100K .......... ..........                                 100% 6.83M=0.5s
+
+2015-05-07 17:45:41 (257 KB/s) - ‘/home/cheeze/contents_uploads/img_temp/12226828917.jpg’ saved [123053/123053]
+
+convert.im6: unable to open image `./img_temp/1743.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+mv: `/home/cheeze/contents_uploads/img_temp/12226828917.jpg.jpg'를 설명할 수 없음: 그런 파일이나 디렉터리가 없습니다
+[2015-05-07 17:50:59 +0000] [8091] [INFO] Starting gunicorn 19.3.0
+[2015-05-07 17:50:59 +0000] [8091] [INFO] Listening at: http://127.0.0.1:8000 (8091)
+[2015-05-07 17:50:59 +0000] [8091] [INFO] Using worker: sync
+[2015-05-07 17:50:59 +0000] [8096] [INFO] Booting worker with pid: 8096
+--2015-05-07 17:53:56--  http://54.153.12.8/wp-content/uploads/2015/05/12226828917.jpg
+접속 54.153.12.8:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 123053 (120K) [image/jpeg]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/12226828917.jpg’
+
+     0K .......... .......... .......... .......... .......... 41%  171K 0s
+    50K .......... .......... .......... .......... .......... 83%  358K 0s
+   100K .......... ..........                                 100% 1.79M=0.4s
+
+2015-05-07 17:53:57 (272 KB/s) - ‘/home/cheeze/contents_uploads/img_temp/12226828917.jpg’ saved [123053/123053]
+
+convert.im6: unable to open image `./img_temp/1744.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+rm: `/home/cheeze/contents_uploads/img_temp/*'를 지울 수 없음: 그런 파일이나 디렉터리가 없습니다
+[2015-05-07 19:11:44 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 148, in link_click
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+[2015-05-07 20:06:09 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 316, in sns_log
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+--2015-05-08 16:00:19--  http://post.phinf.naver.net/20130920_126/parangusl__13796064686910eFiX_JPEG/mug_obj_137960649387524716.jpg
+Resolving post.phinf.naver.net (post.phinf.naver.net)... 1.255.52.72, 101.79.247.18, 101.79.247.30
+접속 post.phinf.naver.net (post.phinf.naver.net)|1.255.52.72|:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 408381 (399K) [image/jpeg]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/mug_obj_137960649387524716.jpg’
+
+     0K .......... .......... .......... .......... .......... 12% 3.07M 0s
+    50K .......... .......... .......... .......... .......... 25% 2.57M 0s
+   100K .......... .......... .......... .......... .......... 37% 2.21M 0s
+   150K .......... .......... .......... .......... .......... 50% 2.53M 0s
+   200K .......... .......... .......... .......... .......... 62% 2.86M 0s
+   250K .......... .......... .......... .......... .......... 75% 3.49M 0s
+   300K .......... .......... .......... .......... .......... 87% 2.59M 0s
+   350K .......... .......... .......... .......... ........  100% 2.22M=0.1s
+
+2015-05-08 16:00:19 (2.64 MB/s) - ‘/home/cheeze/contents_uploads/img_temp/mug_obj_137960649387524716.jpg’ saved [408381/408381]
+
+convert.im6: unable to open image `./img_temp/1745.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+rm: `/home/cheeze/contents_uploads/img_temp/*'를 지울 수 없음: 그런 파일이나 디렉터리가 없습니다
+--2015-05-08 16:09:48--  http://post.phinf.naver.net/20130920_126/parangusl__13796064686910eFiX_JPEG/mug_obj_137960649387524716.jpg
+Resolving post.phinf.naver.net (post.phinf.naver.net)... 101.79.242.48, 101.79.247.30, 101.79.242.45
+접속 post.phinf.naver.net (post.phinf.naver.net)|101.79.242.48|:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 408381 (399K) [image/jpeg]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/mug_obj_137960649387524716.jpg’
+
+     0K .......... .......... .......... .......... .......... 12% 3.40M 0s
+    50K .......... .......... .......... .......... .......... 25% 2.92M 0s
+   100K .......... .......... .......... .......... .......... 37% 2.47M 0s
+   150K .......... .......... .......... .......... .......... 50% 2.97M 0s
+   200K .......... .......... .......... .......... .......... 62% 4.80M 0s
+   250K .......... .......... .......... .......... .......... 75% 2.49M 0s
+   300K .......... .......... .......... .......... .......... 87% 4.27M 0s
+   350K .......... .......... .......... .......... ........  100% 2.79M=0.1s
+
+2015-05-08 16:09:48 (3.10 MB/s) - ‘/home/cheeze/contents_uploads/img_temp/mug_obj_137960649387524716.jpg’ saved [408381/408381]
+
+convert.im6: unable to open image `./img_temp/1746.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+rm: `/home/cheeze/contents_uploads/img_temp/*'를 지울 수 없음: 그런 파일이나 디렉터리가 없습니다
+[2015-05-08 17:28:51 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 148, in link_click
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+[2015-05-08 20:27:56 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 298, in touch_log
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+[2015-05-08 20:27:57 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 298, in touch_log
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+[2015-05-08 20:27:57 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 148, in link_click
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
+--2015-05-09 00:04:11--  http://54.153.12.8/wp-content/uploads/2015/05/%EC%A0%9C%EB%AA%A9-%EC%97%86%EC%9D%8C-4.png
+접속 54.153.12.8:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 341322 (333K) [image/png]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/\354\240%9C목-\354%97%86\354%9D%8C-4.png’
+
+     0K .......... .......... .......... .......... .......... 15%  158K 2s
+    50K .......... .......... .......... .......... .......... 30%  297K 1s
+   100K .......... .......... .......... .......... .......... 45%  309K 1s
+   150K .......... .......... .......... .......... .......... 60%  294K 1s
+   200K .......... .......... .......... .......... .......... 75% 71.8M 0s
+   250K .......... .......... .......... .......... .......... 90%  177K 0s
+   300K .......... .......... .......... ...                  100%  777K=1.1s
+
+2015-05-09 00:04:13 (292 KB/s) - ‘/home/cheeze/contents_uploads/img_temp/\354\240%9C목-\354%97%86\354%9D%8C-4.png’ saved [341322/341322]
+
+convert.im6: unable to open image `./img_temp/1747.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+rm: `/home/cheeze/contents_uploads/img_temp/*'를 지울 수 없음: 그런 파일이나 디렉터리가 없습니다
+[2015-05-09 00:42:11 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 239, in index
+    title = BS(row['context'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+--2015-05-09 00:42:14--  http://54.153.12.8/wp-content/uploads/2015/05/111.png
+접속 54.153.12.8:80... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 943982 (922K) [image/png]
+Saving to: ‘/home/cheeze/contents_uploads/img_temp/111.png’
+
+     0K .......... .......... .......... .......... ..........  5%  157K 6s
+    50K .......... .......... .......... .......... .......... 10%  338K 4s
+   100K .......... .......... .......... .......... .......... 16% 1.80M 3s
+   150K .......... .......... .......... .......... .......... 21%  308K 2s
+   200K .......... .......... .......... .......... .......... 27%  381K 2s
+   250K .......... .......... .......... .......... .......... 32%  372K 2s
+   300K .......... .......... .......... .......... .......... 37%  973K 2s
+   350K .......... .......... .......... .......... .......... 43%  352K 1s
+   400K .......... .......... .......... .......... .......... 48%  441K 1s
+   450K .......... .......... .......... .......... .......... 54%  977K 1s
+   500K .......... .......... .......... .......... .......... 59%  424K 1s
+   550K .......... .......... .......... .......... .......... 65% 1.02M 1s
+   600K .......... .......... .......... .......... .......... 70%  347K 1s
+   650K .......... .......... .......... .......... .......... 75%  511K 1s
+   700K .......... .......... .......... .......... .......... 81%  834K 0s
+   750K .......... .......... .......... .......... .......... 86%  521K 0s
+   800K .......... .......... .......... .......... .......... 92%  854K 0s
+   850K .......... .......... .......... .......... .......... 97%  520K 0s
+   900K .......... .......... .                               100%  857K=2.0s
+
+2015-05-09 00:42:16 (456 KB/s) - ‘/home/cheeze/contents_uploads/img_temp/111.png’ saved [943982/943982]
+
+convert.im6: unable to open image `./img_temp/1748.jpg': 그런 파일이나 디렉터리가 없습니다 @ error/blob.c/OpenBlob/2638.
+rm: `/home/cheeze/contents_uploads/img_temp/*'를 지울 수 없음: 그런 파일이나 디렉터리가 없습니다
+[2015-05-09 19:46:31 +0000] [8096] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 239, in index
+    title = BS(row['context'])
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[2015-05-10 01:55:10 +0000] [25244] [INFO] Starting gunicorn 19.3.0
+[2015-05-10 01:55:10 +0000] [25244] [INFO] Listening at: http://127.0.0.1:8000 (25244)
+[2015-05-10 01:55:10 +0000] [25244] [INFO] Using worker: sync
+[2015-05-10 01:55:10 +0000] [25249] [INFO] Booting worker with pid: 25249
+[2015-05-10 08:21:27 +0000] [25249] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/cheeze/cheez/linking/app/main/views.py", line 148, in link_click
+    'user_id': session['user_id']
+  File "/home/cheeze/cheez/local/lib/python2.7/site-packages/werkzeug/local.py", line 368, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+KeyError: 'user_id'
