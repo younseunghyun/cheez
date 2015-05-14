@@ -3,6 +3,14 @@ from users.models import User
 from cheez.models import BaseModel
 
 
+'''
+#To get all sql queries sent by Django from py shell
+import logging
+l = logging.getLogger('django.db.backends')
+l.setLevel(logging.DEBUG)
+l.addHandler(logging.StreamHandler())
+'''
+
 class LikePostRel(BaseModel):
     LIKE_TYPE_HATE, LIKE_TYPE_PASS, LIKE_TYPE_LIKE = -1, 0, 1
     LIKE_TYPE_CHOICES = (
@@ -97,7 +105,10 @@ class Post(models.Model):
 
 class Tag(BaseModel):
     name = models.CharField(max_length=128, unique=True)
-    post_count = models.IntegerField(default=1)
+    post_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 
 class ReadPostRel(BaseModel):

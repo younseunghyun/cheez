@@ -1,3 +1,4 @@
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,6 +8,11 @@ from rest_framework.permissions import (
 )
 from users.models import User
 from users.serializers import UserSerializer
+from users.serializers import CustomAuthTokenSerializer
+
+
+class AuthTokenAPIView(ObtainAuthToken):
+    serializer_class = CustomAuthTokenSerializer
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()

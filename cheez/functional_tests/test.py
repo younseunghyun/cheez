@@ -89,24 +89,40 @@ class PostTestCase(APILiveServerTestCase):
                 'url':'http://bttrfly.co',
             }
         )
-        self.assertEqual(response.status_code, 200, str(response.data))
-        self.assertEqual(response.data,
-                         {'title': 'Butterfly',
-                          'image': 'http://bttrfly.co/static/res/img/banner.png',
-                          'description': 'Butterfly is a photo sharing app. Take a picture, and send it to someone.'})
+        self.assertEqual(response.status_code, 201, str(response.data))
+
+        self.assertEqual(response.data['title'], 'Butterfly')
+        self.assertEqual(response.data['image'], 'http://bttrfly.co/static/res/img/banner.png')
+        self.assertEqual(response.data['description'],
+                         'Butterfly is a photo sharing app. Take a picture, and send it to someone.')
 
         prev_post_count = Post.objects.count()
         prev_tag_count = Tag.objects.count()
         response = self.client.post(
             '/post/',
             {
-                'image': response.data['image'],
+                'image_url': response.data['image'],
+                'source_url': 'http://bttrfly.co',
                 'subtitle': response.data['description'],
                 'title': response.data['title'],
                 'tags': ['사진', '안드로이드'],
-            }
+            },
+            format='json',
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201, 'failed to create post: {}'.format(str(response.data)))
         self.assertEqual(prev_post_count+1, Post.objects.count())
         self.assertEqual(prev_tag_count+2, Tag.objects.count())
+
+        response = self.client.post(
+            '/api-auth-token/',
+            {
+                'device': {
+                    'device_id': 'unique_device_id',
+                    'os_type': 1
+                }
+            },
+            format='json',
+
+        )
+        self.assertEqual(response.status_code, 200)
 

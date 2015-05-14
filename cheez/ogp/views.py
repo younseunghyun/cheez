@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from ogp.models import OG
 from ogp.serializers import OGSerializer
+from ogp.pyogp import PyOGP
 
 class OGViewSet(ModelViewSet):
     queryset = OG.objects.all()
@@ -11,17 +12,21 @@ class OGViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         url = request.data['url']
 
-        # TODO : get og data
         data = {
             'url': url,
             'title': None,
             'author': None,
-            'image_url': None,
-            'video_url': None,
+            'image': None,
+            'video': None,
             'description': None,
         }
+        og, created = OG.objects.get_or_create(**data)
+        if created:
+            data = PyOGP().crawl(url).result
+            serializer = self.serializer_class(og, data=data, partial=True)
+        else:
+            serializer = self.serializer_class(og)
 
-        serializer = self.serializer_class(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
