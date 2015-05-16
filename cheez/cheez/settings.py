@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'cheez.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cheezdb',
-        'HOST': 'cheez.cuz1py6jovvs.us-west-1.rds.amazonaws.com',
+        'HOST': 'cheez.cskx1iojcwbn.ap-northeast-1.rds.amazonaws.com',
         'USER': 'cheez',
-        'PASSWORD': 'cheez0410'
+        'PASSWORD': 'clwmajrrhtlvek'
     }
 }
 

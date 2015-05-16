@@ -1,5 +1,8 @@
 venv/
 .idea/
+local_config.py
+config/
+
 
 __pycache__
 *.pyc

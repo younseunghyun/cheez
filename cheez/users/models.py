@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
-    email = models.EmailField(max_length=256, unique=True, null=True)
+    email = models.EmailField(max_length=126, unique=True, null=True)
     name = models.CharField(max_length=128, null=True)
 
     USERNAME_FIELD = 'email'
@@ -41,7 +41,7 @@ class Device(BaseModel):
         (OS_TYPE_ANDROID, 'ANDROID'),
         (OS_TYPE_IOS, 'IOS')
     )
-    device_id = models.CharField(max_length=512, unique=True)
+    device_id = models.CharField(max_length=128, unique=True)
     os_type = models.IntegerField(choices=OS_TYPE_CHOICES, default=OS_TYPE_ANDROID)
     os_version = models.CharField(max_length=64, null=True)
 
