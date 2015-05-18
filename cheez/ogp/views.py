@@ -20,15 +20,14 @@ class OGViewSet(ModelViewSet):
             'video': None,
             'description': None,
         }
-        og, created = OG.objects.get_or_create(**data)
+        og, created = OG.objects.get_or_create(url=url)
         if created:
             data = PyOGP().crawl(url).result
             serializer = self.serializer_class(og, data=data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
         else:
             serializer = self.serializer_class(og)
-
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
 
         return Response(serializer.data, status.HTTP_201_CREATED)
 

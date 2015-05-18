@@ -91,6 +91,16 @@ class PostTestCase(APILiveServerTestCase):
         )
         self.assertEqual(response.status_code, 201, str(response.data))
 
+        # 같은 URL 두번 입력 시 오류 수정
+        response = self.client.post(
+            '/og/',
+            {
+                'url':'http://bttrfly.co',
+            }
+        )
+        self.assertEqual(response.status_code, 201, str(response.data))
+
+
         self.assertEqual(response.data['title'], 'Butterfly')
         self.assertEqual(response.data['image'], 'http://bttrfly.co/static/res/img/banner.png')
         self.assertEqual(response.data['description'],

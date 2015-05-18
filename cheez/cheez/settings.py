@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'ogp',
 )
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -129,3 +130,38 @@ STATIC_URL = '/static/'
 # TypeError: unsupported operand type(s) for +=: 'NoneType' and 'str'
 # http://www.reddit.com/r/django/comments/2w41t0/tdd_with_python_chapter_7_errors_when_adding/
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+'''
+# logging setting
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.dirname(os.path.realpath(__file__)) + '../../../logs/cheez.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'WARNING',
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}
+'''

@@ -1,0 +1,34 @@
+Internal Server Error: /og/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/ogp/views.py", line 30, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 181, in is_valid
+    'Cannot call `.is_valid()` as no `data=` keyword argument was '
+AssertionError: Cannot call `.is_valid()` as no `data=` keyword argument was passed when instantiating the serializer instance.
+Internal Server Error: /og/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/ogp/views.py", line 31, in create
+    serializer.save()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 147, in save
+    'You must call `.is_valid()` before calling `.save()`.'
+AssertionError: You must call `.is_valid()` before calling `.save()`.
