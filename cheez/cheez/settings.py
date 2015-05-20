@@ -108,6 +108,7 @@ DATABASES = {
 
 if 'test' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default'].pop('OPTIONS')
 
 AUTH_USER_MODEL = "users.User"
 

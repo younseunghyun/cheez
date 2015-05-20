@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import parsers
 from rest_framework import renderers
 from rest_framework.views import APIView
@@ -31,6 +32,23 @@ class PostViewSet(ModelViewSet):
         serializer.save(user=request.user)
 
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+    def list(self, request, *args, **kwargs):
+        posts = Post.objects.raw(
+            """
+            SELECT * FROM
+            posts_post p
+            LEFT JOIN users_user u
+            on p.user_id = u.id
+            left join posts_readpostrel rp
+            on p.id = rp.post_id and rp.user_id = %s
+            where rp.id is null
+            """,
+            [request.user.id]
+        )
+        serializer = self.serializer_class(posts, many=True)
+
+        return Response({'results': serializer.data})
 
 
 class ReadPostApiView(APIView):

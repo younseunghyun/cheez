@@ -144,3 +144,8 @@ class PostTestCase(APILiveServerTestCase):
             format='json',
         )
         print(response.data)
+
+        response = self.client.get(
+            '/post/',
+        )
+        print(response.data)
