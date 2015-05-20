@@ -1,10 +1,13 @@
+from rest_framework import parsers
+from rest_framework import renderers
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from posts.models import Post
 from posts.models import Tag
 from posts.serializers import PostSerializer
-
+from users.serializers import UserSerializer
 
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
@@ -12,7 +15,6 @@ class PostViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data
-        data['user'] = request.user.id
 
         # create tags
         tags = []
@@ -26,7 +28,23 @@ class PostViewSet(ModelViewSet):
 
         serializer = self.serializer_class(data=data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(user=request.user)
 
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+
+class ReadPostApiView(APIView):
+    parser_classes = (parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+
+    def post(self, request):
+        # TODO : form validation
+
+        link_clicked = 'link_clicked' in request.data and request.data['link_clicked']
+        rating = 0 if 'rating' not in request.data else request.data['rating']
+        post_ = Post.objects.get(id=request.data['post_id'])
+        post_.read_by(request.user, link_clicked, rating)
+
+        return Response({'message': 'success'})
+
 

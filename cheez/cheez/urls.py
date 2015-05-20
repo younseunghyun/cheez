@@ -20,4 +20,6 @@ urlpatterns = [
     # rest api auth url
     url(r'^api-auth-token/', user_views.AuthTokenAPIView.as_view()),
 
+    url(r'^read-post/', post_views.ReadPostApiView.as_view()),
+
     ]

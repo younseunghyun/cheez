@@ -136,3 +136,11 @@ class PostTestCase(APILiveServerTestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+        response = self.client.post(
+            '/read-post/',
+            {
+                'post_id': 1,
+            },
+            format='json',
+        )
+        print(response.data)

@@ -99,7 +99,10 @@ DATABASES = {
         'NAME': 'cheezdb',
         'HOST': 'cheez.cskx1iojcwbn.ap-northeast-1.rds.amazonaws.com',
         'USER': 'cheez',
-        'PASSWORD': 'clwmajrrhtlvek'
+        'PASSWORD': 'clwmajrrhtlvek',
+        'OPTIONS': {
+                    'charset': 'utf8',
+                    'use_unicode': True, },
     }
 }
 

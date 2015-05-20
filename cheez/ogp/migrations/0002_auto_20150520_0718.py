@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0004_tag_name'),
+        ('ogp', '0001_initial'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='tag',
-            name='post_count',
-            field=models.IntegerField(default=1),
+        migrations.AlterField(
+            model_name='og',
+            name='url',
+            field=models.URLField(unique=True),
         ),
     ]
