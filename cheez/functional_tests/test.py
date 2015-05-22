@@ -22,6 +22,10 @@ class PostTestCase(APILiveServerTestCase):
                 "name": "user name",
                 "email": "example@example.com",
                 "password": "pw",
+                "devices": [{
+                    "device_id": "unique_device_id2",
+                    "os_type": 1,
+                }]
             },
             format="json"
         )
@@ -49,17 +53,21 @@ class PostTestCase(APILiveServerTestCase):
         response = self.client.post(
             '/user/',
             {
+                'email': 's_polaris@naver.com',
                 'sns_accounts': [{
                     'sns_user_id': 'sns_account_id',
                     'sns_type': 1,
-                    'sns_profile_url': 'https://www.fb.com/sns_account_id',
-                    'raw_data': '{ raw sns user data string here }'
+                    'sns_profile_url': 'https://www.fb.com/sns_account_id'
+                }],
+                "devices": [{
+                    "device_id": "unique_device_id",
+                    "os_type": 1,
                 }]
             },
             format="json"
         )
         self.assertEqual(response.status_code, 201, "Failed to create user: "+str(response.data))
-        self.assertEqual(prev_user_count+3, User.objects.count())
+        self.assertEqual(prev_user_count+2, User.objects.count())
         self.assertEqual(prev_sns_account_count+1, SNSAccount.objects.count())
 
         # authenticate
@@ -143,9 +151,9 @@ class PostTestCase(APILiveServerTestCase):
             },
             format='json',
         )
-        print(response.data)
+        # print(response.data)
 
         response = self.client.get(
             '/post/',
         )
-        print(response.data)
+        # print(response.data)

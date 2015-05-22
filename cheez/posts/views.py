@@ -11,6 +11,8 @@ from posts.serializers import PostSerializer
 from users.serializers import UserSerializer
 
 class PostViewSet(ModelViewSet):
+    PAGE_SIZE = 10
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -33,22 +35,23 @@ class PostViewSet(ModelViewSet):
 
         return Response(serializer.data, status.HTTP_201_CREATED)
 
-    def list(self, request, *args, **kwargs):
-        posts = Post.objects.raw(
-            """
-            SELECT * FROM
-            posts_post p
-            LEFT JOIN users_user u
-            on p.user_id = u.id
-            left join posts_readpostrel rp
-            on p.id = rp.post_id and rp.user_id = %s
-            where rp.id is null
-            """,
-            [request.user.id]
-        )
-        serializer = self.serializer_class(posts, many=True)
-
-        return Response({'results': serializer.data})
+    # def list(self, request, *args, **kwargs):
+    #     page = request.query_params.get('page', 1)
+    #     posts = Post.objects.raw(
+    #         """
+    #         SELECT * FROM
+    #         posts_post p
+    #         LEFT JOIN users_user u
+    #         on p.user_id = u.id
+    #         left join posts_readpostrel rp
+    #         on p.id = rp.post_id and rp.user_id = %s
+    #         where rp.id is null
+    #         """,
+    #         [request.user.id]
+    #     )
+    #     serializer = self.serializer_class(posts, many=True)
+    #
+    #     return Response({'results': serializer.data})
 
 
 class ReadPostApiView(APIView):

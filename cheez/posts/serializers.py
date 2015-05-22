@@ -21,6 +21,7 @@ class PostSerializer(ModelSerializer):
             'id': {'read_only': True},
             'user_id': {'write_only': True},
             'subtitle': {'required': False},
+            'image_url': {'required': False},
             'like_count': {'read_only': True},
             'link_click_count': {'read_only': True},
         }

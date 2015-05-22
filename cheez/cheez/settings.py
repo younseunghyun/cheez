@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 # http://www.reddit.com/r/django/comments/2w41t0/tdd_with_python_chapter_7_errors_when_adding/
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 
-'''
+
 # logging setting
 LOGGING = {
     'version': 1,
@@ -152,7 +152,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.dirname(os.path.realpath(__file__)) + '../../../logs/cheez.log',
+            'filename': os.path.abspath(os.path.join(BASE_DIR, '../logs/cheez.log')),
         },
     },
     'loggers': {
@@ -168,4 +168,3 @@ LOGGING = {
         },
     }
 }
-'''

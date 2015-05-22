@@ -41,11 +41,12 @@ class Device(BaseModel):
         (OS_TYPE_ANDROID, 'ANDROID'),
         (OS_TYPE_IOS, 'IOS')
     )
-    device_id = models.CharField(max_length=128, unique=True)
+    device_id = models.CharField(max_length=128)
     os_type = models.IntegerField(choices=OS_TYPE_CHOICES, default=OS_TYPE_ANDROID)
     os_version = models.CharField(max_length=64, null=True)
 
-    user = models.ForeignKey('User', related_name='devices')
+    # 사실상 null 불가능하나, 데이터 입력 용이하기 위해 null 가능하도록 설정해둠
+    user = models.ForeignKey('User', related_name='devices', null=True)
 
     class Meta:
         unique_together = ('os_type', 'device_id', )
@@ -61,7 +62,7 @@ class SNSAccount(BaseModel):
     sns_type = models.IntegerField(choices=SNS_TYPE_CHOICES, default=SNS_TYPE_FACEBOOK)
     sns_user_id = models.CharField(max_length=128)
 
-    user = models.ForeignKey('User', related_name='sns_accounts')
+    user = models.ForeignKey('User', related_name='sns_accounts', null=True)
 
     class Meta:
         unique_together = ('sns_type', 'sns_user_id',)

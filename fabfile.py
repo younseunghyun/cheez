@@ -45,7 +45,7 @@ def upload():
         run('mkdir -p {}'.format(REMOTE_PROJECT_DIR))
 
     for host in env.hosts:
-        local('rsync -avz {1} ubuntu@{0}:{2}/../ --exclude "__pycache__" --exclude "*.pyc" --exclude "venv" --exclude ".git" --exclude "fabfile.py" --exclude ".idea" --exclude "local_config.py" --delete'.format(host, LOCAL_PROJECT_DIR, REMOTE_PROJECT_DIR))
+        local('rsync -avz {1} ubuntu@{0}:{2}/../ --exclude "__pycache__" --exclude "*.pyc" --exclude "venv" --exclude ".git" --exclude "fabfile.py" --exclude ".idea" --exclude "local_config.py" --exclude "logs" --delete'.format(host, LOCAL_PROJECT_DIR, REMOTE_PROJECT_DIR))
 
 
 def start():
