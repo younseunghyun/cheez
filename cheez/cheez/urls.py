@@ -1,9 +1,10 @@
 from django.conf.urls import url, include
+from django.contrib import admin
 from rest_framework import routers
 from users import views as user_views
 from ogp import views as og_views
 from posts import views as post_views
-from rest_framework.authtoken.views import obtain_auth_token
+admin.autodiscover()
 
 
 router = routers.DefaultRouter()
@@ -20,6 +21,10 @@ urlpatterns = [
     # rest api auth url
     url(r'^api-auth-token/', user_views.AuthTokenAPIView.as_view()),
 
+    url(r'^saved-post/', post_views.SavedPostApiView.as_view()),
     url(r'^read-post/', post_views.ReadPostApiView.as_view()),
+    url(r'^report/', post_views.ReportApiView.as_view()),
 
+
+    url(r'^admin/', include(admin.site.urls)),
     ]

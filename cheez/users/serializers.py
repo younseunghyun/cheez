@@ -87,6 +87,7 @@ class UserSerializer(ModelSerializer):
         exclude = ('user_permissions', 'groups',)
         extra_kwargs = {
             'password': {'write_only': True, 'required': False},
+            'upload_count': {'read_only': True},
             }
 
 

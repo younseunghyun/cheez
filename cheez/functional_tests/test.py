@@ -94,7 +94,7 @@ class PostTestCase(APILiveServerTestCase):
         response = self.client.post(
             '/og/',
             {
-                'url':'http://bttrfly.co',
+                'url': 'http://bttrfly.co',
             }
         )
         self.assertEqual(response.status_code, 201, str(response.data))
@@ -103,7 +103,7 @@ class PostTestCase(APILiveServerTestCase):
         response = self.client.post(
             '/og/',
             {
-                'url':'http://bttrfly.co',
+                'url': 'http://bttrfly.co',
             }
         )
         self.assertEqual(response.status_code, 201, str(response.data))
@@ -144,6 +144,11 @@ class PostTestCase(APILiveServerTestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+        response = self.client.get(
+            '/post/',
+        )
+        # print(response.data)
+
         response = self.client.post(
             '/read-post/',
             {
@@ -151,9 +156,10 @@ class PostTestCase(APILiveServerTestCase):
             },
             format='json',
         )
-        # print(response.data)
 
         response = self.client.get(
-            '/post/',
+            '/post/?user_id=1',
         )
-        # print(response.data)
+        print(response.data)
+
+

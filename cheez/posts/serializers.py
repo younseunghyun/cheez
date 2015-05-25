@@ -1,10 +1,18 @@
 from rest_framework.serializers import ModelSerializer
 from posts.models import Post
+from posts.models import ReadPostRel
 from users.serializers import UserSerializer
+
+
+class ReadPostRelSerializer(ModelSerializer):
+
+    class Meta:
+        model = ReadPostRel
 
 
 class PostSerializer(ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+    read_post_rels = ReadPostRelSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
@@ -16,6 +24,7 @@ class PostSerializer(ModelSerializer):
                   'link_click_count',
                   'title',
                   'subtitle',
+                  'read_post_rels',
                   )
         extra_kwargs = {
             'id': {'read_only': True},
@@ -24,4 +33,6 @@ class PostSerializer(ModelSerializer):
             'image_url': {'required': False},
             'like_count': {'read_only': True},
             'link_click_count': {'read_only': True},
+            'read_post_rels': {'read_only': True}
         }
+

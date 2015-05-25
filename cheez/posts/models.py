@@ -16,6 +16,8 @@ class Post(BaseModel):
     image_url = models.URLField()
     like_count = models.IntegerField(default=0)
     link_click_count = models.IntegerField(default=0)
+    reported_count = models.IntegerField(default=0)
+    saved_count = models.IntegerField(default=0)
     source_url = models.URLField()
     subtitle = models.CharField(max_length=512, null=True)
     title = models.CharField(max_length=256)
@@ -39,7 +41,7 @@ class Post(BaseModel):
             tag.save()
 
 
-    def read_by(self, user_or_user_id, link_clicked=False, rating=0):
+    def read_by(self, user_or_user_id, link_clicked=False, rating=0, saved=False):
         """
 
         :param user_or_user_id: liked_by()와 동일
@@ -59,15 +61,27 @@ class Post(BaseModel):
 
         if link_clicked and (created or not read_post.link_clicked):
             self.link_click_count += 1
-            self.save()
+        if saved and (created or not read_post.saved):
+            self.saved_count += 1
+
+        self.save()
 
         read_post.link_clicked = link_clicked
+        read_post.saved = saved
         read_post.rating = rating
         read_post.save()
 
-
     def __str__(self):
         return self.title
+
+class Comment(BaseModel):
+    comment = models.CharField(max_length=512)
+
+    user = models.ForeignKey('users.User', related_name='comments')
+    post = models.ForeignKey('Post', related_name='comments')
+
+    def __str__(self):
+        return self.comment
 
 
 class Tag(BaseModel):
@@ -84,7 +98,17 @@ class ReadPostRel(BaseModel):
 
     link_clicked = models.BooleanField(default=False)
     rating = models.IntegerField(default=0)
+    saved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.user) + ' ' + str(self.post)
 
     class Meta:
         unique_together = (('user', 'post',),)
+
+class Report(BaseModel):
+    user = models.ForeignKey('users.User')
+    post = models.ForeignKey('posts.Post')
+    reason = models.TextField()
+
 

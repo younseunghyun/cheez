@@ -20,19 +20,35 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def create_superuser(self, **kwargs):
+        user = self.create(**kwargs)
+        user.is_superuser = True
+        user.save()
+
+        return user
+
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     email = models.EmailField(max_length=126, unique=True, null=True)
     name = models.CharField(max_length=128, null=True)
 
+    upload_count = models.IntegerField(default=0)
+
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
+
+    @property
+    def is_staff(self):
+        return self.is_superuser
 
     def get_full_name(self):
         return '{} ({})'.format(self.name, self.email)
 
     def get_short_name(self):
         return self.name
+
+    def __str__(self):
+        return self.get_full_name()
 
 
 class Device(BaseModel):
