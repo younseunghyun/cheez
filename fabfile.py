@@ -14,6 +14,7 @@ env.user = USER
 
 
 def prepare():
+    sudo('ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime')
     sudo('apt-get update')
     sudo('apt-get install -y build-essential git')
     sudo('apt-get install -y python3')

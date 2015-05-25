@@ -38,8 +38,8 @@ class PostSerializer(ModelSerializer):
         }
 
 class CommentSerializer(ModelSerializer):
-    user = UserSerializer(many=False, read_only=True)
-    post = PostSerializer(many=False, write_only=True)
+    user = UserSerializer(many=False, read_only=True, required=False)
+    post = PostSerializer(many=False, write_only=True, required=False)
 
     class Meta:
         model = Comment

@@ -73,9 +73,15 @@ class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user, post_id=request.data.get('post_id'))
+
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
-        post_id = request.query_params.geT('post_id')
+        post_id = request.query_params.get('post_id')
         last_id = request.query_params.get('last_id', 0)
 
         query = """
@@ -88,13 +94,13 @@ class CommentViewSet(ModelViewSet):
 
         params = [post_id, ]
 
-        if last_id > 0:
+        if int(last_id) > 0:
             query += ' and c.id < %s '
             params.append(last_id)
 
 
         query += """
-            order by id desc
+            order by c.id desc
             limit %s
             """
         params.append(CommentViewSet.PAGE_SIZE)
@@ -122,6 +128,7 @@ class ReadPostApiView(APIView):
 
         return Response({'message': 'success'})
 
+
 class SavedPostApiView(APIView):
     parser_classes = (parsers.JSONParser,)
     renderer_classes = (renderers.JSONRenderer,)
@@ -142,6 +149,7 @@ class SavedPostApiView(APIView):
         serializer = PostSerializer(posts, many=True)
 
         return Response({'results': serializer.data})
+
 
 class ReportApiView(APIView):
     parser_classes = (parsers.JSONParser,)
