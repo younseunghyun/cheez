@@ -76,7 +76,7 @@ class CommentViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         post_id = request.query_params.geT('post_id')
-        page = request.query_params.get('page', 1)
+        last_id = request.query_params.get('last_id', 0)
 
         query = """
             SELECT * FROM
@@ -84,9 +84,21 @@ class CommentViewSet(ModelViewSet):
             LEFT JOIN users_user u
             on c.user_id = u.id
             where c.post_id = %s
-            limit %s, %s
             """
-        params = [post_id, (int(page)-1)*PostViewSet.PAGE_SIZE, PostViewSet.PAGE_SIZE, ]
+
+        params = [post_id, ]
+
+        if last_id > 0:
+            query += ' and c.id < %s '
+            params.append(last_id)
+
+
+        query += """
+            order by id desc
+            limit %s
+            """
+        params.append(CommentViewSet.PAGE_SIZE)
+
 
         comments = Comment.objects.raw(query, params)
 
