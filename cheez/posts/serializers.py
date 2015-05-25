@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer
+from posts.models import Comment
 from posts.models import Post
 from posts.models import ReadPostRel
 from users.serializers import UserSerializer
@@ -36,3 +37,19 @@ class PostSerializer(ModelSerializer):
             'read_post_rels': {'read_only': True}
         }
 
+class CommentSerializer(ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    post = PostSerializer(many=False, write_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ('id',
+                  'user',
+                  'post',
+                  'comment',
+                  'created',
+                  )
+        extra_kwargs = {
+            'id': {'read_only': True},
+            'created': {'read_only': True},
+        }

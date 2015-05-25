@@ -9,6 +9,7 @@ admin.autodiscover()
 
 router = routers.DefaultRouter()
 router.register(r'og', og_views.OGViewSet)
+router.register(r'comment', post_views.CommentViewSet)
 router.register(r'post', post_views.PostViewSet)
 router.register(r'user', user_views.UserViewSet)
 

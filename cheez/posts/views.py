@@ -5,11 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
+from posts.models import Comment
 from posts.models import Post
 from posts.models import Tag
 from posts.models import Report
 from posts.serializers import PostSerializer
-from users.serializers import UserSerializer
+from posts.serializers import CommentSerializer
 
 class PostViewSet(ModelViewSet):
     PAGE_SIZE = 20
@@ -63,6 +64,33 @@ class PostViewSet(ModelViewSet):
         posts = Post.objects.raw(query, params)
 
         serializer = self.serializer_class(posts, many=True)
+
+        return Response({'results': serializer.data})
+
+class CommentViewSet(ModelViewSet):
+    PAGE_SIZE = 20
+
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+
+    def list(self, request, *args, **kwargs):
+        post_id = request.query_params.geT('post_id')
+        page = request.query_params.get('page', 1)
+
+        query = """
+            SELECT * FROM
+            posts_comment c
+            LEFT JOIN users_user u
+            on c.user_id = u.id
+            where c.post_id = %s
+            limit %s, %s
+            """
+        params = [post_id, (int(page)-1)*PostViewSet.PAGE_SIZE, PostViewSet.PAGE_SIZE, ]
+
+        comments = Comment.objects.raw(query, params)
+
+        serializer = self.serializer_class(comments, many=True)
 
         return Response({'results': serializer.data})
 
