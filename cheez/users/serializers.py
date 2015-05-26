@@ -88,6 +88,7 @@ class UserSerializer(ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True, 'required': False},
             'upload_count': {'read_only': True},
+            'profile_image': {'required': False}
             }
 
 

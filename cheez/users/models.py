@@ -31,6 +31,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     email = models.EmailField(max_length=126, unique=True, null=True)
     name = models.CharField(max_length=128, null=True)
 
+    profile_image = models.ImageField(upload_to='images/users/profile', null=True, blank=True)
     upload_count = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'

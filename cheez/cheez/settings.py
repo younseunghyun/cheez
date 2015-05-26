@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'storages',
     'posts',
     'users',
     'ogp',
@@ -135,6 +136,22 @@ STATIC_URL = '/static/'
 # TypeError: unsupported operand type(s) for +=: 'NoneType' and 'str'
 # http://www.reddit.com/r/django/comments/2w41t0/tdd_with_python_chapter_7_errors_when_adding/
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+
+
+# s3 setting
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = "AKIAJ6STLD3252AX2GYQ"
+AWS_SECRET_ACCESS_KEY = "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"
+
+AWS_S3_SECURE_URLS = False
+
+AWS_STORAGE_BUCKET_NAME = "cheez-image"
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + ".s3.amazonaws.com"
+#AWS_S3_CUSTOM_DOMAIN = "d2tapiqtbmknxr.cloudfront.net"
+AWS_QUERYSTRING_AUTH = False
+
 
 
 # logging setting

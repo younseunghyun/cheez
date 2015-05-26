@@ -25,7 +25,7 @@ class Post(BaseModel):
     user = models.ForeignKey('users.User', related_name='writed_posts')
 
     read_users = models.ManyToManyField('users.User', through='ReadPostRel', related_name='read_posts')
-    tags = models.ManyToManyField('Tag', related_name='posts')
+    tags = models.ManyToManyField('Tag', related_name='posts', blank=True)
 
     def add_tags(self, tag_names):
 

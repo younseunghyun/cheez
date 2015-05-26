@@ -153,6 +153,7 @@ class PostTestCase(APILiveServerTestCase):
             '/read-post/',
             {
                 'post_id': 1,
+                'saved': False,
             },
             format='json',
         )
