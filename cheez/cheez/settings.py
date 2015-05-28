@@ -99,7 +99,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cheezdb',
-        'HOST': 'cheez.cskx1iojcwbn.ap-northeast-1.rds.amazonaws.com',
+        'HOST': 'cheez.cc6jer4i5lpa.ap-southeast-1.rds.amazonaws.com',
         'USER': 'cheez',
         'PASSWORD': 'clwmajrrhtlvek',
         'OPTIONS': {
@@ -152,6 +152,22 @@ AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + ".s3.amazonaws.com"
 #AWS_S3_CUSTOM_DOMAIN = "d2tapiqtbmknxr.cloudfront.net"
 AWS_QUERYSTRING_AUTH = False
 
+
+# SQS Setting
+BROKER_TRANSPORT = 'sqs'
+BROKER_TRANSPORT_OPTIONS = {
+    'region': 'ap-southeast-1',
+}
+BROKER_USER = AWS_ACCESS_KEY_ID
+BROKER_PASSWORD = AWS_SECRET_ACCESS_KEY
+
+CELERY_DEFAULT_QUEUE = 'cheez-celery-queue'
+CELERY_QUEUES = {
+    CELERY_DEFAULT_QUEUE: {
+        'exchange': CELERY_DEFAULT_QUEUE,
+        'binding_key': CELERY_DEFAULT_QUEUE,
+    }
+}
 
 
 # logging setting

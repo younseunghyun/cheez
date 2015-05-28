@@ -65,7 +65,7 @@ class PyOGP(object):
         # else: # if html does not have frame tag
 
         if 'title' not in self.result: # frame안에 og:title을 지키고있으면 일반적으로 <title>의 내용 보다 좋음
-                content = self.soup.head.title.text
+                content = self.sㅇoup.head.title.text
                 if content: self.result['title'] = content # if content is not null.
 
         return self

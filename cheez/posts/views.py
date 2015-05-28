@@ -49,16 +49,19 @@ class PostViewSet(ModelViewSet):
             on p.user_id = u.id
             left join posts_readpostrel rp
             on p.id = rp.post_id and rp.user_id = %s
+            left join rankings_postranking1 rank
+            on p.id = rank.post_id
+            where p.deleted = '0'
 
             """
         params = [request.user.id, ]
 
         user_id = request.query_params.get('user_id')
         if user_id:
-            query += 'where p.user_id = %s '
+            query += ' and p.user_id = %s '
             params.append(user_id)
         else:
-            query += 'where rp.id is null '
+            query += ' and rp.id is null order by ranking '
         query += ' limit %s, %s'
         params += [(int(page)-1)*PostViewSet.PAGE_SIZE, PostViewSet.PAGE_SIZE]
         posts = Post.objects.raw(query, params)
@@ -69,6 +72,7 @@ class PostViewSet(ModelViewSet):
 
 class CommentViewSet(ModelViewSet):
     PAGE_SIZE = 20
+
 
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer

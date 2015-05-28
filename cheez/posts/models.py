@@ -13,6 +13,7 @@ l.addHandler(logging.StreamHandler())
 
 
 class Post(BaseModel):
+    deleted = models.BooleanField(default=False)
     image_url = models.URLField()
     like_count = models.IntegerField(default=0)
     link_click_count = models.IntegerField(default=0)
