@@ -124,11 +124,12 @@ class ReadPostApiView(APIView):
     def post(self, request):
         # TODO : form validation
 
-        link_clicked = 'link_clicked' in request.data and request.data['link_clicked']
-        rating = 0 if 'rating' not in request.data else request.data['rating']
-        saved = request.data['saved']
-        post_ = Post.objects.get(id=request.data['post_id'])
-        post_.read_by(request.user, link_clicked, rating, saved)
+        for data in request.data['data']:
+            link_clicked = 'link_clicked' in data and data['link_clicked']
+            rating = 0 if 'rating' not in data else data['rating']
+            saved = data['saved']
+            post_ = Post.objects.get(id=data['post_id'])
+            post_.read_by(request.user, link_clicked, rating, saved)
 
         return Response({'message': 'success'})
 
