@@ -4,6 +4,7 @@ from rest_framework import routers
 from users import views as user_views
 from ogp import views as og_views
 from posts import views as post_views
+from webpage import views as webpage_views
 admin.autodiscover()
 
 
@@ -25,7 +26,7 @@ urlpatterns = [
     url(r'^saved-post/', post_views.SavedPostApiView.as_view()),
     url(r'^read-post/', post_views.ReadPostApiView.as_view()),
     url(r'^report/', post_views.ReportApiView.as_view()),
-
+    url(r'^(?P<pk>[0-9]+)$', webpage_views.share_view),
 
     url(r'^admin/', include(admin.site.urls)),
     ]

@@ -115,7 +115,8 @@ class CustomAuthTokenSerializer(serializers.Serializer):
                 msg = _('Unable to log in with provided credentials.')
                 raise exceptions.ValidationError(msg)
         elif device:
-            device = Device.objects.get(**device)
+            device = Device.objects.get(device_id=device['device_id'],
+                                        os_type=device['os_type'])
             user = device.user
         else:
             msg = _('Must include "username" and "password" or "device".')

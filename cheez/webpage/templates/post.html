@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.subtitle }}"/>
+    <meta property="og:image" content="{{ post.image_url }}" />
+    <title>{{ post.title }}</title>
+
+    <link rel="stylesheet" href="{% static 'css/share.css' %}"/>
+</head>
+<body style="background-image: url('{{ post.image_url }}');">
+<div class="mask">
+
+</div>
+<a href="https://play.google.com/store/apps/details?id=co.cheez.cheez" target="_blank">
+    <img class="banner-playstore" src="{% static 'img/playstore.png' %}" alt="cheez at google play store" />
+</a>
+<div class="container">
+
+    <h1 class="title">{{ post.title }}</h1>
+    <h3 class="subtitle">{{ post.subtitle }}</h3>
+
+    <a class="link-main" href="{{ post.source_url }}" target="_blank">보러가기</a>
+
+</div>
+
+</body>
+</html>

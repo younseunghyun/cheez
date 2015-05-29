@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'users',
     'ogp',
     'rankings',
+    'webpage',
 )
 
 
