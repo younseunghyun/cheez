@@ -11,6 +11,10 @@ from posts.models import Tag
 from posts.models import Report
 from posts.serializers import PostSerializer
 from posts.serializers import CommentSerializer
+from posts.serializers import ReadPostRelSerializer
+from posts.tasks import send_post_data
+from posts.tasks import send_read_log
+
 
 class PostViewSet(ModelViewSet):
     PAGE_SIZE = 20
@@ -37,9 +41,12 @@ class PostViewSet(ModelViewSet):
         request.user.upload_count += 1
         request.user.save()
 
+        send_post_data.delay(serializer.data)
+
         return Response(serializer.data, status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
+        print(request.data)
         page = request.query_params.get('page', 1)
 
         query = """
@@ -52,6 +59,7 @@ class PostViewSet(ModelViewSet):
             left join rankings_postranking1 rank
             on p.id = rank.post_id
             where p.deleted = '0'
+            and rank.id is not null
 
             """
         params = [request.user.id, ]
@@ -124,12 +132,16 @@ class ReadPostApiView(APIView):
     def post(self, request):
         # TODO : form validation
 
-        for data in request.data['data']:
+        for i in range(len(request.data['data'])):
+            data = request.data['data'][i]
+            request.data['data'][i]['user_id'] = request.user.id
             link_clicked = 'link_clicked' in data and data['link_clicked']
             rating = 0 if 'rating' not in data else data['rating']
             saved = data['saved']
             post_ = Post.objects.get(id=data['post_id'])
             post_.read_by(request.user, link_clicked, rating, saved)
+
+        send_read_log.delay(request.data)
 
         return Response({'message': 'success'})
 

@@ -21,6 +21,8 @@ class PostSerializer(ModelSerializer):
                   'user',
                   'image_url',
                   'source_url',
+                  'created',
+                  'modified',
                   'like_count',
                   'link_click_count',
                   'title',
@@ -34,7 +36,9 @@ class PostSerializer(ModelSerializer):
             'image_url': {'required': False},
             'like_count': {'read_only': True},
             'link_click_count': {'read_only': True},
-            'read_post_rels': {'read_only': True}
+            'read_post_rels': {'read_only': True},
+            'created': {'read_only': True},
+            'modified': {'read_only': True},
         }
 
 class CommentSerializer(ModelSerializer):

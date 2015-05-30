@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '47t*ff!9zq=hq@ri6yiuox2^%k0_g02y*f21#99t5w8so0&%vz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.cheez.co']
 
 
 # Application definition
@@ -104,14 +104,26 @@ DATABASES = {
         'USER': 'cheez',
         'PASSWORD': 'clwmajrrhtlvek',
         'OPTIONS': {
-                    'charset': 'utf8',
-                    'use_unicode': True, },
-    }
+            'charset': 'utf8',
+            'use_unicode': True, },
+    },
+    'recommendation': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cheez_recommend',
+        'HOST': 'cheez-recommend-server.cl1sv9vmo2na.ap-northeast-1.rds.amazonaws.com',
+        'USER': 'cheez',
+        'PASSWORD': 'clwmajrrhtlvek',
+        'OPTIONS': {
+            'charset': 'utf8',
+            'use_unicode': True, },
+    },
 }
+
+DATABASE_ROUTERS = ['cheez.database_router.DefaultDatabaseRouter',]
 
 if 'test' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-    DATABASES['default'].pop('OPTIONS')
+DATABASES['default'].pop('OPTIONS')
 
 AUTH_USER_MODEL = "users.User"
 
@@ -155,20 +167,7 @@ AWS_QUERYSTRING_AUTH = False
 
 
 # SQS Setting
-BROKER_TRANSPORT = 'sqs'
-BROKER_TRANSPORT_OPTIONS = {
-    'region': 'ap-southeast-1',
-}
-BROKER_USER = AWS_ACCESS_KEY_ID
-BROKER_PASSWORD = AWS_SECRET_ACCESS_KEY
-
-CELERY_DEFAULT_QUEUE = 'cheez-celery-queue'
-CELERY_QUEUES = {
-    CELERY_DEFAULT_QUEUE: {
-        'exchange': CELERY_DEFAULT_QUEUE,
-        'binding_key': CELERY_DEFAULT_QUEUE,
-    }
-}
+BROKER_URL = 'amqp://guest:guest@localhost:5672'
 
 
 # logging setting

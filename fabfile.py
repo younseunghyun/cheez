@@ -23,8 +23,25 @@ def prepare():
     sudo('apt-get install -y python3-pip')
     sudo('apt-get install -y python-virtualenv')
     sudo('apt-get install -y libmysqlclient-dev')
+    sudo('apt-get install -y rabbitmq-server')
     sudo('pip3 install uwsgi')
+
+    create_celery_user()
+
     generate_openssl_cert()
+
+
+def create_celery_user():
+    sudo('groupadd celery')
+    sudo('useradd -g celery celery')
+    if not exists('/var/log/celery'):
+        sudo('mkdir /var/log/celery')
+    if not exists('/var/run/celery'):
+        sudo('mkdir /var/run/celery')
+
+    sudo('chown celery:celery /var/log/celery')
+    sudo('chown celery:celery /var/run/celery')
+
 
 def generate_openssl_cert():
     sudo('mkdir /etc/nginx/ssl')
@@ -73,6 +90,10 @@ def config():
             run('virtualenv -p python3 venv')
 
         run('{}/venv/bin/pip install -r requirements.txt'.format(REMOTE_PROJECT_DIR))
+
+
+def restart_services():
+    with(cd(REMOTE_PROJECT_DIR)):
         sudo('cp config/nginx/default /etc/nginx/sites-available/default')
         sudo('chown www-data:www-data {}/app.sock'.format(REMOTE_PROJECT_DIR))
         sudo('service nginx restart')
@@ -80,6 +101,19 @@ def config():
         sudo('cp config/supervisor/supervisor-app.conf /etc/supervisor/conf.d/supervisor-app.conf')
         sudo('supervisorctl reread')
         sudo('supervisorctl update')
+
+        sudo('service rabbitmq-server restart')
+
+        sudo('cp config/celery/celeryd /etc/default/celeryd')
+        sudo('cp config/celery/service /etc/init.d/celeryd')
+        sudo('chmod +x /etc/init.d/celeryd')
+        sudo('/etc/init.d/celeryd restart')
+
+
+def show_celery_registered_tasks():
+    with(cd(REMOTE_PROJECT_DIR + '/cheez')):
+        run('../venv/bin/celery -A cheez inspect registered')
+
 
 def deploy():
     upload()

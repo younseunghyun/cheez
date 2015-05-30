@@ -11,6 +11,7 @@ from users.models import User, SNSAccount
 from users.models import Device
 from users.serializers import UserSerializer
 from users.serializers import CustomAuthTokenSerializer
+from users.tasks import send_user_data
 
 
 class AuthTokenAPIView(ObtainAuthToken):
@@ -52,5 +53,7 @@ class UserViewSet(ModelViewSet):
         else:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+
+        send_user_data.delay(serializer.data)
 
         return Response(serializer.data, status.HTTP_201_CREATED)
