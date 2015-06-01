@@ -132,13 +132,13 @@ AUTH_USER_MODEL = "users.User"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -168,7 +168,6 @@ AWS_QUERYSTRING_AUTH = False
 
 # SQS Setting
 BROKER_URL = 'amqp://guest:guest@localhost:5672'
-
 
 # logging setting
 LOGGING = {

@@ -45,7 +45,7 @@ class Post(BaseModel):
     def read_by(self, user_or_user_id, link_clicked=False, rating=0, saved=False):
         """
 
-        :param user_or_user_id: liked_by()와 동일
+        :param user_or_user_id:
         :return: None
         """
         if isinstance(user_or_user_id, User):

@@ -49,6 +49,8 @@ class UserViewSet(ModelViewSet):
             request.data.pop('devices')
             for key in request.data:
                 setattr(user, key, request.data.get(key))
+
+            user.joined = True
             user.save()
         else:
             serializer.is_valid(raise_exception=True)

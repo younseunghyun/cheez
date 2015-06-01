@@ -58,6 +58,8 @@ class UserSerializer(ModelSerializer):
             sns_accounts_data = []
 
         user = User.objects.create(**validated_data)
+        if sns_accounts_data:
+            user.joined = True
         user.save()
 
         # create devices
