@@ -13,15 +13,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OG',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('url', models.URLField()),
-                ('title', models.CharField(null=True, max_length=1024)),
-                ('author', models.CharField(null=True, max_length=256)),
+                ('url', models.URLField(unique=True)),
+                ('title', models.CharField(max_length=1024, null=True)),
+                ('author', models.CharField(max_length=256, null=True)),
                 ('image', models.URLField(null=True)),
                 ('video', models.URLField(null=True)),
-                ('description', models.CharField(null=True, max_length=2048)),
+                ('description', models.CharField(max_length=2048, null=True)),
             ],
             options={
                 'abstract': False,

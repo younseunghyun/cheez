@@ -31,26 +31,46 @@ def send_read_log(data):
     cursor = conn.cursor()
 
     query = """
-        insert into posts_readpostrel_current (post_id, user_id, link_clicked, rating, saved)
+        insert into posts_readpostrel_current (post_id, user_id, link_clicked, rating, saved,
+            view_started_time,
+            view_ended_time,
+            link_opened_time,
+            link_closed_time
+        )
         values
             """
 
     params = []
     for d in data['data']:
-        query += ' (%s, %s, %s, %s, %s),'
+        query += ' (%s, %s, %s, %s, %s,' \
+                 '%s, %s, %s, %s),'
         params += [
-            d['post_id'],
+            d['post'],
             d['user_id'],
             '1' if d['link_clicked'] else '0',
             d['rating'],
             '1' if d['saved'] else '0',
+            d['view_started_time'],
+            d['view_ended_time'],
+            d['link_opened_time'],
+            d['link_closed_time']
         ]
 
     query = query[:-1] + """
     on duplicate key update
     link_clicked = values(link_clicked),
     rating = values(rating),
-    saved = values(saved)
+    saved = values(saved),
+    view_started_time = if(values(view_ended_time) - values(view_started_time) > view_ended_time - view_started_time,
+        values(view_started_time), view_started_time),
+    view_ended_time = if(values(view_ended_time) - values(view_started_time) > view_ended_time - view_started_time,
+        values(view_ended_time), view_ended_time),
+    link_opened_time = if(values(link_opened_time) > 0
+        and (values(link_closed_time) - values(link_opened_time) > link_closed_time - link_opened_time),
+        values(link_opened_time), link_opened_time),
+    link_closed_time = if(values(link_opened_time) > 0
+        and (values(link_closed_time) - values(link_opened_time) > link_closed_time - link_opened_time),
+        values(link_closed_time), link_closed_time)
     """
     cursor.execute(query, params)
     conn.commit()

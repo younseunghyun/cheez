@@ -42,7 +42,7 @@ class Post(BaseModel):
             tag.save()
 
 
-    def read_by(self, user_or_user_id, link_clicked=False, rating=0, saved=False):
+    def read_by(self, user_or_user_id, **kwargs):
         """
 
         :param user_or_user_id:
@@ -55,10 +55,44 @@ class Post(BaseModel):
         else:
             raise TypeError('The first parameter must have type \'User\' or \'int\'')
 
+        if isinstance(kwargs['post'], Post):
+            post_id = kwargs['post'].id
+        else:
+            post_id = kwargs['post']
+
+
+
         read_post, created = ReadPostRel.objects.get_or_create(
             post_id=self.id,
             user_id=user_id,
         )
+
+        link_clicked = kwargs.get('link_clicked')
+        saved = kwargs.get('saved')
+        rating = kwargs.get('rating')
+
+        view_started_time = int(kwargs.get('view_started_time'))
+        view_ended_time = int(kwargs.get('view_ended_time'))
+        link_opened_time = int(kwargs.get('link_opened_time'))
+        link_closed_time = int(kwargs.get('link_closed_time'))
+
+        if created:
+            read_post.view_started_time = view_started_time
+            read_post.view_ended_time = view_ended_time
+            read_post.link_opened_time = link_opened_time
+            read_post.link_closed_time = link_closed_time
+        else:
+            # 더 긴 시간으로 바꿈
+            if (read_post.view_ended_time - read_post.view_started_time
+                    < view_ended_time - view_started_time
+                ):
+                read_post.view_started_time = view_started_time
+                read_post.view_ended_time = view_ended_time
+            if (read_post.link_opened_time > 0 and
+                    (read_post.link_closed_time - read_post.link_opened_time
+                         < link_closed_time - link_opened_time)):
+                read_post.link_opened_time = link_opened_time
+                read_post.link_closed_time = link_closed_time
 
         if link_clicked and (created or not read_post.link_clicked):
             self.link_click_count += 1
@@ -100,6 +134,12 @@ class ReadPostRel(BaseModel):
     link_clicked = models.BooleanField(default=False)
     rating = models.IntegerField(default=0)
     saved = models.BooleanField(default=False)
+
+    view_started_time = models.IntegerField(default=0)
+    link_opened_time = models.IntegerField(default=0)
+    link_closed_time = models.IntegerField(default=0)
+    view_ended_time = models.IntegerField(default=0)
+
 
     def __str__(self):
         return str(self.user) + ' ' + str(self.post)

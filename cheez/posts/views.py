@@ -135,11 +135,8 @@ class ReadPostApiView(APIView):
         for i in range(len(request.data['data'])):
             data = request.data['data'][i]
             request.data['data'][i]['user_id'] = request.user.id
-            link_clicked = 'link_clicked' in data and data['link_clicked']
-            rating = 0 if 'rating' not in data else data['rating']
-            saved = data['saved']
-            post_ = Post.objects.get(id=data['post_id'])
-            post_.read_by(request.user, link_clicked, rating, saved)
+            post_ = Post.objects.get(id=data['post'])
+            post_.read_by(request.user, **data)
 
         send_read_log.delay(request.data)
 
