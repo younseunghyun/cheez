@@ -15,7 +15,8 @@ class DeviceSerializer(ModelSerializer):
     class Meta:
         model = Device
         extra_kwargs = {
-            'user': {'required': False}
+            'user': {'required': False},
+            'push_token': {'required': False, 'write_only': True},
         }
 
 

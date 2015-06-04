@@ -61,6 +61,7 @@ class Device(BaseModel):
     device_id = models.CharField(max_length=128)
     os_type = models.IntegerField(choices=OS_TYPE_CHOICES, default=OS_TYPE_ANDROID)
     os_version = models.CharField(max_length=64, null=True)
+    push_token = models.CharField(max_length=256, null=True)
 
     # 사실상 null 불가능하나, 데이터 입력 용이하기 위해 null 가능하도록 설정해둠
     user = models.ForeignKey('User', related_name='devices', null=True)

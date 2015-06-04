@@ -1,6 +1,9 @@
 from django.db import IntegrityError
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import parsers
+from rest_framework import renderers
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import (
@@ -59,3 +62,16 @@ class UserViewSet(ModelViewSet):
         send_user_data.delay(serializer.data)
 
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+class PostPushToken(APIView):
+    parser_classes = (parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        device = Device.objects.get(device_id=request.data['device_id'],
+                                    os_type=request.data['os_type'])
+        device.push_token = request.data.get('push_token')
+        device.save()
+
+        return Response({'message': 'success'})

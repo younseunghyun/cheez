@@ -25,6 +25,7 @@ urlpatterns = [
 
     url(r'^saved-post/', post_views.SavedPostApiView.as_view()),
     url(r'^read-post/', post_views.ReadPostApiView.as_view()),
+    url(r'^push-token/', user_views.PostPushToken.as_view()),
     url(r'^report/', post_views.ReportApiView.as_view()),
     url(r'^(?P<pk>[0-9]+)$', webpage_views.share_view),
 
