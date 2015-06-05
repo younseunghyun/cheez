@@ -479,3 +479,221 @@ Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to A
 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Internal Server Error: /user/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/users/views.py", line 65, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 187, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 367, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/users/serializers.py", line 44, in to_internal_value
+    data = super(UserSerializer, self).to_internal_value(data)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 392, in to_internal_value
+    field for field in self.fields.values()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 313, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/serializers.py", line 867, in get_fields
+    fields[field_name] = field_class(**field_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/relations.py", line 51, in __new__
+    return cls.many_init(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/relations.py", line 71, in many_init
+    list_kwargs = {'child_relation': cls(*args, **kwargs)}
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/relations.py", line 45, in __init__
+    super(RelatedField, self).__init__(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'reqd_only'
+Internal Server Error: /user/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 420, in __call__
+    return self.__value__
+AttributeError: 'ChannelPromise' object has no attribute '__value__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 436, in _ensured
+    return fun(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 177, in _publish
+    channel = self.channel
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 194, in _get_channel
+    channel = self._channel = channel()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 422, in __call__
+    value = self.__value__ = self.__contract__()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 209, in <lambda>
+    channel = ChannelPromise(lambda: connection.default_channel)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 756, in default_channel
+    self.connection
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 741, in connection
+    self._connection = self._establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 696, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/transport/pyamqp.py", line 116, in establish_connection
+    conn = self.Connection(**opts)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 165, in __init__
+    self.transport = self.Transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 186, in Transport
+    return create_transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 299, in create_transport
+    return TCPTransport(host, connect_timeout)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 95, in __init__
+    raise socket.error(last_err)
+OSError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/users/views.py", line 68, in create
+    send_user_data.delay(serializer.data)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/task.py", line 453, in delay
+    return self.apply_async(args, kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/task.py", line 559, in apply_async
+    **dict(self._get_exec_options(), **options)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/base.py", line 353, in send_task
+    reply_to=reply_to or self.oid, **options
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/amqp.py", line 305, in publish_task
+    **kwargs
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 172, in publish
+    routing_key, mandatory, immediate, exchange, declare)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 457, in _ensured
+    interval_max)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 369, in ensure_connection
+    interval_start, interval_step, interval_max, callback)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 243, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 237, in connect
+    return self.connection
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 741, in connection
+    self._connection = self._establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 696, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/transport/pyamqp.py", line 116, in establish_connection
+    conn = self.Connection(**opts)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 165, in __init__
+    self.transport = self.Transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 186, in Transport
+    return create_transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 299, in create_transport
+    return TCPTransport(host, connect_timeout)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 95, in __init__
+    raise socket.error(last_err)
+OSError: [Errno 61] Connection refused
+Internal Server Error: /user/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 420, in __call__
+    return self.__value__
+AttributeError: 'ChannelPromise' object has no attribute '__value__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 436, in _ensured
+    return fun(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 177, in _publish
+    channel = self.channel
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 194, in _get_channel
+    channel = self._channel = channel()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 422, in __call__
+    value = self.__value__ = self.__contract__()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 209, in <lambda>
+    channel = ChannelPromise(lambda: connection.default_channel)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 756, in default_channel
+    self.connection
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 741, in connection
+    self._connection = self._establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 696, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/transport/pyamqp.py", line 116, in establish_connection
+    conn = self.Connection(**opts)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 165, in __init__
+    self.transport = self.Transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 186, in Transport
+    return create_transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 299, in create_transport
+    return TCPTransport(host, connect_timeout)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 95, in __init__
+    raise socket.error(last_err)
+OSError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/cheez/users/views.py", line 68, in create
+    send_user_data.delay(serializer.data)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/task.py", line 453, in delay
+    return self.apply_async(args, kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/task.py", line 559, in apply_async
+    **dict(self._get_exec_options(), **options)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/base.py", line 353, in send_task
+    reply_to=reply_to or self.oid, **options
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/celery/app/amqp.py", line 305, in publish_task
+    **kwargs
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/messaging.py", line 172, in publish
+    routing_key, mandatory, immediate, exchange, declare)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 457, in _ensured
+    interval_max)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 369, in ensure_connection
+    interval_start, interval_step, interval_max, callback)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/utils/__init__.py", line 243, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 237, in connect
+    return self.connection
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 741, in connection
+    self._connection = self._establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/connection.py", line 696, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/kombu/transport/pyamqp.py", line 116, in establish_connection
+    conn = self.Connection(**opts)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 165, in __init__
+    self.transport = self.Transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/connection.py", line 186, in Transport
+    return create_transport(host, connect_timeout, ssl)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 299, in create_transport
+    return TCPTransport(host, connect_timeout)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/amqp/transport.py", line 95, in __init__
+    raise socket.error(last_err)
+OSError: [Errno 61] Connection refused
+Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Internal Server Error: /user/1/
+Traceback (most recent call last):
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/viewsets.py", line 85, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 454, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/Users/jiho/Documents/workspace/django/cheez/venv/lib/python3.4/site-packages/rest_framework/views.py", line 374, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`

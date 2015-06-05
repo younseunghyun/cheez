@@ -26,7 +26,7 @@ SECRET_KEY = '47t*ff!9zq=hq@ri6yiuox2^%k0_g02y*f21#99t5w8so0&%vz'
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['.cheez.co']
+ALLOWED_HOSTS = ['.cheez.co', 'localhost']
 
 
 # Application definition

@@ -25,6 +25,20 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+    def retrieve(self, request, *args, **kwargs):
+        user = User.objects.raw('''
+        select * from users_user u
+        left join users_user_followers f
+        on u.id = f.from_user_id and f.to_user_id = %s
+        where u.id = %s
+        ''', [request.user.id, kwargs['pk']])[0]
+
+        serializer = self.serializer_class(user)
+
+        return Response(serializer.data)
+
+
+
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
 
@@ -75,3 +89,35 @@ class PostPushToken(APIView):
         device.save()
 
         return Response({'message': 'success'})
+
+class FollowView(APIView):
+    parser_classes = (parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+
+    def post(self, request):
+        target_user_id = request.data.get('user_id')
+        delete = request.data.get('delete')
+
+        target_user = User.objects.get(id=target_user_id)
+        if delete:
+            if target_user.followers.filter(to_user_id=request.user.id).count() > 0:
+                target_user.followers.remove(request.user)
+
+                target_user.follower_count -= 1
+                request.user.followee_count -= 1
+
+                target_user.save()
+                request.user.save()
+        else:
+            if target_user.followers.filter(to_user_id=request.user.id).count() == 0:
+                target_user.followers.add(request.user)
+                target_user.follower_count += 1
+                request.user.followee_count += 1
+
+                target_user.save()
+                request.user.save()
+
+
+        return Response({'message': 'success'})
+
+

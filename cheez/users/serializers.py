@@ -91,7 +91,10 @@ class UserSerializer(ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True, 'required': False},
             'upload_count': {'read_only': True},
-            'profile_image': {'required': False}
+            'profile_image': {'required': False},
+            'followers': {'required': False, 'read_only': True},
+            'followee_count': {'required': False, 'read_only': True},
+            'follower_count': {'required': False, 'read_only': True},
             }
 
 
