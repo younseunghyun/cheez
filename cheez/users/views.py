@@ -10,8 +10,10 @@ from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated
 )
-from users.models import User, SNSAccount
+from users.models import User
+from users.models import SNSAccount
 from users.models import Device
+from users.models import Follow
 from users.serializers import UserSerializer
 from users.serializers import CustomAuthTokenSerializer
 from users.tasks import send_user_data
@@ -28,8 +30,8 @@ class UserViewSet(ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         user = User.objects.raw('''
         select * from users_user u
-        left join users_user_followers f
-        on u.id = f.from_user_id and f.to_user_id = %s
+        left join users_follow f
+        on u.id = f.followee_id and f.follower_id = %s
         where u.id = %s
         ''', [request.user.id, kwargs['pk']])[0]
 
@@ -99,9 +101,13 @@ class FollowView(APIView):
         delete = request.data.get('delete')
 
         target_user = User.objects.get(id=target_user_id)
+
+        follow_filter = Follow.objects.filter(followee=target_user, follower=request.user)
+
         if delete:
-            if target_user.followers.filter(to_user_id=request.user.id).count() > 0:
-                target_user.followers.remove(request.user)
+            if follow_filter.count() > 0:
+                follow = follow_filter.first()
+                follow.delete()
 
                 target_user.follower_count -= 1
                 request.user.followee_count -= 1
@@ -109,11 +115,15 @@ class FollowView(APIView):
                 target_user.save()
                 request.user.save()
         else:
-            if target_user.followers.filter(to_user_id=request.user.id).count() == 0:
-                target_user.followers.add(request.user)
+            if follow_filter.count() == 0:
+                follow = Follow(
+                    follower=request.user,
+                    followee=target_user
+                )
                 target_user.follower_count += 1
                 request.user.followee_count += 1
 
+                follow.save()
                 target_user.save()
                 request.user.save()
 

@@ -36,7 +36,12 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     profile_image = models.ImageField(upload_to='images/users/profile', null=True, blank=True)
     upload_count = models.IntegerField(default=0)
 
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='followees', blank=True)
+    followers = models.ManyToManyField('self',
+                                       symmetrical=False,
+                                       related_name='followees',
+                                       blank=True,
+                                       through='Follow'
+                                       )
 
     USERNAME_FIELD = 'email'
 
@@ -54,6 +59,10 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
     def __str__(self):
         return self.get_full_name()
+
+class Follow(BaseModel):
+    follower = models.ForeignKey(User, related_name='follow_followees')
+    followee = models.ForeignKey(User, related_name='follow_followers')
 
 
 class Device(BaseModel):
