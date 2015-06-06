@@ -13,6 +13,7 @@ l.addHandler(logging.StreamHandler())
 
 
 class Post(BaseModel):
+    comment_count = models.IntegerField(default=0)
     deleted = models.BooleanField(default=False)
     image_url = models.URLField()
     like_count = models.IntegerField(default=0)
@@ -22,6 +23,7 @@ class Post(BaseModel):
     source_url = models.URLField()
     subtitle = models.CharField(max_length=512, null=True)
     title = models.CharField(max_length=256)
+    view_count = models.IntegerField(default=0)
 
     user = models.ForeignKey('users.User', related_name='writed_posts')
 
@@ -78,6 +80,7 @@ class Post(BaseModel):
         link_closed_time = int(kwargs.get('link_closed_time'))
 
         if created:
+            self.view_count += 1
             read_post.view_started_time = view_started_time
             read_post.view_ended_time = view_ended_time
             read_post.link_opened_time = link_opened_time

@@ -85,9 +85,14 @@ class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
 
     def create(self, request, *args, **kwargs):
+        post_id = request.data.get('post_id')
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(user=request.user, post_id=request.data.get('post_id'))
+        serializer.save(user=request.user, post_id=post_id)
+
+        post = Post.objects.get(id=post_id)
+        post.comment_count += 1
+        post.save()
 
         return Response(serializer.data, status.HTTP_201_CREATED)
 
