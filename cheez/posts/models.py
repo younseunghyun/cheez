@@ -67,6 +67,7 @@ class Post(BaseModel):
             user_id=user_id,
         )
 
+        liked = kwargs.get('liked')
         link_clicked = kwargs.get('link_clicked')
         saved = kwargs.get('saved')
         rating = kwargs.get('rating')
@@ -94,6 +95,8 @@ class Post(BaseModel):
                 read_post.link_opened_time = link_opened_time
                 read_post.link_closed_time = link_closed_time
 
+        if liked and (created or not read_post.liked):
+            self.like_count += 1
         if link_clicked and (created or not read_post.link_clicked):
             self.link_click_count += 1
         if saved and (created or not read_post.saved):
@@ -101,6 +104,7 @@ class Post(BaseModel):
 
         self.save()
 
+        read_post.liked = liked
         read_post.link_clicked = link_clicked
         read_post.saved = saved
         read_post.rating = rating
@@ -131,7 +135,10 @@ class ReadPostRel(BaseModel):
     user = models.ForeignKey('users.User', related_name='read_post_rels')
     post = models.ForeignKey('Post', related_name='read_post_rels')
 
+    liked = models.BooleanField(default=False)
     link_clicked = models.BooleanField(default=False)
+
+    # TODO : remove rating
     rating = models.IntegerField(default=0)
     saved = models.BooleanField(default=False)
 
