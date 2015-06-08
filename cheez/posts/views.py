@@ -46,6 +46,15 @@ class PostViewSet(ModelViewSet):
 
         return Response(serializer.data, status.HTTP_201_CREATED)
 
+    def destroy(self, request, *args, **kwargs):
+        post = Post.objects.get(id=kwargs['pk'])
+        post.deleted = True
+        post.save()
+        request.user.upload_count -= 1
+        request.user.save()
+
+        return Response({'message': 'success'})
+
     def list(self, request, *args, **kwargs):
         page = request.query_params.get('page', 1)
 
@@ -62,6 +71,7 @@ class PostViewSet(ModelViewSet):
             left join posts_readpostrel pr
             on p.id = pr.post_id and pr.user_id = %s
             where p.user_id = %s
+            and p.deleted = false
             limit %s, %s
             """
             params = [user_id, user_id, (int(page)-1)*PostViewSet.PAGE_SIZE, PostViewSet.PAGE_SIZE]
