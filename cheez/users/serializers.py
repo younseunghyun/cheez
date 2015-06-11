@@ -85,16 +85,27 @@ class UserSerializer(ModelSerializer):
 
         return user
 
+    def update(self, instance, validated_data):
+        # ModelSerializer에서 nested update시 exception 발생시키는 부분만 삭제
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        return instance
+
+
     class Meta:
         model = User
         exclude = ('user_permissions', 'groups',)
         extra_kwargs = {
+
             'password': {'write_only': True, 'required': False},
             'upload_count': {'read_only': True},
             'profile_image': {'required': False},
             'followers': {'required': False, 'read_only': True},
             'followee_count': {'required': False, 'read_only': True},
             'follower_count': {'required': False, 'read_only': True},
+            'state_message': {'required': False},
             }
 
 

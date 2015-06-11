@@ -32,8 +32,9 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     followee_count = models.IntegerField(default=0, blank=True)
     follower_count = models.IntegerField(default=0, blank=True)
     joined = models.BooleanField(default=False)
-    name = models.CharField(max_length=128, null=True)
+    name = models.CharField(max_length=128, null=True, unique=True)
     profile_image = models.ImageField(upload_to='images/users/profile', null=True, blank=True)
+    state_message = models.CharField(max_length=256, null=True, blank=True)
     upload_count = models.IntegerField(default=0)
 
     followers = models.ManyToManyField('self',
