@@ -50,6 +50,7 @@ INSTALLED_APPS = (
 
 
 REST_FRAMEWORK = {
+    'UNICODE_JSON': False,  # http://www.django-rest-framework.org/api-guide/settings/#encodings
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
@@ -57,6 +58,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+         #UnicodeJSONRenderer has an ensure_ascii = False attribute,
+         #thus it will not escape characters.
+        'rest_framework.renderers.JSONRenderer',
+         #You only need to keep this one if you're using the browsable API
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+     'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
     ),
     'PAGE_SIZE': 10
 }

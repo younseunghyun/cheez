@@ -1,4 +1,3 @@
-from django.db import IntegrityError
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import parsers
@@ -21,6 +20,24 @@ from users.tasks import send_user_data
 
 class AuthTokenAPIView(ObtainAuthToken):
     serializer_class = CustomAuthTokenSerializer
+
+class EditProfileApiView(APIView):
+
+
+    def post(self, request):
+        user = request.user
+        name = request.data.get('name')
+        state_message = request.data.get('state_message')
+
+        if name is not None:
+            if User.objects.filter(name=name).count() > 0:
+                return Response({'message': '닉네임이 이미 사용중이에요 :('}, status=status.HTTP_400_BAD_REQUEST)
+            user.name = name
+
+        user.state_message = state_message
+        user.save()
+        serializer = UserSerializer(user)
+        return Response(serializer.data, content_type='application/json')
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
@@ -126,7 +143,6 @@ class FollowView(APIView):
                 follow.save()
                 target_user.save()
                 request.user.save()
-
 
         return Response({'message': 'success'})
 

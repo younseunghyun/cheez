@@ -25,6 +25,7 @@ urlpatterns = [
 
     url(r'^saved-post/', post_views.SavedPostApiView.as_view()),
     url(r'^read-post/', post_views.ReadPostApiView.as_view()),
+    url(r'^edit-profile/', user_views.EditProfileApiView.as_view()),
     url(r'^push-token/', user_views.PostPushToken.as_view()),
     url(r'^report/', post_views.ReportApiView.as_view()),
     url(r'^follow/', user_views.FollowView.as_view()),
