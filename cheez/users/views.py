@@ -30,9 +30,15 @@ class EditProfileApiView(APIView):
         state_message = request.data.get('state_message')
 
         if name is not None:
-            if User.objects.filter(name=name).count() > 0:
+            if User.objects.filter(name=name) \
+                    .exclude(id=user.id) \
+                    .count() > 0:
                 return Response({'message': '닉네임이 이미 사용중이에요 :('}, status=status.HTTP_400_BAD_REQUEST)
             user.name = name
+
+        if 'profile_image' in request.FILES:
+            profile_image = request.FILES['profile_image']
+            user.profile_image = profile_image
 
         user.state_message = state_message
         user.save()
